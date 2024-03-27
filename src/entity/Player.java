@@ -24,7 +24,7 @@ public class Player extends Entity{
     public void setDefaultValues(){
         x = 100;
         y = 100;
-        speed = 5;
+        speed = 2;
         direction = "down";
     }
 
@@ -37,13 +37,27 @@ public class Player extends Entity{
             left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
     public void update(){
+
+        if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed){
+            spriteCounter++;
+            if(spriteCounter < 12){
+                if(spriteNum == 1) {
+                    spriteNum = 2;
+                }
+                else if(spriteNum == 2) {
+                    spriteNum = 1;
+                }
+            }
+            spriteCounter = 0;
+        }
+
         if(keyH.upPressed){
             direction = "up";
             y -= speed;
@@ -58,14 +72,6 @@ public class Player extends Entity{
             x += speed;
         }
 
-        spriteCounter++;
-        if(spriteCounter > 12){
-            if(spriteNum == 1)
-                spriteNum = 2;
-            else if(spriteNum == 2)
-                spriteNum = 1;
-        }
-        spriteCounter = 0;
     }
 
     public void draw(Graphics2D g2){
@@ -100,7 +106,6 @@ public class Player extends Entity{
                     image = right2;
                 break;
         }
-
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }
 }
