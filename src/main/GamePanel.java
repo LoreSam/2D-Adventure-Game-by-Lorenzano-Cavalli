@@ -27,9 +27,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     int FPS = 144;
 
-    TileManager tileM =new TileManager(this);
+    TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    public CollisionChecker cChecker = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
 
     public GamePanel(){
@@ -45,52 +46,54 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
 
-/*     @Override
-   public void run() {
+    /*
+    @Override
+    public void run() {
 
-        double drawInterval = 1000000000/FPS;
-        double nextDrawTime = System.nanoTime()+drawInterval;
-        while (gameThread != null){
+    double drawInterval = 1000000000/FPS;
+    double nextDrawTime = System.nanoTime()+drawInterval;
+    while (gameThread != null){
 
-            //update: aggiorniamo le informazioni del gioco(posizione personaggio)
-            update();
+        //update: aggiorniamo le informazioni del gioco(posizione personaggio)
+        update();
 
-            //draw: ridisegnamo la grafica
-            repaint();
+        //draw: ridisegnamo la grafica
+        repaint();
 
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime = remainingTime/1000000;
-                if (remainingTime < 0)
-                {
-                    remainingTime=0;
-                }
-                Thread.sleep((long) remainingTime);
-                nextDrawTime += drawInterval;
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        try {
+            double remainingTime = nextDrawTime - System.nanoTime();
+            remainingTime = remainingTime/1000000;
+            if (remainingTime < 0)
+            {
+                remainingTime=0;
             }
+            Thread.sleep((long) remainingTime);
+            nextDrawTime += drawInterval;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+    }
     }
     primo metodo per fare gli fps
     */
+
     @Override
     public void run() {
 
         double drawInterval = 1000000000/FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
-        long correntTime;
+        long currentTime;
         long timer = 0;
         int drawCount = 0;
 
         while (gameThread != null){
 
-            correntTime = System.nanoTime();
+            currentTime = System.nanoTime();
 
-            delta += (correntTime - lastTime) / drawInterval;
-            timer += (correntTime - lastTime);
-            lastTime = correntTime;
+            delta += (currentTime - lastTime) / drawInterval;
+            timer += (currentTime - lastTime);
+            lastTime = currentTime;
 
             if (delta >= 1 ) {
                 update();
@@ -101,7 +104,7 @@ public class GamePanel extends JPanel implements Runnable{
 
             if (timer >= 1000000000)
             {
-               // System.out.println("FPS: "+drawCount);
+                System.out.println("FPS: " + drawCount);
                 drawCount=0;
                 timer=0;
             }

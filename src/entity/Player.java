@@ -22,6 +22,12 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
+        solidArea = new Rectangle(12, 16, 28, 28);
+        /*solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 32;*/
+
         setDefaultValues();
         getPlayerImage();
     }
@@ -49,32 +55,47 @@ public class Player extends Entity{
     }
 
     public void update(){
+        if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed) {
+            if (keyH.upPressed) {
+                direction = "up";
+            } else if (keyH.downPressed) {
+                direction = "down";
+            } else if (keyH.leftPressed) {
+                direction = "left";
+            } else if (keyH.rightPressed) {
+                direction = "right";
+            }
 
-        if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed){
-            spriteCounter++;
-            if(spriteCounter < 12){
-                if(spriteNum == 1) {
-                    spriteNum = 2;
+            //CONTROLLO COLLISIONI
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+
+            if (!collisionOn) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
                 }
-                else if(spriteNum == 2) {
+            }
+
+            spriteCounter++;
+            if (spriteCounter < 12) {
+                if (spriteNum == 1) {
+                    spriteNum = 2;
+                } else if (spriteNum == 2) {
                     spriteNum = 1;
                 }
             }
             spriteCounter = 0;
-        }
-
-        if(keyH.upPressed){
-            direction = "up";
-            worldY -= speed;
-        } else if (keyH.downPressed) {
-            direction = "down";
-            worldY += speed;
-        } else if (keyH.leftPressed) {
-            direction = "left";
-            worldX -= speed;
-        } else if (keyH.rightPressed) {
-            direction = "right";
-            worldX += speed;
         }
 
     }
