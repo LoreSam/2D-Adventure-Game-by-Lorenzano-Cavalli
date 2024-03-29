@@ -111,16 +111,23 @@ public class Player extends Entity{
             String objectName = gp.obj[index].name;
             switch(objectName){
                 case "Key":
+                    gp.playSoundEffect(1);
                     hasKey++;
                     gp.obj[index] = null;
                     System.out.println("Chiavi: " + hasKey);
                     break;
                 case "Door":
                     if(hasKey > 0) {
+                        gp.playSoundEffect(3);
                         gp.obj[index] = null;
                         hasKey--;
                     }
                     System.out.println("Chiavi: " + hasKey);
+                    break;
+                case "Boots":
+                    gp.playSoundEffect(2);
+                    speed += 1;
+                    gp.obj[index] = null;
                     break;
             }
         }
