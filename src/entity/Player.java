@@ -22,7 +22,7 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
-        solidArea = new Rectangle(12, 16, 28, 28);
+        solidArea = new Rectangle(8, 16, 24, 24);
         /*solidArea.x = 8;
         solidArea.y = 16;
         solidArea.width = 32;
@@ -88,7 +88,7 @@ public class Player extends Entity{
             }
 
             spriteCounter++;
-            if (spriteCounter < 12) {
+            if (spriteCounter < 12) { //anche > 0, è comunque da fixare
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
@@ -97,7 +97,6 @@ public class Player extends Entity{
             }
             spriteCounter = 0;
         }
-
     }
 
     public void draw(Graphics2D g2){
