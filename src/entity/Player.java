@@ -14,6 +14,7 @@ public class Player extends Entity{
     KeyHandler keyH;
 
     public final int screenX, screenY;
+    int hasKey = 0; //numero di chiavi che il giocatore ha
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -22,11 +23,13 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
-        solidArea = new Rectangle(8, 16, 24, 24);
-        /*solidArea.x = 8;
+        solidArea = new Rectangle();
+        solidArea.x = 8;
         solidArea.y = 16;
-        solidArea.width = 32;
-        solidArea.height = 32;*/
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 24;
+        solidArea.height = 24;
 
         setDefaultValues();
         getPlayerImage();
@@ -66,9 +69,13 @@ public class Player extends Entity{
                 direction = "right";
             }
 
-            //CONTROLLO COLLISIONI
+            //CONTROLLO COLLISIONI TILE
             collisionOn = false;
             gp.cChecker.checkTile(this);
+
+            //CONTROLLO COLLISIONI OGGETTI
+            int objectIndex = gp.cChecker.checkObject(this, true);
+            pickUpObject(objectIndex);
 
             if (!collisionOn) {
                 switch (direction) {
@@ -96,6 +103,26 @@ public class Player extends Entity{
                 }
             }
             spriteCounter = 0;
+        }
+    }
+
+    public void pickUpObject(int index){
+        if(index != 999){
+            String objectName = gp.obj[index].name;
+            switch(objectName){
+                case "Key":
+                    hasKey++;
+                    gp.obj[index] = null;
+                    System.out.println("Chiavi: " + hasKey);
+                    break;
+                case "Door":
+                    if(hasKey > 0) {
+                        gp.obj[index] = null;
+                        hasKey--;
+                    }
+                    System.out.println("Chiavi: " + hasKey);
+                    break;
+            }
         }
     }
 
