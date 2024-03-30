@@ -14,7 +14,7 @@ public class Player extends Entity{
     KeyHandler keyH;
 
     public final int screenX, screenY;
-    int hasKey = 0; //numero di chiavi che il giocatore ha
+    public int hasKey = 0; //numero di chiavi che il giocatore ha
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -114,20 +114,29 @@ public class Player extends Entity{
                     gp.playSoundEffect(1);
                     hasKey++;
                     gp.obj[index] = null;
-                    System.out.println("Chiavi: " + hasKey);
+                    gp.ui.showMessage("Hai ottenuto una chiave!");
                     break;
                 case "Door":
                     if(hasKey > 0) {
                         gp.playSoundEffect(3);
                         gp.obj[index] = null;
                         hasKey--;
+                        gp.ui.showMessage("Hai aperto una porta!");
                     }
-                    System.out.println("Chiavi: " + hasKey);
+                    else{
+                        gp.ui.showMessage("Ti serve una chiave!");
+                    }
                     break;
                 case "Boots":
                     gp.playSoundEffect(2);
                     speed += 1;
                     gp.obj[index] = null;
+                    gp.ui.showMessage("Più veloce!");
+                    break;
+                case "Chest":
+                    gp.ui.gameDone = true;
+                    gp.stopMusic();
+                    gp.playSoundEffect(4);
                     break;
             }
         }
