@@ -15,6 +15,7 @@ public class NPC_OldMan extends Entity{
         speed = 1;
 
         getNPCImage();
+        setDialog();
     }
 
     public void getNPCImage(){
@@ -30,6 +31,13 @@ public class NPC_OldMan extends Entity{
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void setDialog(){
+        dialogues[0]="ciao";
+        dialogues[1]="quindi sei venuto su quest'isola \nper trovare il tesoro?";
+        dialogues[2]="un tempo ero un bravo mago";
+        dialogues[3]="buona fortuna";
     }
 
     public void setAction(){
@@ -51,5 +59,8 @@ public class NPC_OldMan extends Entity{
 
             actionLockCounter = 0;
         }
+    }
+    public void speak(){
+        super.speak();
     }
 }
