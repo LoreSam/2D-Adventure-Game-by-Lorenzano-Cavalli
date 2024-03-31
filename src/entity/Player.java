@@ -10,13 +10,13 @@ import java.io.IOException;
 
 public class Player extends Entity{
 
-    GamePanel gp;
     KeyHandler keyH;
 
     public final int screenX, screenY;
 
     public Player(GamePanel gp, KeyHandler keyH){
-        this.gp = gp;
+        super(gp);
+
         this.keyH = keyH;
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -71,6 +71,10 @@ public class Player extends Entity{
             //CONTROLLO COLLISIONI TILE
             collisionOn = false;
             gp.cChecker.checkTile(this);
+
+            //CONTROLLO COLLISIONI NPC
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
 
             //CONTROLLO COLLISIONI OGGETTI
             int objectIndex = gp.cChecker.checkObject(this, true);
@@ -138,6 +142,12 @@ public class Player extends Entity{
                     gp.playSoundEffect(4);
                     break;
             }*/
+        }
+    }
+
+    public void interactNPC(int index){
+        if(index != 999){
+            System.out.println("hai colpito un NPC!");
         }
     }
 

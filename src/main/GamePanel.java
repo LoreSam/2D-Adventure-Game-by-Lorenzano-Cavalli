@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -39,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
     //ENTITÀ ED OGGETTI
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
+    public Entity npc[] = new Entity[10];
 
     //STATO
     public int gameState;
@@ -55,10 +57,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame(){
         aSetter.setObject();
-        playMusic(0);
-        /*stopMusic();
-        per evitare che parta la musica, DA DECOMMENTARE
-         */
+        aSetter.setNPC();
+        /*playMusic(0);
+        per evitare che parta la musica, da DECOMMENTARE
+        stopMusic();*/
         gameState = playState;
     }
 
@@ -102,8 +104,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
-        if(gameState == playState)
+        if(gameState == playState) {
             player.update();
+            for(int i = 0; i < npc.length; i++){
+                if(npc[i] != null)
+                    npc[i].update();
+            }
+        }
         if(gameState == pauseState){
             //TODO in futuro
         }
@@ -116,13 +123,19 @@ public class GamePanel extends JPanel implements Runnable{
         //TILE
         tileM.draw(g2);
 
-        //OBJECTS
+        //OGGETTI
         for(int i = 0; i < obj.length; i++){
             if(obj[i] != null)
                 obj[i].draw(g2, this);
         }
 
-        //PLAYER
+        //NPC
+        for(int i = 0; i < npc.length; i++){
+            if(npc[i] != null)
+                npc[i].draw(g2);
+        }
+
+        //GIOCATORE
         player.draw(g2);
 
         //UI
