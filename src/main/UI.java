@@ -4,13 +4,15 @@ import object.OBJ_Key;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    Font font, congratulazioniB;
+    Font font;
 
     public boolean messageOn = false;
     public String message = "";
@@ -23,8 +25,14 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
 
-        font = new Font("Arial", Font.PLAIN, 40);
-        congratulazioniB = new Font("Arial", Font.BOLD, 80);
+        InputStream is = getClass().getResourceAsStream("/fonts/Escapists.ttf");
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void showMessage(String text){
@@ -49,23 +57,23 @@ public class UI {
         //stato di dialogo
         if (gp.gameState == gp.dialogueState)
         {
-            drawpDialogueScreen();
+            drawDialogueScreen();
         }
     }
 
     public void drawPauseScreen(){
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 60F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
         String text = "PAUSA";
         int x = centreText(text);
         int y = gp.screenHeight/2;
         g2.drawString(text, x, y);
     }
 
-    public void drawpDialogueScreen(){
+    public void drawDialogueScreen(){
         //finestra
         int x = gp.tileSize*2, y = gp.tileSize/2, width = gp.screenWidth - (gp.tileSize*4) , height = gp.tileSize*4;
         drawSubWindows(x, y, width, height);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
         x += gp.tileSize;
         y += gp.tileSize;
         for (String line : currentDialog.split("\n")){
@@ -83,8 +91,8 @@ public class UI {
     }
 
     public int centreText(String text){
-        int lenght = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth/2 - lenght/2;
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = gp.screenWidth/2 - length/2;
         return x;
     }
 }
