@@ -78,6 +78,11 @@ public class Player extends Entity{
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            //CONTROLLO EVENTI
+            gp.eHandler.checkEvent();
+
+            gp.keyH.enterPressed = false;
+
             //CONTROLLO COLLISIONI OGGETTI
             int objectIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objectIndex);
@@ -154,7 +159,6 @@ public class Player extends Entity{
                 gp.npc[index].speak();
             }
         }
-        gp.keyH.enterPressed = false;
     }
 
     public void draw(Graphics2D g2){
