@@ -14,7 +14,70 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int code= e.getKeyCode();
+        int code = e.getKeyCode();
+
+        //TITOLO
+        if(gp.gameState == gp.titleState) {
+
+            if (gp.ui.titleScreenState == 0) {
+                if (code == KeyEvent.VK_UP) {
+                    gp.ui.commandNum--;
+                    if (gp.ui.commandNum < 0)
+                        gp.ui.commandNum = 2;
+                }
+                if (code == KeyEvent.VK_DOWN) {
+                    gp.ui.commandNum++;
+                    if (gp.ui.commandNum > 2)
+                        gp.ui.commandNum = 0;
+                }
+                if (code == KeyEvent.VK_ENTER) {
+                    if (gp.ui.commandNum == 0) {
+                        gp.ui.titleScreenState = 1;
+                    }
+                    if (gp.ui.commandNum == 1) {
+                        //TODO carica partita
+                    }
+                    if (gp.ui.commandNum == 2) {
+                        System.exit(0);
+                    }
+                }
+            }
+            else if(gp.ui.titleScreenState == 1){
+                if (code == KeyEvent.VK_UP) {
+                    gp.ui.commandNum--;
+                    if (gp.ui.commandNum < 0)
+                        gp.ui.commandNum = 3;
+                }
+                if (code == KeyEvent.VK_DOWN) {
+                    gp.ui.commandNum++;
+                    if (gp.ui.commandNum > 3)
+                        gp.ui.commandNum = 0;
+                }
+                if (code == KeyEvent.VK_ENTER) {
+                    if (gp.ui.commandNum == 0) {
+                        System.out.println("Perfettino");
+                        gp.gameState = gp.playState;
+                        cambiaMusica(1);
+                    }
+                    if (gp.ui.commandNum == 1) {
+                        System.out.println("Cancro");
+                        gp.gameState = gp.playState;
+                        cambiaMusica(1);
+                    }
+                    if (gp.ui.commandNum == 2) {
+                        System.out.println("Labbro pazzo");
+                        gp.gameState = gp.playState;
+                        cambiaMusica(1);
+                    }
+                    if (gp.ui.commandNum == 3){
+                        System.out.println("Sei tornato indietro");
+                        gp.ui.titleScreenState = 0;
+                    }
+                }
+
+            }
+        }
+
         //stato di gioco
         if (gp.gameState == gp.playState){
             if(code == KeyEvent.VK_W){
@@ -49,6 +112,11 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.playState;
             }
         }
+    }
+
+    public void cambiaMusica(int i){
+        gp.stopMusic();
+        gp.playMusic(i);
     }
 
     @Override

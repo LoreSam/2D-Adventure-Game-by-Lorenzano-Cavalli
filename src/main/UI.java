@@ -20,6 +20,8 @@ public class UI {
     public boolean gameDone = false;
 
     public String currentDialog ="";
+    public int commandNum = 0;
+    public int titleScreenState = 0; //il numero determina la schermata (0: prima, 1: seconda...)
 
 
     public UI(GamePanel gp) {
@@ -45,20 +47,112 @@ public class UI {
         g2.setFont(font);
         g2.setColor(Color.white);
 
+        //SCHERMATA TITOLO
+        if(gp.gameState == gp.titleState){
+            drawTitleScreen();
+        }
+
         //stato di gioco
         if(gp.gameState == gp.playState){
             //TODO play
         }
         //stato di pausa
         if(gp.gameState == gp.pauseState){
-            //TODO pause
             drawPauseScreen();
         }
         //stato di dialogo
-        if (gp.gameState == gp.dialogueState)
-        {
+        if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
+    }
+
+    public void drawTitleScreen(){
+
+        if(titleScreenState == 0){
+            //COLORE BACKGROUND
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+            //TITOLO
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
+            String text = "L'escapista";
+            int x = centreText(text);
+            int y = gp.tileSize*3;
+
+            //OMBRA TESTO
+            g2.setColor(Color.GRAY);
+            g2.drawString(text, x+5, y+5);
+
+            //COLORE TESTO
+            g2.setColor(Color.white);
+            g2.drawString(text, x, y);
+
+            //IMMAGINE PERSONAGGIO
+            x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+            y += gp.tileSize*2;
+            g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+
+            //MENU
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 50F));
+            text = "Nuova Partita";
+            x = centreText(text);
+            y += gp.tileSize*3.5;
+            g2.drawString(text, x, y);
+            if(commandNum == 0)
+                g2.drawString(">", x - gp.tileSize, y);
+
+            text = "Carica Partita";
+            x = centreText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1)
+                g2.drawString(">", x - gp.tileSize, y);
+
+            text = "Esci";
+            x = centreText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 2)
+                g2.drawString(">", x - gp.tileSize, y);
+        }
+        else if(titleScreenState == 1){
+            //SCHERMATA DI SELEZIONE
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(40F));
+
+            String text = "Scegli il personaggio";
+            int x = centreText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+
+            text = "Gatti";
+            x = centreText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 0)
+                g2.drawString(">", x - gp.tileSize, y);
+
+            text = "Sardano";
+            x = centreText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1)
+                g2.drawString(">", x - gp.tileSize, y);
+
+            text = "Avanzini";
+            x = centreText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if(commandNum == 2)
+                g2.drawString(">", x - gp.tileSize, y);
+
+            text = "Indietro";
+            x = centreText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if(commandNum == 3)
+                g2.drawString(">", x - gp.tileSize, y);
+        }
+
     }
 
     public void drawPauseScreen(){
