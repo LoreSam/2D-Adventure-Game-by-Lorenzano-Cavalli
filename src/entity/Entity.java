@@ -1,7 +1,9 @@
 package entity;
 
 import main.GamePanel;
+import main.UtilityTool;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -13,7 +15,7 @@ public class Entity {
     public int speed;
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String direction;
+    public String direction = "down";
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -23,6 +25,9 @@ public class Entity {
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
     public String dialogues[] = new String[20];
+    public BufferedImage image, image2, image3;
+    public String name;
+    public boolean collision = false;
     int dialogueIndex = 0;
 
     //stato del personaggio
@@ -131,5 +136,16 @@ public class Entity {
             }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
+    }
+    public BufferedImage setup(String imagePath){
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return image;
     }
 }
