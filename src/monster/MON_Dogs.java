@@ -22,18 +22,18 @@ public class MON_Dogs extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        getImage();
+        getImage(gp);
     }
 
-    public void getImage(){
-        down1 = setup("/dogs/greenslime_down_1");
-        down2 = setup("/dogs/greenslime_down_2");
-        up1 = setup("/dogs/greenslime_down_1");
-        up2 = setup("/dogs/greenslime_down_2");
-        left1 = setup("/dogs/greenslime_down_1");
-        left2 = setup("/dogs/greenslime_down_2");
-        right1 = setup("/dogs/greenslime_down_1");
-        right2 = setup("/dogs/greenslime_down_2");
+    public void getImage(GamePanel gp){
+        down1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);
+        up1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
+        up2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
+        left2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);
+        right1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
+        right2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);
     }
 
     public void setAction(){

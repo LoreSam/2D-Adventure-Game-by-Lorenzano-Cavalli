@@ -16,12 +16,14 @@ public class Entity {
     public int speed;
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public String direction = "down";
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
-
+    public boolean attacking = false;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
@@ -76,8 +78,8 @@ public class Entity {
         gp.cChecker.checkEntity(this, gp.monster);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
-        if(this.type == 2 && contactPlayer == true){
-            if(gp.player.invincible == false){
+        if(this.type == 2 && contactPlayer){
+            if(!gp.player.invincible){
                 gp.player.life -= 1;
                 gp.player.invincible = true;
             }
@@ -108,6 +110,14 @@ public class Entity {
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+
+        if(invincible){
+            invincibleCounter++;
+            if (invincibleCounter > 40){
+                invincible = false;
+                invincibleCounter = 0;
+            }
         }
     }
 
@@ -150,12 +160,12 @@ public class Entity {
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
     }
-    public BufferedImage setup(String imagePath){
+    public BufferedImage setup(String imagePath, int width, int height){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = uTool.scaleImage(image, width, height);
         }catch (Exception e){
             e.printStackTrace();
         }

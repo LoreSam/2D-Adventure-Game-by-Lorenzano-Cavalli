@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Player extends Entity{
 
@@ -27,11 +28,15 @@ public class Player extends Entity{
         solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 24;
-        solidArea.height = 24;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
+        attackArea.width = 36;
+        attackArea.height = 36;
 
         setDefaultValues();
         getPlayerImage();
+        getPlayerAttackImage();
     }
 
     public void setDefaultValues(){
@@ -45,21 +50,49 @@ public class Player extends Entity{
 
     public void getPlayerImage(){
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_2.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_2.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
+    public void getPlayerAttackImage(){
+        attackUp1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackUp2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackDown1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackDown2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackLeft1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackLeft2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackRight1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackRight2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+
+       /*try {
+            attackUp1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_up_1.png")));
+            attackUp2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_up_2.png")));
+            attackDown1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_down_1.png")));
+            attackDown2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_down_2.png")));
+            attackLeft1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_left_1.png")));
+            attackLeft2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_left_2.png")));
+            attackRight1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_right_1.png")));
+            attackRight2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_right_2.png")));
+        }catch (IOException e){
+            e.printStackTrace();
+        }*/
+    }
+
     public void update(){
-        if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed) {
+        if (attacking){
+            attacking();
+        }
+
+        if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
             if (keyH.upPressed) {
                 direction = "up";
             } else if (keyH.downPressed) {
@@ -88,9 +121,9 @@ public class Player extends Entity{
 
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
-            gp.keyH.enterPressed = false;
 
-            if (!collisionOn) {
+
+            if (!collisionOn && !keyH.enterPressed) {
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -106,7 +139,7 @@ public class Player extends Entity{
                         break;
                 }
             }
-
+            gp.keyH.enterPressed = false;
             spriteCounter++;
             if (spriteCounter > 10) { //FIXATO PORCODIO
                 if (spriteNum == 1) {
@@ -124,6 +157,51 @@ public class Player extends Entity{
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+    }
+
+    public void attacking(){
+        spriteCounter++;
+        if (spriteCounter <= 5){
+            spriteNum = 1;
+        }
+        if (spriteCounter > 5 && spriteCounter <=25){
+            spriteNum = 2;
+            int currentWorldX = worldX, currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width, solidAreaHeight = solidArea.height;
+
+            switch (direction){
+                case "up":
+                    worldY -= attackArea.height;
+                    break;
+                case "down":
+                    worldY += attackArea.height;
+                    break;
+                case "left":
+                    worldX -= attackArea.width;
+                    break;
+                case "right":
+                    worldX += attackArea.width;
+                    break;
+            }
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            damageMonster(monsterIndex);
+
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+        }
+        if (spriteCounter <= 5){
+            spriteNum = 1;
+        }
+        if (spriteCounter > 25){
+            spriteNum = 1;
+            spriteCounter = 0;
+            attacking = false;
         }
     }
 
@@ -163,11 +241,14 @@ public class Player extends Entity{
         }
     }
 
-    public void interactNPC(int index){
-        if(index != 999){
-            if (gp.keyH.enterPressed == true) {
+    public void interactNPC(int index) {
+        if (gp.keyH.enterPressed) {
+            if (index != 999) {
                 gp.gameState = gp.dialogueState;
                 gp.npc[index].speak();
+            }
+            else {
+                attacking = true;
             }
         }
     }
@@ -181,38 +262,88 @@ public class Player extends Entity{
         }
     }
 
+    public void damageMonster(int i){
+        if (i != 999){
+            if (!gp.monster[i].invincible){
+                gp.monster[i].life -= 1;
+                gp.monster[i].invincible = true;
+                if (gp.monster[i].life <= 0){
+                    gp.monster[i] = null;
+                }
+            }
+        }
+        else {
+            System.out.println("miss");
+        }
+    }
+
     public void draw(Graphics2D g2){
         /*g2.setColor(Color.white);
         g2.fillRect(x, y, gp.tileSize, gp.tileSize);*/
 
         BufferedImage image = null;
-
+        int tempScreenX = screenX, tempScreenY = screenY;
         switch(direction){
             case "up":
-                if(spriteNum == 1)
-                    image = up1;
-                if(spriteNum == 2)
-                    image = up2;
+                if (!attacking) {
+                    if (spriteNum == 1)
+                        image = up1;
+                    if (spriteNum == 2)
+                        image = up2;
+                }
+                if (attacking){
+                    tempScreenY = screenY - gp.tileSize;
+                    if (spriteNum == 1)
+                        image = attackUp1;
+                    if (spriteNum == 2)
+                        image = attackUp2;
+                }
                 break;
             case "down":
-                if(spriteNum == 1)
-                    image = down1;
-                if(spriteNum == 2)
-                    image = down2;
+                if (!attacking) {
+                    if (spriteNum == 1)
+                        image = down1;
+                    if (spriteNum == 2)
+                        image = down2;
+                }
+                if (attacking)
+                {
+                    if (spriteNum == 1)
+                        image = attackDown1;
+                    if (spriteNum == 2)
+                        image = attackDown2;
+                }
                 break;
             case "left":
-                if(spriteNum == 1)
-                    image = left1;
-                if(spriteNum == 2)
-                    image = left2;
+                if (!attacking) {
+                    if (spriteNum == 1)
+                        image = left1;
+                    if (spriteNum == 2)
+                        image = left2;
+                }
+                if (attacking){
+                    tempScreenX = screenX - gp.tileSize;
+                    if (spriteNum == 1)
+                        image = attackLeft1;
+                    if (spriteNum == 2)
+                        image = attackLeft2;
+                }
                 break;
             case "right":
-                if(spriteNum == 1)
-                    image = right1;
-                if(spriteNum == 2)
-                    image = right2;
+                if (!attacking) {
+                    if(spriteNum == 1)
+                        image = right1;
+                    if(spriteNum == 2)
+                        image = right2;
+                }
+                if (attacking){
+                    if(spriteNum == 1)
+                        image = attackRight1;
+                    if(spriteNum == 2)
+                        image = attackRight2;
+                }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, tempScreenX, tempScreenY, gp.tileSize, gp.tileSize, null);
     }
 }
