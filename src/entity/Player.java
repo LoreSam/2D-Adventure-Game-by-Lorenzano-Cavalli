@@ -37,7 +37,7 @@ public class Player extends Entity{
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-        speed = 2;
+        speed = 4;
         direction = "down";
         maxLife = 6;
         life = maxLife;
@@ -78,14 +78,17 @@ public class Player extends Entity{
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
-            //CONTROLLO EVENTI
-            gp.eHandler.checkEvent();
-
-            gp.keyH.enterPressed = false;
-
             //CONTROLLO COLLISIONI OGGETTI
             int objectIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objectIndex);
+
+            //CONTROLLO COLLISIONI MOSTRI
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
+            //CONTROLLO EVENTI
+            gp.eHandler.checkEvent();
+            gp.keyH.enterPressed = false;
 
             if (!collisionOn) {
                 switch (direction) {
@@ -105,14 +108,22 @@ public class Player extends Entity{
             }
 
             spriteCounter++;
-            if (spriteCounter < 12) { //anche > 0, è comunque da fixare
+            if (spriteCounter > 10) { //FIXATO PORCODIO
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
                     spriteNum = 1;
                 }
+                spriteCounter = 0;
             }
-            spriteCounter = 0;
+        }
+
+        if(invincible == true){
+            invincibleCounter++;
+            if (invincibleCounter > 60){
+                invincible = false;
+                invincibleCounter = 0;
+            }
         }
     }
 
@@ -157,6 +168,15 @@ public class Player extends Entity{
             if (gp.keyH.enterPressed == true) {
                 gp.gameState = gp.dialogueState;
                 gp.npc[index].speak();
+            }
+        }
+    }
+
+    public void contactMonster(int index){
+        if(index != 999){
+            if(invincible == false){
+                life--;
+                invincible = true;
             }
         }
     }

@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
 
-    int FPS = 144;
+    int FPS = 60;
 
     //SISTEMA
     TileManager tileM = new TileManager(this);
@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonster();
-        //playMusic(0);
+        playMusic(0);
         gameState = titleState;
     }
 
@@ -110,13 +110,17 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
         if(gameState == playState) {
+
+            //GIOCATORE
             player.update();
 
+            //NPC
             for(int i = 0; i < npc.length; i++){
                 if(npc[i] != null)
                     npc[i].update();
             }
 
+            //MOSTRI
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null)
                     monster[i].update();
@@ -143,21 +147,21 @@ public class GamePanel extends JPanel implements Runnable{
 
             //AGGIUNTA ENTITA ALLA LISTA
             entityList.add(player);
-            for (int i = 0; i< npc.length; i++){
+            for (int i = 0; i < npc.length; i++){
                 if (npc[i] != null){
                     entityList.add(npc[i]);
                 }
             }
 
             //AGGIUNTA OGGETTI ALLA LISTA
-            for (int i = 0 ; i<obj.length; i++){
+            for (int i = 0; i < obj.length; i++){
                 if (obj[i] != null){
                     entityList.add(obj[i]);
                 }
             }
 
             //AGGIUNTA CANI ALLA LISTA
-            for (int i = 0 ; i<monster.length; i++){
+            for (int i = 0; i < monster.length; i++){
                 if (monster[i] != null){
                     entityList.add(monster[i]);
                 }
@@ -167,7 +171,7 @@ public class GamePanel extends JPanel implements Runnable{
             Collections.sort(entityList, new Comparator<Entity>() {
                 @Override
                 public int compare(Entity e1, Entity e2) {
-                    int result  = Integer.compare(e1.worldY ,e2.worldY);
+                    int result = Integer.compare(e1.worldY, e2.worldY);
                     return result;
                 }
             });

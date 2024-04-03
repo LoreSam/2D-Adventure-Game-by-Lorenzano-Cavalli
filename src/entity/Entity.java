@@ -6,6 +6,7 @@ import main.UtilityTool;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class Entity {
 
@@ -24,11 +25,14 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     public String dialogues[] = new String[20];
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
     int dialogueIndex = 0;
+    public int type;
 
     //stato del personaggio
     public int maxLife;
@@ -68,7 +72,16 @@ public class Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkEntity(this, gp.monster);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+
+        if(this.type == 2 && contactPlayer == true){
+            if(gp.player.invincible == false){
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+        }
 
         if (!collisionOn) {
             switch (direction) {
@@ -88,14 +101,14 @@ public class Entity {
         }
 
         spriteCounter++;
-        if (spriteCounter < 12) { //anche > 0, è comunque da fixare
+        if (spriteCounter > 10) { //anche > 0, è comunque da fixare
             if (spriteNum == 1) {
                 spriteNum = 2;
             } else if (spriteNum == 2) {
                 spriteNum = 1;
             }
+            spriteCounter = 0;
         }
-        spriteCounter = 0;
     }
 
     public void draw(Graphics2D g2){
@@ -141,7 +154,7 @@ public class Entity {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
         try {
-            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
             image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         }catch (Exception e){
             e.printStackTrace();

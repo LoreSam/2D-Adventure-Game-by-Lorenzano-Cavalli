@@ -10,6 +10,7 @@ public class MON_Dogs extends Entity {
     public MON_Dogs(GamePanel gp) {
         super(gp);
 
+        type = 2;
         name = "Dog";
         speed = 1;
         maxLife = 5;
@@ -25,14 +26,14 @@ public class MON_Dogs extends Entity {
     }
 
     public void getImage(){
-        up1 = setup("/dogs/greenslime_up_1");
-        up2 = setup("/dogs/greenslime_up_2");
         down1 = setup("/dogs/greenslime_down_1");
         down2 = setup("/dogs/greenslime_down_2");
+        /*up1 = setup("/dogs/greenslime_up_1");
+        up2 = setup("/dogs/greenslime_up_2");
         left1 = setup("/dogs/greenslime_left_1");
         left2 = setup("/dogs/greenslime_left_2");
         right1 = setup("/dogs/greenslime_right_1");
-        right2 = setup("/dogs/greenslime_right_2");
+        right2 = setup("/dogs/greenslime_right_2");*/
     }
 
     public void setAction(){
