@@ -110,7 +110,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(){
         if(gameState == playState) {
-
             //GIOCATORE
             player.update();
 
@@ -186,8 +185,6 @@ public class GamePanel extends JPanel implements Runnable{
 
             //UI
             ui.draw(g2);
-
-
         }
     }
 

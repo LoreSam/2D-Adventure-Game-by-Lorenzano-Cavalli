@@ -55,7 +55,7 @@ public class KeyHandler implements KeyListener {
                 }
                 if (code == KeyEvent.VK_ENTER) {
                     if (gp.ui.commandNum == 0) {
-                        System.out.println("Perfettino");
+                        System.out.println("Perfettino Pelatino");
                         gp.gameState = gp.playState;
                         cambiaMusica(1);
                     }
@@ -93,7 +93,7 @@ public class KeyHandler implements KeyListener {
                 rightPressed = true;
             }
             if(code == KeyEvent.VK_ESCAPE){
-                    gp.gameState = gp.pauseState;
+                gp.gameState = gp.pauseState;
             }
             if(code == KeyEvent.VK_ENTER){
                 enterPressed = true;

@@ -272,9 +272,6 @@ public class Player extends Entity{
     }
 
     public void draw(Graphics2D g2){
-        /*g2.setColor(Color.white);
-        g2.fillRect(x, y, gp.tileSize, gp.tileSize);*/
-
         BufferedImage image = null;
         int tempScreenX = screenX, tempScreenY = screenY;
         switch(direction){
@@ -302,6 +299,7 @@ public class Player extends Entity{
                 }
                 if (attacking)
                 {
+                    tempScreenY = screenY + gp.tileSize;
                     if (spriteNum == 1)
                         image = attackDown1;
                     if (spriteNum == 2)
@@ -331,6 +329,7 @@ public class Player extends Entity{
                         image = right2;
                 }
                 if (attacking){
+                    tempScreenX = screenX + gp.tileSize;
                     if(spriteNum == 1)
                         image = attackRight1;
                     if(spriteNum == 2)
