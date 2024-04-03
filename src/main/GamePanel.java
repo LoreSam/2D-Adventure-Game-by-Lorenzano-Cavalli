@@ -44,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10];
     public Entity npc[] = new Entity[10];
+    public Entity monster[] = new Entity[20];
     ArrayList<Entity> entityList = new ArrayList<>();
     //STATO
     public int gameState;
@@ -63,7 +64,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setObject();
         aSetter.setNPC();
-        playMusic(0);
+        aSetter.setMonster();
+        //playMusic(0);
         gameState = titleState;
     }
 
@@ -109,9 +111,15 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         if(gameState == playState) {
             player.update();
+
             for(int i = 0; i < npc.length; i++){
                 if(npc[i] != null)
                     npc[i].update();
+            }
+
+            for(int i = 0; i < monster.length; i++){
+                if(monster[i] != null)
+                    monster[i].update();
             }
         }
         if(gameState == pauseState){
@@ -127,11 +135,13 @@ public class GamePanel extends JPanel implements Runnable{
         if(gameState == titleState){
             ui.draw(g2);
         }
+
         //COSA DISEGNAMO DOPO IL TITLE SCREEN
         else{
             //TILE
             tileM.draw(g2);
-            //agiunta oggetti e npc alla lista
+
+            //AGGIUNTA ENTITA ALLA LISTA
             entityList.add(player);
             for (int i = 0; i< npc.length; i++){
                 if (npc[i] != null){
@@ -139,13 +149,21 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
 
+            //AGGIUNTA OGGETTI ALLA LISTA
             for (int i = 0 ; i<obj.length; i++){
                 if (obj[i] != null){
                     entityList.add(obj[i]);
                 }
             }
 
-            //sort
+            //AGGIUNTA CANI ALLA LISTA
+            for (int i = 0 ; i<monster.length; i++){
+                if (monster[i] != null){
+                    entityList.add(monster[i]);
+                }
+            }
+
+            //ORDINAMENTO
             Collections.sort(entityList, new Comparator<Entity>() {
                 @Override
                 public int compare(Entity e1, Entity e2) {
@@ -153,14 +171,17 @@ public class GamePanel extends JPanel implements Runnable{
                     return result;
                 }
             });
-            //disegno entità
+
+            //DISEGNO ENTITA
             for(int i = 0; i<entityList.size(); i++){
                 entityList.get(i).draw(g2);
             }
-            // svuota lista entità
+
+            //SVUOTO LISTA ENTITA
             for(int i = 0; i<entityList.size(); i++){
                 entityList.remove(i);
             }
+
             //UI
             ui.draw(g2);
 
