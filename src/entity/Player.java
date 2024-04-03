@@ -64,14 +64,14 @@ public class Player extends Entity{
     }
 
     public void getPlayerAttackImage(){
-        attackUp1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
-        attackUp2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
-        attackDown1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
-        attackDown2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
-        attackLeft1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
-        attackLeft2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
-        attackRight1 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
-        attackRight2 = setup("/npc/oldman_up_1.png", gp.tileSize, gp.tileSize);
+        attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
+        attackUp2 = setup("/player/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
+        attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
+        attackDown2 = setup("/player/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
+        attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
+        attackLeft2 = setup("/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
+        attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
+        attackRight2 = setup("/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
 
        /*try {
             attackUp1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_up_1.png")));
@@ -92,7 +92,7 @@ public class Player extends Entity{
             attacking();
         }
 
-        if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
+        else if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
             if (keyH.upPressed) {
                 direction = "up";
             } else if (keyH.downPressed) {
@@ -195,9 +195,6 @@ public class Player extends Entity{
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
         }
-        if (spriteCounter <= 5){
-            spriteNum = 1;
-        }
         if (spriteCounter > 25){
             spriteNum = 1;
             spriteCounter = 0;
@@ -271,9 +268,6 @@ public class Player extends Entity{
                     gp.monster[i] = null;
                 }
             }
-        }
-        else {
-            System.out.println("miss");
         }
     }
 
