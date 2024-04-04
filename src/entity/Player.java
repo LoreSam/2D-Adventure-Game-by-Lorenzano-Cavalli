@@ -51,7 +51,7 @@ public class Player extends Entity{
     public void getPlayerImage(){
 
         /*try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_1.png")));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
             up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
             down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
             down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_2.png")));
@@ -155,6 +155,13 @@ public class Player extends Entity{
                 invincibleCounter = 0;
             }
         }
+        /*Up2 = setup("/player/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
+        attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
+        attackDown2 = setup("/player/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
+        attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
+        attackLeft2 = setup("/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
+        attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
+        attackRight2 = setup("/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);*/
     }
 
     public void attacking(){
@@ -242,6 +249,7 @@ public class Player extends Entity{
                 gp.npc[index].speak();
             }
             else {
+                gp.playSoundEffect(8);
                 attacking = true;
             }
         }
@@ -250,6 +258,7 @@ public class Player extends Entity{
     public void contactMonster(int index){
         if(index != 999){
             if(invincible == false){
+                gp.playSoundEffect(7);
                 life--;
                 invincible = true;
             }
@@ -259,10 +268,12 @@ public class Player extends Entity{
     public void damageMonster(int i){
         if (i != 999){
             if (!gp.monster[i].invincible){
+                gp.playSoundEffect(6);
                 gp.monster[i].life -= 1;
                 gp.monster[i].invincible = true;
+                gp.monster[i].damageReaction();
                 if (gp.monster[i].life <= 0){
-                    gp.monster[i] = null;
+                    gp.monster[i].dying = true;
                 }
             }
         }

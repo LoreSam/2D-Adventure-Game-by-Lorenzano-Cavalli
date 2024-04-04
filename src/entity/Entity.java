@@ -14,11 +14,14 @@ public class Entity {
 
     public int worldX, worldY;
     public int speed;
-
+    boolean hpBarOn = false;
+    int hpBarCounter = 0;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public String direction = "down";
-
+    public boolean alive = true;
+    public boolean dying = false;
+    int dyingCounter = 0 ;
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public boolean attacking = false;
@@ -45,6 +48,10 @@ public class Entity {
     }
 
     public void setAction(){
+
+    }
+
+    public void damageReaction(){
 
     }
 
@@ -80,6 +87,7 @@ public class Entity {
 
         if(this.type == 2 && contactPlayer){
             if(!gp.player.invincible){
+                gp.playSoundEffect(7);
                 gp.player.life -= 1;
                 gp.player.invincible = true;
             }
@@ -157,18 +165,82 @@ public class Entity {
                         image = right2;
                     break;
             }
+
+
+
+            //barra vita mostri
+            if (type == 2 && hpBarOn) {
+                double oneScale = (double) gp.tileSize/maxLife;
+                double hpBarValue = oneScale*life;
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
+                g2.setColor(new Color(255, 0 ,30));
+                g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
+                hpBarCounter++;
+                if (hpBarCounter >= 600){
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
+            }
+
+            if (invincible)
+            {
+                hpBarOn = true;
+                hpBarCounter = 0;
+            }
+
+            if (dying){
+                dyingAnimation(g2);
+            }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
     }
-    public BufferedImage setup(String imagePath, int width, int height){
+    public BufferedImage setup(String imagePath, int w, int h){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
-            image = uTool.scaleImage(image, width, height);
+            image = uTool.scaleImage(image, w, h);
         }catch (Exception e){
             e.printStackTrace();
         }
         return image;
+    }
+
+    public void dyingAnimation(Graphics2D g2){
+        dyingCounter++;
+        if (dyingCounter <= 5){
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 5 && dyingCounter <= 10){
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 10 && dyingCounter <= 15){
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 15 && dyingCounter <= 20){
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 20 && dyingCounter <= 25){
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 25 && dyingCounter <= 30){
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 30 && dyingCounter <= 35){
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > 35 && dyingCounter <= 40){
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > 40){
+            alive = false;
+            dying = false;
+        }
+    }
+    public  void changeAlpha(Graphics2D g2, float alpha){
+        if (dyingCounter > 35 && dyingCounter <= 40){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+        }
     }
 }

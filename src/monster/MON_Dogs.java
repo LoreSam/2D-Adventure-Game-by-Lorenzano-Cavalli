@@ -7,9 +7,10 @@ import java.util.Random;
 
 public class MON_Dogs extends Entity {
 
+    GamePanel gp;
     public MON_Dogs(GamePanel gp) {
         super(gp);
-
+        this.gp = gp;
         type = 2;
         name = "Dog";
         speed = 1;
@@ -54,5 +55,11 @@ public class MON_Dogs extends Entity {
 
             actionLockCounter = 0;
         }
+    }
+    @Override
+    public void damageReaction(){
+        actionLockCounter = 0;
+        direction= gp.player.direction;
+
     }
 }

@@ -121,8 +121,13 @@ public class GamePanel extends JPanel implements Runnable{
 
             //MOSTRI
             for(int i = 0; i < monster.length; i++){
-                if(monster[i] != null)
-                    monster[i].update();
+                if(monster[i] != null) {
+                    if (monster[i].alive)
+                        monster[i].update();
+                    if (!monster[i].alive && !monster[i].dying){
+                        monster[i] = null;
+                    }
+                }
             }
         }
         if(gameState == pauseState){
