@@ -49,7 +49,8 @@ public class Player extends Entity{
     }
 
     public void getPlayerImage(){
-        try {
+
+        /*try {
             up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_1.png")));
             up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
             down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
@@ -60,31 +61,27 @@ public class Player extends Entity{
             right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
         }catch (IOException e){
             e.printStackTrace();
-        }
+        }*/
+
+        up1 = setup("/player/boy_up_1", gp.tileSize, gp.tileSize);
+        up2 = setup("/player/boy_up_2", gp.tileSize, gp.tileSize);
+        down1 = setup("/player/boy_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("/player/boy_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("/player/boy_left_1", gp.tileSize, gp.tileSize);
+        left2 = setup("/player/boy_left_2", gp.tileSize, gp.tileSize);
+        right1 = setup("/player/boy_right_1", gp.tileSize, gp.tileSize);
+        right2 = setup("/player/boy_right_2", gp.tileSize, gp.tileSize);
     }
 
     public void getPlayerAttackImage(){
         attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
-        attackUp2 = setup("/player/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
+        attackUp2 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
         attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
-        attackDown2 = setup("/player/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
+        attackDown2 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
         attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
-        attackLeft2 = setup("/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
+        attackLeft2 = setup("/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
         attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
-        attackRight2 = setup("/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
-
-       /*try {
-            attackUp1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_up_1.png")));
-            attackUp2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_up_2.png")));
-            attackDown1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_down_1.png")));
-            attackDown2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_down_2.png")));
-            attackLeft1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_left_1.png")));
-            attackLeft2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_left_2.png")));
-            attackRight1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_right_1.png")));
-            attackRight2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_attack_right_2.png")));
-        }catch (IOException e){
-            e.printStackTrace();
-        }*/
+        attackRight2 = setup("/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
     }
 
     public void update(){
@@ -122,7 +119,6 @@ public class Player extends Entity{
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
 
-
             if (!collisionOn && !keyH.enterPressed) {
                 switch (direction) {
                     case "up":
@@ -140,6 +136,7 @@ public class Player extends Entity{
                 }
             }
             gp.keyH.enterPressed = false;
+
             spriteCounter++;
             if (spriteCounter > 10) { //FIXATO PORCODIO
                 if (spriteNum == 1) {
@@ -165,7 +162,7 @@ public class Player extends Entity{
         if (spriteCounter <= 5){
             spriteNum = 1;
         }
-        if (spriteCounter > 5 && spriteCounter <=25){
+        if (spriteCounter > 5 && spriteCounter <= 25){
             spriteNum = 2;
             int currentWorldX = worldX, currentWorldY = worldY;
             int solidAreaWidth = solidArea.width, solidAreaHeight = solidArea.height;
@@ -299,7 +296,7 @@ public class Player extends Entity{
                 }
                 if (attacking)
                 {
-                    tempScreenY = screenY + gp.tileSize;
+                    //tempScreenY = screenY + gp.tileSize;
                     if (spriteNum == 1)
                         image = attackDown1;
                     if (spriteNum == 2)
@@ -329,7 +326,7 @@ public class Player extends Entity{
                         image = right2;
                 }
                 if (attacking){
-                    tempScreenX = screenX + gp.tileSize;
+                    //tempScreenX = screenX - gp.tileSize*2;
                     if(spriteNum == 1)
                         image = attackRight1;
                     if(spriteNum == 2)
@@ -337,6 +334,7 @@ public class Player extends Entity{
                 }
                 break;
         }
-        g2.drawImage(image, tempScreenX, tempScreenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, tempScreenX, tempScreenY, null); //TECNICAMENTE NEL DRAW ANDREBBERO GP.TILESIZE, PERO FUNZIONA ANCHE COSI
+        //g2.drawImage(image, screenX, screenY, null);
     }
 }
