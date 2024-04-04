@@ -111,7 +111,7 @@ public class Entity {
         }
 
         spriteCounter++;
-        if (spriteCounter > 10) { //anche > 0, è comunque da fixare
+        if (spriteCounter > 10) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             } else if (spriteNum == 2) {
@@ -165,8 +165,6 @@ public class Entity {
                         image = right2;
                     break;
             }
-
-
 
             //barra vita mostri
             if (type == 2 && hpBarOn) {

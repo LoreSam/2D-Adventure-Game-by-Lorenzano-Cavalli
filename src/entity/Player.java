@@ -49,20 +49,6 @@ public class Player extends Entity{
     }
 
     public void getPlayerImage(){
-
-        /*try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
-        }catch (IOException e){
-            e.printStackTrace();
-        }*/
-
         up1 = setup("/player/boy_up_1", gp.tileSize, gp.tileSize);
         up2 = setup("/player/boy_up_2", gp.tileSize, gp.tileSize);
         down1 = setup("/player/boy_down_1", gp.tileSize, gp.tileSize);
@@ -85,11 +71,11 @@ public class Player extends Entity{
     }
 
     public void update(){
+
         if (attacking){
             attacking();
         }
-
-        else if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
+        else if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed || keyH.spacePressed) {
             if (keyH.upPressed) {
                 direction = "up";
             } else if (keyH.downPressed) {
@@ -148,7 +134,7 @@ public class Player extends Entity{
             }
         }
 
-        if(invincible == true){
+        if(invincible){
             invincibleCounter++;
             if (invincibleCounter > 60){
                 invincible = false;
@@ -243,15 +229,13 @@ public class Player extends Entity{
     }
 
     public void interactNPC(int index) {
-        if (gp.keyH.enterPressed) {
-            if (index != 999) {
-                gp.gameState = gp.dialogueState;
-                gp.npc[index].speak();
-            }
-            else {
-                gp.playSoundEffect(8);
-                attacking = true;
-            }
+        if (gp.keyH.enterPressed && index != 999) {
+            gp.gameState = gp.dialogueState;
+            gp.npc[index].speak();
+        }
+        else if(gp.keyH.spacePressed){
+            gp.playSoundEffect(8);
+            attacking = true;
         }
     }
 
