@@ -46,12 +46,14 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity npc[] = new Entity[10];
     public Entity monster[] = new Entity[20];
     ArrayList<Entity> entityList = new ArrayList<>();
-    //STATO
+
+    //STATO DI GIOCO
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
+    public final int characterState = 4;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -195,16 +197,16 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void playMusic(int i){
         music.setFile(i);
-        music.play();
-        music.loop();
+        /*music.play();
+        music.loop();*/
     }
 
     public void stopMusic(){
-        music.stop();
+        //music.stop();
     }
 
     public void playSoundEffect(int i){
         se.setFile(i);
-        se.play();
+        //se.play();
     }
 }
