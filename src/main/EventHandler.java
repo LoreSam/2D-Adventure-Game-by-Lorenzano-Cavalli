@@ -74,7 +74,7 @@ public class EventHandler {
 
     public void damagePit(int col, int row, int gameState){
         gp.gameState = gameState;
-        gp.ui.currentDialog = "sei cadito in un a trappola coglione";
+        gp.ui.currentDialog = "sei cadito in un a trappola";
         gp.player.life -=1;
         //eventRect[col][row].eventDone = true;
         canTouchEvent = false;
@@ -85,6 +85,7 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.ui.currentDialog = "hai bevuto ubriacone \n hai regennato tutta la vita";
             gp.player.life = gp.player.maxLife;
+            gp.aSetter.setMonster();
         }
     }
 

@@ -262,9 +262,13 @@ public class Player extends Entity{
 
     public void contactMonster(int index){
         if(index != 999){
-            if(invincible == false){
+            if(!invincible){
+                int damage = gp.monster[index].attack - defense;
+                if (damage < 0 ) {
+                    damage = 0;
+                }
                 gp.playSoundEffect(7);
-                life--;
+                life -= damage;
                 invincible = true;
             }
         }
@@ -274,16 +278,39 @@ public class Player extends Entity{
         if (i != 999){
             if (!gp.monster[i].invincible){
                 gp.playSoundEffect(6);
-                gp.monster[i].life -= 1;
+
+                int damage = attack - gp.monster[i].defense;
+                if (damage < 0 ) {
+                    damage = 0;
+                }
+                gp.monster[i].life -= damage;
+                gp.ui.addMessage(damage + " danno!");
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
                 if (gp.monster[i].life <= 0){
                     gp.monster[i].dying = true;
+                    gp.ui.addMessage("mostro ucciso " + gp.monster[i].name);
+                    gp.ui.addMessage("Exp " + gp.monster[i].exp);
+                    exp += gp.monster[i].exp;
+                    checkLevelUp();
                 }
             }
         }
     }
-
+    public void checkLevelUp(){
+        if (exp >= nextLevelExp){
+            level++;
+            nextLevelExp = nextLevelExp*2;
+            maxLife +=2;
+            strenght++;
+            dexterity++;
+            attack = getAttack();
+            defense =  getDefense();
+            gp.playSoundEffect(8);
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialog = "Ora sei livello "+level +" adesso \nsei piu forte";
+        }
+    }
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         int tempScreenX = screenX, tempScreenY = screenY;

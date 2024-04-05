@@ -22,6 +22,9 @@ public class MON_Dogs extends Entity {
         solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+        attack = 5;
+        defense = 0;
+        exp = 2;
 
         getImage(gp);
     }
