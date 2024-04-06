@@ -174,10 +174,10 @@ public class UI {
         }
 
     }
-    public void  drawMessage(){
+    public void drawMessage(){
         int messageX = gp.tileSize, messageY = gp.tileSize*4;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32f));
-        for ( int i = 0; i< message.size(); i++){
+        for ( int i = 0; i < message.size(); i++){
             if (message.get(i) != null){
                 g2.setColor(Color.black);
                 g2.drawString(message.get(i), messageX+2, messageY+2);
@@ -211,7 +211,7 @@ public class UI {
         y += gp.tileSize;
         for (String line : currentDialog.split("\n")){
             g2.drawString(line, x, y);
-            y +=40;
+            y += 40;
         }
     }
 
@@ -230,13 +230,13 @@ public class UI {
     }
 
     public void drawPlayerLife(){
-        int x=gp.tileSize/2;
-        int y=gp.tileSize/2;
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
         int i = 0;
         while (i < gp.player.maxLife/2){
             g2.drawImage(heart_blank, x, y, null);
             i++;
-            x +=gp.tileSize;
+            x += gp.tileSize;
         }
         x=gp.tileSize/2;
         y=gp.tileSize/2;
@@ -249,7 +249,7 @@ public class UI {
                 g2.drawImage(heart_full, x, y, null);
             }
             i++;
-            x +=gp.tileSize;
+            x += gp.tileSize;
         }
     }
 

@@ -62,7 +62,7 @@ public class MON_Dogs extends Entity {
     @Override
     public void damageReaction(){
         actionLockCounter = 0;
-        direction= gp.player.direction;
+        direction = gp.player.direction;
 
     }
 }
