@@ -144,6 +144,25 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_C){
             gp.gameState = gp.playState;
         }
+        if(code == KeyEvent.VK_W && gp.ui.slotRow != 0){
+            gp.ui.slotRow--;
+            gp.playSoundEffect(10);
+        }
+
+        if(code == KeyEvent.VK_A && gp.ui.slotCol != 0){
+            gp.ui.slotCol--;
+            gp.playSoundEffect(10);
+        }
+
+        if(code == KeyEvent.VK_S && gp.ui.slotRow != 3){ //RIGHE INVENTARIO
+            gp.ui.slotRow++;
+            gp.playSoundEffect(10);
+        }
+
+        if(code == KeyEvent.VK_D && gp.ui.slotCol != 4){ //COLONNE INVENTARIO
+            gp.ui.slotCol++;
+            gp.playSoundEffect(10);
+        }
     }
 
     public void cambiaMusica(int i){
