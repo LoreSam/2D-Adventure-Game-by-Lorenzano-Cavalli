@@ -163,6 +163,9 @@ public class KeyHandler implements KeyListener {
             gp.ui.slotCol++;
             gp.playSoundEffect(10);
         }
+        if (code == KeyEvent.VK_ENTER){
+            gp.player.selectItem();
+        }
     }
 
     public void cambiaMusica(int i){
