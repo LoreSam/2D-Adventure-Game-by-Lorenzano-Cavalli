@@ -23,6 +23,7 @@ public class Entity {
     public boolean dying = false;
     int dyingCounter = 0 ;
     public int spriteCounter = 0;
+    public int shotAvailableCounter = 0;
     public int spriteNum = 1;
     public boolean attacking = false;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
@@ -50,8 +51,10 @@ public class Entity {
     //stato del personaggio
     public int maxLife;
     public int life;
+    public int maxMana;
+    public int mana;
     public int level;
-    public int strenght;
+    public int strength;
     public int dexterity;
     public int attack;
     public int defense;
@@ -60,11 +63,13 @@ public class Entity {
     public int coin;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Projectile projectile;
 
     //ATTRIBUTI OGGETTI
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public int useCost;
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -264,7 +269,6 @@ public class Entity {
         }
         if (dyingCounter > 40){
             alive = false;
-            dying = false;
         }
     }
     public  void changeAlpha(Graphics2D g2, float alpha){

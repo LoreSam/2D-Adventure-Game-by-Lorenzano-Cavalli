@@ -50,13 +50,14 @@ public class Player extends Entity{
         level = 1;
         maxLife = 6;
         life = maxLife;
-        strenght = 1; // + FORZA = + DANNO CAUSATO
+        strength = 1; // + FORZA = + DANNO CAUSATO
         dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
+        projectile = new OBJ_Fireball(gp);
         attack = getAttack();
         defense = getDefense();
     }
@@ -75,7 +76,7 @@ public class Player extends Entity{
 
     public int getAttack(){
         attackArea = currentWeapon.attackArea;
-        return attack = strenght * currentWeapon.attackValue;
+        return attack = strength * currentWeapon.attackValue;
     }
 
     public int getDefense(){
@@ -180,6 +181,18 @@ public class Player extends Entity{
             }
         }
 
+        if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 30){
+            //IMPOSTA COORDINATE, DIREZIONE E UTENTE DI DEFAULT
+            projectile.set(worldX, worldY, direction, true, this);
+
+            //AGGIUNTA ALLA LISTA
+            gp.projectileList.add(projectile);
+
+            shotAvailableCounter = 0;
+
+            gp.playSoundEffect(11);
+        }
+
         if(invincible){
             invincibleCounter++;
             if (invincibleCounter > 60){
@@ -187,13 +200,10 @@ public class Player extends Entity{
                 invincibleCounter = 0;
             }
         }
-        /*Up2 = setup("/player/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
-        attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
-        attackDown2 = setup("/player/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
-        attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
-        attackLeft2 = setup("/player/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
-        attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
-        attackRight2 = setup("/player/boy_attack_right_2", gp.tileSize*2, gp.tileSize);*/
+
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter++;
+        }
     }
 
     public void attacking(){
@@ -224,7 +234,7 @@ public class Player extends Entity{
             solidArea.height = attackArea.height;
 
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -301,7 +311,7 @@ public class Player extends Entity{
 
     public void contactMonster(int index){
         if(index != 999){
-            if(!invincible){
+            if(!invincible && gp.monster[index].dying == false){
                 int damage = gp.monster[index].attack - defense;
                 if (damage < 0 ) {
                     damage = 0;
@@ -313,7 +323,7 @@ public class Player extends Entity{
         }
     }
 
-    public void damageMonster(int i){
+    public void damageMonster(int i, int attack){
         if (i != 999){
             if (!gp.monster[i].invincible){
                 gp.playSoundEffect(6);
@@ -341,7 +351,7 @@ public class Player extends Entity{
             level++;
             nextLevelExp = nextLevelExp*2;
             maxLife +=2;
-            strenght++;
+            strength++;
             dexterity++;
             attack = getAttack();
             defense =  getDefense();

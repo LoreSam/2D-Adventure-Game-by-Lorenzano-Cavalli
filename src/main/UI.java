@@ -311,7 +311,7 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.strenght);
+        value = String.valueOf(gp.player.strength);
         textX = alignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;

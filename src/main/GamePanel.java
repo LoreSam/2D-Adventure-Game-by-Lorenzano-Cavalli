@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Entity obj[] = new Entity[10];
     public Entity npc[] = new Entity[10];
     public Entity monster[] = new Entity[20];
+    public ArrayList<Entity> projectileList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
     //STATO DI GIOCO
@@ -124,13 +125,25 @@ public class GamePanel extends JPanel implements Runnable{
             //MOSTRI
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null) {
-                    if (monster[i].alive)
+                    if (monster[i].alive && !monster[i].dying)
                         monster[i].update();
-                    if (!monster[i].alive && !monster[i].dying){
+                    if (!monster[i].alive ){
                         monster[i] = null;
                     }
                 }
             }
+
+            //PROIETTILI
+            for(int i = 0; i < projectileList.size(); i++){
+                if(projectileList.get(i) != null) {
+                    if (projectileList.get(i).alive)
+                        projectileList.get(i).update();
+                    if (!projectileList.get(i).alive){
+                        projectileList.remove(i);
+                    }
+                }
+            }
+
         }
         if(gameState == pauseState){
             //TODO in futuro
@@ -173,6 +186,13 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
 
+            //AGGIUNTA PROIETTILI ALLA LISTA
+            for (int i = 0; i < projectileList.size(); i++){
+                if (projectileList.get(i) != null){
+                    entityList.add(projectileList.get(i));
+                }
+            }
+
             //ORDINAMENTO
             Collections.sort(entityList, new Comparator<Entity>() {
                 @Override
@@ -207,6 +227,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void playSoundEffect(int i){
         se.setFile(i);
-        //se.play();
+        se.play();
     }
 }
