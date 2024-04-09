@@ -11,12 +11,12 @@ public class OBJ_Coin_Bronze extends Entity {
         this.gp = gp;
 
         type = type_pickUp;
-        name = " Bronze Coin";
+        name = "Bronze Coin";
         value = 1;
         down1 = setup("/objects/coin_bronze", gp.tileSize, gp.tileSize);
     }
     public void use(Entity entity){
-        gp.playSoundEffect(1);
+        gp.playSoundEffect(2);
         gp.ui.addMessage("Coin +"+value);
         gp.player.coin += value;
     }

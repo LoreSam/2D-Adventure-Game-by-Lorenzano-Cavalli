@@ -21,6 +21,6 @@ public class OBJ_Energy extends Entity {
     public void use(Entity entity){
         gp.playSoundEffect(2);
         gp.ui.addMessage("Energia +"+value);
-        entity.life += value;
+        entity.energy += value;
     }
 }

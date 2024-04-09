@@ -276,7 +276,7 @@ public class Player extends Entity{
                 if(inventory.size() != maxInventorySize){
 
                     inventory.add(gp.obj[i]);
-                    gp.playSoundEffect(1);
+                    //gp.playSoundEffect(1);
                     text = "Hai ottenuto 1 " + gp.obj[i].name + "!";
                 }
                 else {
