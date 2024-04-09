@@ -83,8 +83,9 @@ public class EventHandler {
     public void healingPool(int col, int row, int gameState){
         if (gp.keyH.enterPressed == true){
             gp.gameState = gameState;
-            gp.ui.currentDialog = "hai bevuto ubriacone \n hai regennato tutta la vita";
+            gp.ui.currentDialog = "Hai bevuto ubriacone \nHai rigenerato tutta la vita e l'energia!";
             gp.player.life = gp.player.maxLife;
+            gp.player.energy = gp.player.maxEnergy;
             gp.aSetter.setMonster();
         }
     }

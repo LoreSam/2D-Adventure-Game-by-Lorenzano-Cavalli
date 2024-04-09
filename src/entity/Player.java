@@ -55,9 +55,13 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
+        maxEnergy = 1;
+        energy = maxEnergy;
+        ammo = 10;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
-        projectile = new OBJ_Fireball(gp);
+        //projectile = new OBJ_Fireball(gp);
+        projectile = new OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
     }
@@ -181,9 +185,12 @@ public class Player extends Entity{
             }
         }
 
-        if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 30){
+        if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)){
             //IMPOSTA COORDINATE, DIREZIONE E UTENTE DI DEFAULT
             projectile.set(worldX, worldY, direction, true, this);
+
+            //SOTTRAZIONE COSTI
+            projectile.subtractResource(this);
 
             //AGGIUNTA ALLA LISTA
             gp.projectileList.add(projectile);

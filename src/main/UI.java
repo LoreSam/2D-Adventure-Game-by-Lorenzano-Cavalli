@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import object.OBJ_Energy;
 import object.OBJ_Heart;
 
 import java.awt.*;
@@ -14,7 +15,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font font;
-    BufferedImage heart_full, heart_half, heart_blank;
+    BufferedImage heart_full, heart_half, heart_blank, energy_full, energy_blank;
     public boolean messageOn = false;
     /*public String message = "";
     int messageCounter = 0;*/
@@ -45,6 +46,9 @@ public class UI {
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;
+        Entity energy = new OBJ_Energy(gp);
+        energy_full = energy.image;
+        energy_blank = energy.image2;
     }
 
     public void addMessage(String text){
@@ -254,6 +258,26 @@ public class UI {
             i++;
             x += gp.tileSize;
         }
+
+        //DISEGNO ENERGIA MASSIMA
+        x = gp.tileSize/2 - 5;
+        y = (int) (gp.tileSize*1.5);
+        i = 0;
+        while(i < gp.player.maxEnergy){
+            g2.drawImage(energy_blank, x, y, null);
+            i++;
+            x += 35;
+        }
+
+        //DISEGNO ENERGIA
+        x = gp.tileSize/2 - 5;
+        y = (int) (gp.tileSize*1.5);
+        i = 0;
+        while(i < gp.player.energy){
+            g2.drawImage(energy_full, x, y, null);
+            i++;
+            x += 35;
+        }
     }
 
     public void drawCharacterScreen(){
@@ -277,6 +301,8 @@ public class UI {
         textY += lineHeight;
         g2.drawString("Vita", textX, textY);
         textY += lineHeight;
+        g2.drawString("Energia", textX, textY);
+        textY += lineHeight;
         g2.drawString("Forza", textX, textY);
         textY += lineHeight;
         g2.drawString("Destrezza", textX, textY);
@@ -290,7 +316,7 @@ public class UI {
         g2.drawString("Prossimo Livello", textX, textY);
         textY += lineHeight;
         g2.drawString("Monete", textX, textY);
-        textY += lineHeight + 20;
+        textY += lineHeight + 10;
         g2.drawString("Arma", textX, textY);
         textY += lineHeight + 15;
         g2.drawString("Scudo", textX, textY);
@@ -307,6 +333,11 @@ public class UI {
         textY += lineHeight;
 
         value = String.valueOf(gp.player.life + "/" + gp.player.maxLife);
+        textX = alignRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.energy + "/" + gp.player.maxEnergy); //TODO % per l'energia
         textX = alignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -346,9 +377,9 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY - 14, null);
+        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY - 24, null);
         textY += gp.tileSize;
-        g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY - 14, null);
+        g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY - 24, null);
     }
 
     public int alignRightText(String text, int tailX){
