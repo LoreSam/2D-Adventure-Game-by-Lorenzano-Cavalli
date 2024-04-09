@@ -4,13 +4,13 @@ import entity.Entity;
 import main.GamePanel;
 
 public class OBJ_Potion_Red extends Entity {
-    int value = 5;
     GamePanel gp;
     public OBJ_Potion_Red(GamePanel gp) {
         super(gp);
         this.gp = gp;
         type = type_consumable;
         name = "Pozione Rossa";
+        value = 5;
         down1 = setup("/objects/potion_red", gp.tileSize, gp.tileSize);
         defenseValue = 1;
         description = "[Pozione]\nTi cura di " + value + ".";

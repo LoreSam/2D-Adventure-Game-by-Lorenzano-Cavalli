@@ -19,7 +19,7 @@ public class NPC_OldMan extends Entity{
     }
 
     public void getNPCImage(){
-        try {
+        /*try {
             up1 = ImageIO.read(getClass().getResourceAsStream("/npc/oldman_up_1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/npc/oldman_up_2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/npc/oldman_down_1.png"));
@@ -30,7 +30,15 @@ public class NPC_OldMan extends Entity{
             right2 = ImageIO.read(getClass().getResourceAsStream("/npc/oldman_right_2.png"));
         }catch (IOException e){
             e.printStackTrace();
-        }
+        }*/
+        up1 = setup("/npc/oldman_up_1", gp.tileSize, gp.tileSize);
+        up2 = setup("/npc/oldman_up_2", gp.tileSize, gp.tileSize);
+        down1 = setup("/npc/oldman_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("/npc/oldman_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("/npc/oldman_left_1", gp.tileSize, gp.tileSize);
+        left2 = setup("/npc/oldman_left_2", gp.tileSize, gp.tileSize);
+        right1 = setup("/npc/oldman_right_1", gp.tileSize, gp.tileSize);
+        right2 = setup("/npc/oldman_right_2", gp.tileSize, gp.tileSize);
     }
 
     public void setDialog(){

@@ -15,15 +15,15 @@ public class AssetSetter {
     public void setObject(){
 
         int i = 0;
-        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i] = new OBJ_Coin_Bronze(gp);
         gp.obj[i].worldX = 25 * gp.tileSize;
         gp.obj[i].worldY = 19 * gp.tileSize;
         i++;
-        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i] = new OBJ_Coin_Bronze(gp);
         gp.obj[i].worldX = 21 * gp.tileSize;
         gp.obj[i].worldY = 19 * gp.tileSize;
         i++;
-        gp.obj[i] = new OBJ_Key(gp);
+        gp.obj[i] = new OBJ_Coin_Bronze(gp);
         gp.obj[i].worldX = 26 * gp.tileSize;
         gp.obj[i].worldY = 21 * gp.tileSize;
         i++;
@@ -38,6 +38,15 @@ public class AssetSetter {
         gp.obj[i] = new OBJ_Potion_Red(gp);
         gp.obj[i].worldX = 36 * gp.tileSize;
         gp.obj[i].worldY = 21 * gp.tileSize;
+        i++;
+        gp.obj[i] = new OBJ_Heart(gp);
+        gp.obj[i].worldX = 22 * gp.tileSize;
+        gp.obj[i].worldY = 29 * gp.tileSize;
+        i++;
+        gp.obj[i] = new OBJ_Energy(gp);
+        gp.obj[i].worldX = 22 * gp.tileSize;
+        gp.obj[i].worldY = 31 * gp.tileSize;
+
     }
 
     public void setNPC(){

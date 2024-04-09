@@ -211,6 +211,12 @@ public class Player extends Entity{
         if(shotAvailableCounter < 30){
             shotAvailableCounter++;
         }
+        if (energy > maxEnergy){
+            energy = maxEnergy;
+        }
+        if (life > maxLife){
+            life = maxLife;
+        }
     }
 
     public void attacking(){
@@ -257,6 +263,28 @@ public class Player extends Entity{
 
     public void pickUpObject(int i){
         if(i != 999){
+
+            //prendi solo oggetti
+            if (gp.obj[i].type == type_pickUp){
+                gp.obj[i].use(this);
+                gp.obj[i]= null;
+            }
+            //oggetti nell'inventario
+            else {
+                String text;
+
+                if(inventory.size() != maxInventorySize){
+
+                    inventory.add(gp.obj[i]);
+                    gp.playSoundEffect(1);
+                    text = "Hai ottenuto 1 " + gp.obj[i].name + "!";
+                }
+                else {
+                    text = "Spazi esauriti!";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[i] = null;
+            }
             /*String objectName = gp.obj[index].name;
             switch(objectName){
                 case "Key":
@@ -288,20 +316,6 @@ public class Player extends Entity{
                     gp.playSoundEffect(4);
                     break;
             }*/
-
-            String text;
-
-            if(inventory.size() != maxInventorySize){
-
-                inventory.add(gp.obj[i]);
-                gp.playSoundEffect(1);
-                text = "Hai ottenuto 1 " + gp.obj[i].name + "!";
-            }
-            else {
-                text = "Spazi esauriti!";
-            }
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
         }
     }
 
