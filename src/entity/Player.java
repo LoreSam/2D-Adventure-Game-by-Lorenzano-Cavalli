@@ -173,9 +173,10 @@ public class Player extends Entity{
                 }
             }
             gp.keyH.enterPressed = false;
+            //gp.keyH.spacePressed = false;
 
             spriteCounter++;
-            if (spriteCounter > 10) { //FIXATO PORCODIO
+            if (spriteCounter > 12) { //FIXATO PORCODIO
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
@@ -184,6 +185,16 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+        /*spriteCounter++;
+        if (spriteCounter > 12) { //se messo qua abbiamo il continuo aggiornamento del personaggio
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }*/
+
 
         if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)){
             //IMPOSTA COORDINATE, DIREZIONE E UTENTE DI DEFAULT

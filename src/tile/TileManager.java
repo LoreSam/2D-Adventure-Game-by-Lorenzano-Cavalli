@@ -21,11 +21,11 @@ public class TileManager {
         tile = new Tile[100];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("/maps/world01.txt");
+        loadMap("/maps/mappav1.txt");
     }
 
     public void getTileImage(){
-        try {
+        /*try {
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass00.png"));
 
@@ -166,9 +166,9 @@ public class TileManager {
 
             tile[41] = new Tile();
             tile[41].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
-            tile[41].collision = true;
+            tile[41].collision = true;*/
 
-        /*try{
+        try{
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/pavimento.png")));
 
@@ -177,6 +177,7 @@ public class TileManager {
 
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/grata.png")));
+            tile[2].collision = true;
 
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/murov.png")));
@@ -227,7 +228,11 @@ public class TileManager {
 
             tile[15] = new Tile();
             tile[15].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/porta_c.png")));
-            tile[15].collision = true;*/
+            tile[15].collision = true;
+
+            tile[16] = new Tile();
+            tile[16].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
+            tile[16].collision = true;
 
         }catch (IOException e){
             e.printStackTrace();
