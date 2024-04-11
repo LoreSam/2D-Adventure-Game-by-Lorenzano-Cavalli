@@ -58,7 +58,8 @@ public class Player extends Entity{
         maxEnergy = 1;
         energy = maxEnergy;
         ammo = 10;
-        currentWeapon = new OBJ_Sword_Normal(gp);
+        //currentWeapon = new OBJ_Sword_Normal(gp);
+        currentWeapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         //projectile = new OBJ_Fireball(gp);
         projectile = new OBJ_Rock(gp);
@@ -152,6 +153,9 @@ public class Player extends Entity{
             //CONTROLLO COLLISIONI MOSTRI
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
+
+            //CONTROLLO COLLISIONI OGGETTI INTERATTIVI
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
 
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
@@ -260,6 +264,9 @@ public class Player extends Entity{
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex, attack);
 
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            damageIT(iTileIndex);
+
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -343,7 +350,7 @@ public class Player extends Entity{
 
     public void contactMonster(int index){
         if(index != 999){
-            if(!invincible && gp.monster[index].dying == false){
+            if(!invincible && !gp.monster[index].dying){
                 int damage = gp.monster[index].attack - defense;
                 if (damage < 0 ) {
                     damage = 0;
@@ -378,6 +385,19 @@ public class Player extends Entity{
             }
         }
     }
+
+    public void damageIT(int i){
+        if (i != 999 && gp.iTile[i].destructible && gp.iTile[i].isCorrectItem(this) && !gp.iTile[i].invincible){
+            gp.iTile[i].playSE();
+            gp.iTile[i].life--;
+            gp.iTile[i].invincible = true;
+            if (gp.iTile[i].life <= 0) {
+                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+
+            }
+        }
+    }
+
     public void checkLevelUp(){
         if (exp >= nextLevelExp){
             level++;
