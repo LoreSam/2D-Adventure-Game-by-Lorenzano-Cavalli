@@ -391,7 +391,7 @@ public class UI {
     public void drawInventory(){
 
         //SCHERMATA
-        int frameX = gp.tileSize * 9;
+        int frameX = gp.tileSize * 12;
         int frameY = gp.tileSize;
         int frameWidth = gp.tileSize * 6;
         int frameHeight = gp.tileSize * 5;
