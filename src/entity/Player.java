@@ -265,7 +265,7 @@ public class Player extends Entity{
             damageMonster(monsterIndex, attack);
 
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
-            damageIT(iTileIndex);
+            damageInteractiveTile(iTileIndex);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -386,11 +386,15 @@ public class Player extends Entity{
         }
     }
 
-    public void damageIT(int i){
+    public void damageInteractiveTile(int i){
         if (i != 999 && gp.iTile[i].destructible && gp.iTile[i].isCorrectItem(this) && !gp.iTile[i].invincible){
             gp.iTile[i].playSE();
             gp.iTile[i].life--;
             gp.iTile[i].invincible = true;
+
+            //GENERA PARTICELLE
+            generateParticle(gp.iTile[i], gp.iTile[i]);
+
             if (gp.iTile[i].life <= 0) {
                 gp.iTile[i] = gp.iTile[i].getDestroyedForm();
 
