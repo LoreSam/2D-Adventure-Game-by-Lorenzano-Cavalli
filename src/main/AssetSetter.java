@@ -3,6 +3,9 @@ package main;
 import entity.NPC_OldMan;
 import monster.MON_Dogs;
 import object.*;
+import tile_interactive.IT_Bed;
+import tile_interactive.IT_Cesso;
+import tile_interactive.IT_Chest;
 import tile_interactive.IT_DryTree;
 
 public class AssetSetter {
@@ -93,6 +96,12 @@ public class AssetSetter {
         gp.iTile[i] = new IT_DryTree(gp, 32, 12);
         i++;
         gp.iTile[i] = new IT_DryTree(gp, 33, 12);
+        i++;
+        gp.iTile[i] = new IT_Bed(gp, 51, 7);
+        i++;
+        gp.iTile[i] = new IT_Chest(gp, 55, 8);
+        i++;
+        gp.iTile[i] = new IT_Cesso(gp, 55, 7);
 
     }
 }

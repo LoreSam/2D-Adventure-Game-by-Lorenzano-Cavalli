@@ -283,6 +283,10 @@ public class TileManager {
             tile[35].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/porta_p.png")));
             tile[35].collision = true;
 
+            tile[35] = new Tile();
+            tile[35].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/porta_p.png")));
+            tile[35].collision = true;
+
 
         }catch (IOException e){
             e.printStackTrace();
