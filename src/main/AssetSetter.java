@@ -81,6 +81,7 @@ public class AssetSetter {
         gp.monster[i].worldX = gp.tileSize * 38;
         gp.monster[i].worldY = gp.tileSize * 42;
     }
+
     public void setInteractiveTile(){
         int i = 0;
         gp.iTile[i] = new IT_DryTree(gp, 27, 12);
@@ -97,11 +98,24 @@ public class AssetSetter {
         i++;
         gp.iTile[i] = new IT_DryTree(gp, 33, 12);
         i++;
+
+        //CELLE
         gp.iTile[i] = new IT_Bed(gp, 51, 7);
         i++;
-        gp.iTile[i] = new IT_Chest(gp, 55, 8);
+        gp.iTile[i] = new IT_Chest(gp, 54, 8);
         i++;
-        gp.iTile[i] = new IT_Cesso(gp, 55, 7);
+        gp.iTile[i] = new IT_Cesso(gp, 54, 7);
 
+        gp.iTile[i] = new IT_Bed(gp, 56, 7);
+        i++;
+        gp.iTile[i] = new IT_Chest(gp, 59, 8);
+        i++;
+        gp.iTile[i] = new IT_Cesso(gp, 59, 7);
+
+        gp.iTile[i] = new IT_Bed(gp, 61, 7);
+        i++;
+        gp.iTile[i] = new IT_Chest(gp, 64, 8);
+        i++;
+        gp.iTile[i] = new IT_Cesso(gp, 64, 7);
     }
 }

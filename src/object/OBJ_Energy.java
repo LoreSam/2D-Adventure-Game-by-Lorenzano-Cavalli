@@ -14,9 +14,9 @@ public class OBJ_Energy extends Entity {
         type = type_pickUp;
         name = "Energy";
         value = 1;
-        down1 = setup("/objects/energy_full", gp.tileSize, gp.tileSize);
-        image = setup("/objects/energy_full", gp.tileSize, gp.tileSize);
-        image2 = setup("/objects/energy_blank", gp.tileSize, gp.tileSize);
+        down1 = setup("/objects/energy_50", gp.tileSize, gp.tileSize);
+        image = setup("/objects/energy_100", gp.tileSize, gp.tileSize);
+        image2 = setup("/objects/energy_0", gp.tileSize, gp.tileSize);
     }
     public void use(Entity entity){
         gp.playSoundEffect(2);
