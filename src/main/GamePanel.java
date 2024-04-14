@@ -8,7 +8,6 @@ import tile_interactive.InteractiveTile;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
     int screenHeight2 = screenHeight;
     BufferedImage tempScreen;
     Graphics2D g2;
-
+    public boolean fullScreenOn = false;
 
     //IMPOSTAZIONI MONDO
     public final int maxWorldCol = 100;
@@ -66,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterState = 4;
+    public final int optionsState = 5;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -187,6 +187,8 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
         }
+
+        //TILE INTERATTIVI
         for (int i = 0; i < iTile.length; i++){
             if (iTile[i] != null){
                 iTile[i].update();
@@ -208,7 +210,7 @@ public class GamePanel extends JPanel implements Runnable{
             //TILE
             tileM.draw(g2);
 
-            // TILE INTERATTIVI
+            //TILE INTERATTIVI
             for (int i = 0; i < iTile.length; i++) {
                 if (iTile[i] != null) {
                     iTile[i].draw(g2);
@@ -281,7 +283,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void playMusic(int i){
-        music.setFile(i);
+        music.setMusic(i);
         music.play();
         music.loop();
     }
@@ -291,7 +293,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void playSoundEffect(int i){
-        se.setFile(i);
+        se.setSound(i);
         se.play();
     }
 }

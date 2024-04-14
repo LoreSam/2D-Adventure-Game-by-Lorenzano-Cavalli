@@ -54,7 +54,6 @@ public class KeyHandler implements KeyListener {
                         gp.ui.titleScreenState = 0;
                     }
                 }
-
             }
         }
 
@@ -62,6 +61,7 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.playState){
             playState(code);
         }
+
         //stato di pausa
         else if (gp.gameState == gp.pauseState) {
             pauseState(code);
@@ -71,9 +71,15 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.dialogueState){
             dialogState(code);
         }
-        //STATO PERSONAGGIO
+
+        //STATO INVENTARIO
         else if (gp.gameState == gp.characterState){
             characterState(code);
+        }
+
+        //STATO OPZIONI
+        else if (gp.gameState == gp.optionsState){
+            optionState(code);
         }
     }
 
@@ -115,7 +121,7 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if(code == KeyEvent.VK_ESCAPE){
-            gp.gameState = gp.pauseState;
+            gp.gameState = gp.optionsState;
         }
         if(code == KeyEvent.VK_ENTER){
             enterPressed = true;
@@ -174,6 +180,69 @@ public class KeyHandler implements KeyListener {
     public void cambiaMusica(int i){
         gp.stopMusic();
         gp.playMusic(i);
+    }
+
+    public void optionState(int code){
+
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.playState;
+        }
+
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = true;
+        }
+
+        int maxCommandNum = 0;
+        switch(gp.ui.subState){
+            case 0:
+                maxCommandNum = 5;
+                break;
+            case 3:
+                maxCommandNum = 1;
+                break;
+        }
+
+        if(code == KeyEvent.VK_UP){
+            gp.ui.commandNum--;
+            gp.playSoundEffect(8);
+            if(gp.ui.commandNum < 0)
+                gp.ui.commandNum = maxCommandNum;
+        }
+
+        if(code == KeyEvent.VK_DOWN){
+            gp.ui.commandNum++;
+            gp.playSoundEffect(8);
+            if(gp.ui.commandNum > maxCommandNum)
+                gp.ui.commandNum = 0;
+        }
+
+        if(code == KeyEvent.VK_LEFT){
+            if(gp.ui.subState == 0){
+                if(gp.ui.commandNum == 1 && gp.music.volumeScale > 0){
+                    gp.music.volumeScale--;
+                    gp.music.checkVolume();
+                    gp.playSoundEffect(8);
+                }
+                if(gp.ui.commandNum == 2 && gp.se.volumeScale > 0){
+                    gp.se.volumeScale--;
+                    gp.playSoundEffect(8);
+                }
+            }
+        }
+
+        if(code == KeyEvent.VK_RIGHT){
+            if(gp.ui.subState == 0){
+                if(gp.ui.commandNum == 1 && gp.music.volumeScale < 10){
+                    gp.music.volumeScale++;
+                    gp.music.checkVolume();
+                    gp.playSoundEffect(8);
+                }
+                if(gp.ui.commandNum == 2 && gp.se.volumeScale < 10){
+                    gp.se.volumeScale++;
+                    gp.playSoundEffect(8);
+                }
+            }
+        }
     }
 
     @Override
