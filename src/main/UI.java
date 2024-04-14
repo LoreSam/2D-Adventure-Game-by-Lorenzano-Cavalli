@@ -584,12 +584,17 @@ public class UI {
         volumeWidth = 12 * gp.se.volumeScale;
         g2.fillRect(textX, textY, volumeWidth, 24);
 
+        try {
+            gp.config.saveConfig();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void optionsFullScreenNotification(int frameX, int frameY){
 
         int textX = frameX + gp.tileSize;
-        int textY = frameY + gp.tileSize * 3;
+        int textY = frameY + gp.tileSize * 2;
 
         currentDialog = "Riavvia il gioco \nper vedere le modifiche!";
 
@@ -598,10 +603,32 @@ public class UI {
             textY += 40;
         }
 
+        //RIAVVIA ORA
+        textY = frameY + gp.tileSize * 5;
+        g2.drawString("Vuoi riavviare ora?", textX, textY);
+
+        String restart = "Si";
+        textY = frameY + gp.tileSize * 6;
+        g2.drawString(restart, textX, textY);
+        if(commandNum == 0){
+            g2.drawString(">", textX - 25, textY);
+            if(gp.keyH.enterPressed)
+                System.exit(0);
+        }
+
+        restart = "No";
+        textY = frameY + gp.tileSize * 7;
+        g2.drawString(restart, textX, textY);
+        if(commandNum == 1){
+            g2.drawString(">", textX - 25, textY);
+            if(gp.keyH.enterPressed)
+                subState = 0;
+        }
+
         //INDIETRO
         textY = frameY + gp.tileSize * 9;
         g2.drawString("Indietro", textX, textY);
-        if(commandNum == 0){
+        if(commandNum == 2){
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed)
                 subState = 0;
