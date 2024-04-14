@@ -135,10 +135,13 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_F){
             shotKeyPressed = true;
         }
+        if(code == KeyEvent.VK_P){
+            gp.gameState = gp.pauseState;
+        }
     }
 
     public void pauseState(int code){
-        if(code == KeyEvent.VK_ESCAPE){
+        if(code == KeyEvent.VK_P){
             gp.gameState = gp.playState;
         }
     }

@@ -104,6 +104,7 @@ public class UI {
             //COLORE BACKGROUND
             g2.setColor(Color.BLACK);
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
             //TITOLO
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
             String text = "L'escapista";
@@ -147,6 +148,9 @@ public class UI {
                 g2.drawString(">", x - gp.tileSize, y);
         }
         else if(titleScreenState == 1){
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
             //SCHERMATA DI SELEZIONE
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(40F));
@@ -184,7 +188,6 @@ public class UI {
             if(commandNum == 3)
                 g2.drawString(">", x - gp.tileSize, y);
         }
-
     }
     public void drawMessage(){
         int messageX = gp.tileSize, messageY = gp.tileSize*4;
@@ -459,7 +462,7 @@ public class UI {
     public void drawOptionScreen(){
 
         g2.setColor(Color.white);
-        //g2.setFont(g2.getFont().deriveFont(32F));
+        g2.setFont(g2.getFont().deriveFont(32F));
 
         //SOTTOFINESTRA
         int frameX = gp.tileSize * 6;
@@ -631,7 +634,7 @@ public class UI {
 
         textX = frameX + gp.tileSize * 6;
         textY = frameY + gp.tileSize * 2;
-        g2.drawString("WASD", textX, textY);
+        g2.drawString("W A S D", textX, textY);
         textY += gp.tileSize;
         g2.drawString("Spazio", textX, textY);
         textY += gp.tileSize;
@@ -645,8 +648,8 @@ public class UI {
 
         //INDIETRO
         textX = frameX + gp.tileSize;
-        textY = frameY + gp.tileSize + 9;
-        g2.drawString("Indietro", frameX, frameY);
+        textY = frameY + gp.tileSize * 9;
+        g2.drawString("Indietro", textX, textY);
         if(commandNum == 0){
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed) {
@@ -671,7 +674,7 @@ public class UI {
         //SI
         String text = "Si";
         textX = centreText(text);
-        textY = gp.tileSize * 3;
+        textY = gp.tileSize * 7;
         g2.drawString(text, textX, textY);
         if(commandNum == 0){
             g2.drawString(">", textX - 25, textY);
@@ -686,7 +689,7 @@ public class UI {
         //NO
         text = "No";
         textX = centreText(text);
-        textY = gp.tileSize * 3;
+        textY = gp.tileSize * 8;
         g2.drawString(text, textX, textY);
         if(commandNum == 1){
             g2.drawString(">", textX - 25, textY);
