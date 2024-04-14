@@ -604,11 +604,12 @@ public class UI {
         }
 
         //RIAVVIA ORA
-        textY = frameY + gp.tileSize * 5;
+        /*
+        textY = gp.tileSize * 5;
         g2.drawString("Vuoi riavviare ora?", textX, textY);
 
         String restart = "Si";
-        textY = frameY + gp.tileSize * 6;
+        textY = gp.tileSize * 6;
         g2.drawString(restart, textX, textY);
         if(commandNum == 0){
             g2.drawString(">", textX - 25, textY);
@@ -617,18 +618,18 @@ public class UI {
         }
 
         restart = "No";
-        textY = frameY + gp.tileSize * 7;
+        textY = gp.tileSize * 7;
         g2.drawString(restart, textX, textY);
         if(commandNum == 1){
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed)
                 subState = 0;
-        }
+        }*/
 
         //INDIETRO
-        textY = frameY + gp.tileSize * 9;
+        textY = gp.tileSize * 9;
         g2.drawString("Indietro", textX, textY);
-        if(commandNum == 2){
+        if(commandNum == 0){ //da inserire 2 per il riavvia ora
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed)
                 subState = 0;
