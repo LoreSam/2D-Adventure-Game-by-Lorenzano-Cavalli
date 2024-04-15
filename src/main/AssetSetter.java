@@ -99,7 +99,7 @@ public class AssetSetter {
         gp.iTile[i] = new IT_DryTree(gp, 33, 12);
         i++;
 
-        //CELLE
+        //CELLE ALTE
         gp.iTile[i] = new IT_Bed(gp, 51, 7);
         i++;
         gp.iTile[i] = new IT_Chest(gp, 54, 8);
@@ -119,6 +119,28 @@ public class AssetSetter {
         gp.iTile[i] = new IT_Chest(gp, 64, 8);
         i++;
         gp.iTile[i] = new IT_Cesso(gp, 64, 7);
+        i++;
+
+        //CELLE BASSE
+        gp.iTile[i] = new IT_Bed(gp, 51, 18);
+        i++;
+        gp.iTile[i] = new IT_Chest(gp, 54, 18);
+        i++;
+        gp.iTile[i] = new IT_Cesso(gp, 54, 19);
+        i++;
+
+        gp.iTile[i] = new IT_Bed(gp, 56, 18);
+        i++;
+        gp.iTile[i] = new IT_Chest(gp, 59, 18);
+        i++;
+        gp.iTile[i] = new IT_Cesso(gp, 59, 19);
+        i++;
+
+        gp.iTile[i] = new IT_Bed(gp, 61, 18);
+        i++;
+        gp.iTile[i] = new IT_Chest(gp, 64, 18);
+        i++;
+        gp.iTile[i] = new IT_Cesso(gp, 64, 19);
         i++;
     }
 }

@@ -36,10 +36,12 @@ public class InteractiveTile extends Entity {
     }
 
     public void draw(Graphics2D g2){
+        //nell'if il *2 serve per renderizzare senza far sparire gli oggetti grandi 2 tile
+
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-        if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && worldX - gp.tileSize < gp.player.worldX + gp.player.screenX && worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+        if(worldX + gp.tileSize*2 > gp.player.worldX - gp.player.screenX && worldX - gp.tileSize*2 < gp.player.worldX + gp.player.screenX && worldY + gp.tileSize*2 > gp.player.worldY - gp.player.screenY && worldY - gp.tileSize*2 < gp.player.worldY + gp.player.screenY) {
             g2.drawImage(down1, screenX, screenY, null); //TECNICAMENTE NEL DRAW ANDREBBERO GP.TILESIZE, PERO FUNZIONA ANCHE COSI
         }
     }
