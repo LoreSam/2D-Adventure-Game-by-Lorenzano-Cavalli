@@ -604,12 +604,12 @@ public class UI {
         }
 
         //RIAVVIA ORA
-        /*
-        textY = gp.tileSize * 5;
+        /*textY = gp.tileSize * 5;
         g2.drawString("Vuoi riavviare ora?", textX, textY);
 
         String restart = "Si";
         textY = gp.tileSize * 6;
+        textX = centreText(restart);
         g2.drawString(restart, textX, textY);
         if(commandNum == 0){
             g2.drawString(">", textX - 25, textY);
@@ -619,6 +619,7 @@ public class UI {
 
         restart = "No";
         textY = gp.tileSize * 7;
+        textX = centreText(restart);
         g2.drawString(restart, textX, textY);
         if(commandNum == 1){
             g2.drawString(">", textX - 25, textY);

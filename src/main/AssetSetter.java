@@ -105,17 +105,20 @@ public class AssetSetter {
         gp.iTile[i] = new IT_Chest(gp, 54, 8);
         i++;
         gp.iTile[i] = new IT_Cesso(gp, 54, 7);
+        i++;
 
         gp.iTile[i] = new IT_Bed(gp, 56, 7);
         i++;
         gp.iTile[i] = new IT_Chest(gp, 59, 8);
         i++;
         gp.iTile[i] = new IT_Cesso(gp, 59, 7);
+        i++;
 
         gp.iTile[i] = new IT_Bed(gp, 61, 7);
         i++;
         gp.iTile[i] = new IT_Chest(gp, 64, 8);
         i++;
         gp.iTile[i] = new IT_Cesso(gp, 64, 7);
+        i++;
     }
 }
