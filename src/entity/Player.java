@@ -67,13 +67,26 @@ public class Player extends Entity{
         defense = getDefense();
     }
 
+    public void setDefaultPosition(){
+
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 21;
+        direction = "down";
+    }
+
+    public void restoreStatistics(){
+        life = maxLife;
+        energy = maxEnergy;
+        invincible = false;
+    }
+
     public void setItems(){
+
+        inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Boots(gp));
-        inventory.add(new OBJ_Door(gp));
-        inventory.add(new OBJ_Door(gp));
         inventory.add(new OBJ_Chest(gp));
         inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Key(gp));
@@ -231,6 +244,11 @@ public class Player extends Entity{
         }
         if (life > maxLife){
             life = maxLife;
+        }
+
+        if(life <= 0){
+            gp.gameState = gp.gameOverState;
+            gp.playSoundEffect(11);
         }
     }
 

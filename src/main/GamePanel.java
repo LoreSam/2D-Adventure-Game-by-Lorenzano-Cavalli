@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxWorldCol = 100;
     public final int maxWorldRow = 100;
 
-    int FPS = 144;
+    int FPS = 60;
 
     //SISTEMA
     TileManager tileM = new TileManager(this);
@@ -67,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int dialogueState = 3;
     public final int characterState = 4;
     public final int optionsState = 5;
+    public final int gameOverState = 6;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -89,6 +90,24 @@ public class GamePanel extends JPanel implements Runnable{
 
         if(fullScreenOn)
             setFullscreen();
+    }
+
+    public void retry(){
+
+        player.setDefaultPosition();
+        player.restoreStatistics();
+        aSetter.setNPC();
+        aSetter.setMonster();
+        aSetter.setObject();
+        aSetter.setNPC();
+        aSetter.setMonster();
+        aSetter.setInteractiveTile();
+    }
+
+    public void restart(){
+
+        player.setDefaultValues();
+        player.setItems();
     }
 
     public void setFullscreen(){

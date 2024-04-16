@@ -2,6 +2,7 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class KeyHandler implements KeyListener {
 
@@ -80,6 +81,11 @@ public class KeyHandler implements KeyListener {
         //STATO OPZIONI
         else if (gp.gameState == gp.optionsState){
             optionState(code);
+        }
+
+        //STATO GAMEOVER
+        else if (gp.gameState == gp.gameOverState){
+            gameOverState(code);
         }
     }
 
@@ -244,6 +250,35 @@ public class KeyHandler implements KeyListener {
                     gp.se.volumeScale++;
                     gp.playSoundEffect(8);
                 }
+            }
+        }
+    }
+
+    public void gameOverState(int code){
+
+        if(code == KeyEvent.VK_UP){
+            gp.ui.commandNum--;
+            if(gp.ui.commandNum < 0)
+                gp.ui.commandNum = 1;
+            gp.playSoundEffect(8);
+        }
+
+        if(code == KeyEvent.VK_DOWN){
+            gp.ui.commandNum++;
+            if(gp.ui.commandNum > 1)
+                gp.ui.commandNum = 0;
+            gp.playSoundEffect(8);
+        }
+
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.ui.commandNum == 0){
+                gp.gameState = gp.playState;
+                gp.retry();
+            }
+            else if(gp.ui.commandNum == 1){
+                gp.ui.titleScreenState = 0;
+                gp.gameState = gp.titleState;
+                gp.restart();
             }
         }
     }

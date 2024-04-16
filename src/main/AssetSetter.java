@@ -84,19 +84,15 @@ public class AssetSetter {
 
     public void setInteractiveTile(){
         int i = 0;
-        gp.iTile[i] = new IT_DryTree(gp, 27, 12);
+        gp.iTile[i] = new IT_DryTree(gp, 29, 10);
         i++;
-        gp.iTile[i] = new IT_DryTree(gp, 28, 12);
+        gp.iTile[i] = new IT_DryTree(gp, 30, 10);
         i++;
-        gp.iTile[i] = new IT_DryTree(gp, 29, 12);
+        gp.iTile[i] = new IT_DryTree(gp, 31, 10);
         i++;
-        gp.iTile[i] = new IT_DryTree(gp, 30, 12);
+        gp.iTile[i] = new IT_DryTree(gp, 32, 10);
         i++;
-        gp.iTile[i] = new IT_DryTree(gp, 31, 12);
-        i++;
-        gp.iTile[i] = new IT_DryTree(gp, 32, 12);
-        i++;
-        gp.iTile[i] = new IT_DryTree(gp, 33, 12);
+        gp.iTile[i] = new IT_DryTree(gp, 33, 10);
         i++;
 
         //CELLE ALTE
