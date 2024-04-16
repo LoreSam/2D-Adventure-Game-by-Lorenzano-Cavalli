@@ -13,7 +13,6 @@ public class Main {
         window.setResizable(false);
         window.setTitle("Bolted");
 
-
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
 

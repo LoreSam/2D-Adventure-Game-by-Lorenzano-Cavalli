@@ -3,10 +3,7 @@ package main;
 import entity.NPC_OldMan;
 import monster.MON_Dogs;
 import object.*;
-import tile_interactive.IT_Bed;
-import tile_interactive.IT_Cesso;
-import tile_interactive.IT_Chest;
-import tile_interactive.IT_DryTree;
+import tile_interactive.*;
 
 public class AssetSetter {
 
@@ -56,7 +53,7 @@ public class AssetSetter {
     public void setNPC(){
         gp.npc[0] = new NPC_OldMan(gp);
         gp.npc[0].worldX = gp.tileSize * 21;
-        gp.npc[0].worldY = gp.tileSize * 21;
+        gp.npc[0].worldY = gp.tileSize * 15;
     }
 
     public void setMonster(){
@@ -137,6 +134,70 @@ public class AssetSetter {
         gp.iTile[i] = new IT_Chest(gp, 64, 18);
         i++;
         gp.iTile[i] = new IT_Cesso(gp, 64, 19);
+        i++;
+
+        //DOCCINI
+        gp.iTile[i] = new IT_Doccia(gp, 19, 6);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 20, 6);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 21, 6);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 22, 6);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 23, 6);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 24, 6);
+        i++;
+
+        gp.iTile[i] = new IT_Doccia(gp, 19, 8);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 20, 8);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 21, 8);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 22, 8);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 23, 8);
+        i++;
+        gp.iTile[i] = new IT_Doccia(gp, 24, 8);
+        i++;
+
+        //PALESTRA
+        //TAPIRULANT
+        gp.iTile[i] = new IT_Tapirulant(gp, 19, 21);
+        i++;
+        gp.iTile[i] = new IT_Tapirulant(gp, 22, 21);
+        i++;
+        gp.iTile[i] = new IT_Tapirulant(gp, 25, 21);
+        i++;
+        gp.iTile[i] = new IT_Tapirulant(gp, 28, 21);
+        i++;
+        gp.iTile[i] = new IT_Tapirulant(gp, 19, 23);
+        i++;
+        gp.iTile[i] = new IT_Tapirulant(gp, 22, 23);
+        i++;
+        gp.iTile[i] = new IT_Tapirulant(gp, 25, 23);
+        i++;
+        gp.iTile[i] = new IT_Tapirulant(gp, 28, 23);
+        i++;
+
+        //PANCA
+        gp.iTile[i] = new IT_Panca(gp, 19, 25);
+        i++;
+        gp.iTile[i] = new IT_Panca(gp, 22, 25);
+        i++;
+        gp.iTile[i] = new IT_Panca(gp, 25, 25);
+        i++;
+        gp.iTile[i] = new IT_Panca(gp, 28, 25);
+        i++;
+        gp.iTile[i] = new IT_Panca(gp, 19, 27);
+        i++;
+        gp.iTile[i] = new IT_Panca(gp, 22, 27);
+        i++;
+        gp.iTile[i] = new IT_Panca(gp, 25, 27);
+        i++;
+        gp.iTile[i] = new IT_Panca(gp, 28, 27);
         i++;
     }
 }

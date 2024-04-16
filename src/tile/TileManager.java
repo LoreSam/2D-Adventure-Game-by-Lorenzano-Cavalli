@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class TileManager {
-    GamePanel gp;//Giovanni Pantaleo
+    GamePanel gp; //Giovanni Pantaleo
     public Tile[] tile;
     public int mapTileNum[][];
 
@@ -88,7 +88,7 @@ public class TileManager {
             tile[15].collision = true;
 
             tile[16] = new Tile();
-            tile[16].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/tree.png")));
+            tile[16].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/tree_b.png"))); //da switchare con tree.png
             tile[16].collision = true;
 
             tile[17] = new Tile();
@@ -135,6 +135,9 @@ public class TileManager {
 
             tile[29] = new Tile();
             tile[29].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/sabbia_ang4.png")));
+
+            tile[30] = new Tile();
+            tile[30].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/p_palestra.png")));
 
             tile[35] = new Tile();
             tile[35].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/porta_p.png")));

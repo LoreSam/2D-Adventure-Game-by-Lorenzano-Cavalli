@@ -37,17 +37,17 @@ public class EventHandler {
         if(distance > gp.tileSize)
             canTouchEvent = true;
 
-        if(canTouchEvent){
+        /*if(canTouchEvent){
             if (hit(27, 16, "right") == true){
                 damagePit(27, 16, gp.dialogueState);
             }
             if (hit(23, 12, "up") == true){
                 healingPool(23, 12, gp.dialogueState);
             }
-            /*if (hit(27, 16, "right") == true){
+            if (hit(27, 16, "right") == true){
                 teleport(gp.dialogueState);
-            }*/
-        }
+            }
+        }*/
     }
 
     public boolean hit(int col, int row, String reqDirection){
