@@ -15,7 +15,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font font;
-    BufferedImage heart_full, heart_half, heart_blank, energy_full, energy_blank;
+    BufferedImage heart_full, heart_half, heart_blank, energy_full, energy_blank, energy_75, energy_50, energy_25;
     public boolean messageOn = false;
     /*public String message = "";
     int messageCounter = 0;*/
@@ -48,7 +48,10 @@ public class UI {
         heart_blank = heart.image3;
         Entity energy = new OBJ_Energy(gp);
         energy_full = energy.image;
-        energy_blank = energy.image2;
+        energy_75 = energy.image2;
+        energy_50 = energy.image3;
+        energy_25 = energy.image4;
+        energy_blank = energy.image5;
     }
 
     public void addMessage(String text){
@@ -260,6 +263,7 @@ public class UI {
         x=gp.tileSize/2;
         y=gp.tileSize/2;
         i = 0;
+
         // vita
         while (i < gp.player.life){
             g2.drawImage(heart_half, x, y, null);
@@ -274,22 +278,22 @@ public class UI {
         //DISEGNO ENERGIA MASSIMA
         x = gp.tileSize/2 - 5;
         y = (int) (gp.tileSize*1.5);
-        i = 0;
-        while(i < gp.player.maxEnergy){
-            g2.drawImage(energy_blank, x, y, null);
-            i++;
-            x += 35;
-        }
+        //g2.drawImage(energy_blank, x, y, null);
 
         //DISEGNO ENERGIA
-        x = gp.tileSize/2 - 5;
-        y = (int) (gp.tileSize*1.5);
-        i = 0;
-        while(i < gp.player.energy){
+        //g2.drawImage(energy_full, x, y, null);
+
+
+        if(gp.player.energy == 0)
+            g2.drawImage(energy_blank, x, y, null);
+        else if(gp.player.energy > 0 && gp.player.energy <= 25)
+            g2.drawImage(energy_25, x, y, null);
+        else if(gp.player.energy > 25 && gp.player.energy <= 50)
+            g2.drawImage(energy_50, x, y, null);
+        else if(gp.player.energy > 50 && gp.player.energy <= 75)
+            g2.drawImage(energy_75, x, y, null);
+        else if(gp.player.energy >= 75)
             g2.drawImage(energy_full, x, y, null);
-            i++;
-            x += 35;
-        }
     }
 
     public void drawCharacterScreen(){

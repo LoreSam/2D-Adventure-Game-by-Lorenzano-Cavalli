@@ -55,14 +55,14 @@ public class Player extends Entity{
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        maxEnergy = 1;
+        maxEnergy = 100;
         energy = maxEnergy;
         ammo = 10;
         //currentWeapon = new OBJ_Sword_Normal(gp);
         currentWeapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
-        //projectile = new OBJ_Fireball(gp);
-        projectile = new OBJ_Rock(gp);
+        projectile = new OBJ_Fireball(gp);
+        //projectile = new OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
     }

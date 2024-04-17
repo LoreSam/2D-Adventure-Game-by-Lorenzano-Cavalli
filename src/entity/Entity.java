@@ -34,7 +34,7 @@ public class Entity {
     public boolean invincible = false;
     public int invincibleCounter = 0;
     public String dialogues[] = new String[20];
-    public BufferedImage image, image2, image3;
+    public BufferedImage image, image2, image3, image4, image5;
     public String name;
     public boolean collision = false;
     int dialogueIndex = 0;
