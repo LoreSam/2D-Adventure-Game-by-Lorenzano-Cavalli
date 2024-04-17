@@ -114,6 +114,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void playState(int code){
+
         if(code == KeyEvent.VK_W){
             upPressed = true;
         }
@@ -126,6 +127,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_D){
             rightPressed = true;
         }
+
         if(code == KeyEvent.VK_ESCAPE){
             gp.gameState = gp.optionsState;
         }
@@ -311,4 +313,34 @@ public class KeyHandler implements KeyListener {
     public void keyTyped(KeyEvent e) {
         //NON UTILIZZATO
     }
+    /*
+    public void move8(){ //TODO movimento diagonale
+        try {
+            while (true) {
+                if (leftPressed && upPressed) {
+                    lbl.setBounds(lbl.getX() - 3, lbl.getY() - 3, 20, 20);
+                } else if (left && down) {
+                    lbl.setBounds(lbl.getX() - 3, lbl.getY() + 3, 20, 20);
+                } else if (right && up) {
+                    lbl.setBounds(lbl.getX() + 3, lbl.getY() - 3, 20, 20);
+                } else if (right && down) {
+                    lbl.setBounds(lbl.getX() + 3, lbl.getY() + 3, 20, 20);
+                } else if (left) {
+                    lbl.setBounds(lbl.getX() - 3, lbl.getY(), 20, 20);
+                } else if (up) {
+                    lbl.setBounds(lbl.getX(), lbl.getY() - 3, 20, 20);
+                } else if (right) {
+                    lbl.setBounds(lbl.getX() + 3, lbl.getY(), 20, 20);
+                } else if (down) {
+                    lbl.setBounds(lbl.getX(), lbl.getY() + 3, 20, 20);
+                }
+
+                Thread.sleep(30);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.exit(0);
+        }
+    }*/
 }

@@ -57,7 +57,7 @@ public class AssetSetter {
     }
 
     public void setMonster(){
-        int i = 0;
+        /*int i = 0;
         gp.monster[i] = new MON_Dogs(gp);
         gp.monster[i].worldX = gp.tileSize * 22;
         gp.monster[i].worldY = gp.tileSize * 22;
@@ -76,7 +76,7 @@ public class AssetSetter {
         i++;
         gp.monster[i] = new MON_Dogs(gp);
         gp.monster[i].worldX = gp.tileSize * 38;
-        gp.monster[i].worldY = gp.tileSize * 42;
+        gp.monster[i].worldY = gp.tileSize * 42;*/
     }
 
     public void setInteractiveTile(){
