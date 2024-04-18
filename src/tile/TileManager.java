@@ -14,14 +14,15 @@ import java.util.Objects;
 public class TileManager {
     GamePanel gp; //Giovanni Pantaleo
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int mapTileNum[][][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
         tile = new Tile[100];
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("/maps/mappav1.txt");
+        loadMap("/maps/mappav1.txt", 0);
+        loadMap("/maps/underground.txt", 1);
     }
 
     public void getTileImage(){
@@ -142,7 +143,7 @@ public class TileManager {
             //temp
             tile[31] = new Tile();
             tile[31].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/hut.png")));
-            tile[31].collision = true;
+            tile[31].collision = false;
 
             tile[35] = new Tile();
             tile[35].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/porta_p.png")));
@@ -154,17 +155,17 @@ public class TileManager {
         }
     }
 
-    public void loadMap(String s){
+    public void loadMap(String s, int map){
         try {
             InputStream is = getClass().getResourceAsStream(s);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            int col=0, row = 0;
+            int col = 0, row = 0;
             while (col < gp.maxWorldCol && row < gp.maxWorldRow){
                 String line = br.readLine();
                 while (col < gp.maxWorldCol ){
                     String numbers[] = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
-                    mapTileNum[col][row]=num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
                 if (col == gp.maxWorldCol)
@@ -185,7 +186,7 @@ public class TileManager {
 
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow){
 
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
