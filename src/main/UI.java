@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import object.OBJ_Coin_Bronze;
 import object.OBJ_Energy;
 import object.OBJ_Heart;
 
@@ -15,7 +16,7 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font font;
-    BufferedImage heart_full, heart_half, heart_blank, energy_full, energy_blank, energy_75, energy_50, energy_25;
+    BufferedImage heart_full, heart_half, heart_blank, energy_full, energy_blank, energy_75, energy_50, energy_25, coin;
     public boolean messageOn = false;
     /*public String message = "";
     int messageCounter = 0;*/
@@ -56,6 +57,8 @@ public class UI {
         energy_50 = energy.image3;
         energy_25 = energy.image4;
         energy_blank = energy.image5;
+        Entity bronzecoin = new OBJ_Coin_Bronze(gp);
+        coin = bronzecoin.down1;
     }
 
     public void addMessage(String text){
@@ -457,7 +460,7 @@ public class UI {
         int slotSize = gp.tileSize + 3;
 
         //DISEGNA OGGETTI GIOCATORE
-        for(int i = 0; i < gp.player.inventory.size(); i++){
+        for(int i = 0; i < entity.inventory.size(); i++){
 
             //CURSORE OGGETTO EQUIPAGGIATO
             if (entity.inventory.get(i) == entity.currentWeapon || entity.inventory.get(i) == entity.currentShield){
@@ -820,7 +823,7 @@ public class UI {
     }
 
     public int getItemIndexSlot(int slotCol, int slotRow){
-        int itemIndex = playerSlotCol + (playerSlotRow *5);
+        int itemIndex = slotCol + (slotRow * 5);
         return itemIndex;
     }
 
@@ -851,7 +854,7 @@ public class UI {
                 trade_buy();
                 break;
             case 2:
-                trade_buy();
+                trade_sell();
                 break;
         }
         gp.keyH.enterPressed = false;
@@ -901,10 +904,116 @@ public class UI {
 
     public void trade_buy(){
 
+        //DISEGNO INVENTARIO GIOCATORE
+        drawInventory(gp.player, false);
 
+        //DISEGNO INVENTARIO NPC
+        drawInventory(npc, true);
+
+        //DISEGNO FINESTRA CONSIGLI
+        int x = gp.tileSize*2;
+        int y = gp.tileSize*9;
+        int width = gp.tileSize*6;
+        int height = gp.tileSize*2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("[ESC] Indietro", x + 24, y + 60);
+
+        //DISEGNO MONETE GIOCATORE
+        x = gp.tileSize*12;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("Monete: " + gp.player.coin, x + 24, y + 60);
+
+        //DISEGNO FINESTRA PREZZO
+        int itemIndex = getItemIndexSlot(npcSlotCol, npcSlotRow);
+        if(itemIndex < npc.inventory.size()){
+
+            x = (int)(gp.tileSize*5.5);
+            y = (int)(gp.tileSize*5.5);
+            width = (int)(gp.tileSize*2.5);
+            height = gp.tileSize;
+            drawSubWindow(x, y, width, height);
+            g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
+
+            int price = npc.inventory.get(itemIndex).price;
+            String text = "" + price;
+            x = alignRightText(text, gp.tileSize * 8 - 20);
+            g2.drawString(text, x, y + 32);
+
+            //ACQUISTO
+            if(gp.keyH.enterPressed){
+                if(npc.inventory.get(itemIndex).price > gp.player.coin){
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialog = "Ti servono più monete!";
+                    drawDialogueScreen();
+                }
+                else if(gp.player.inventory.size() == gp.player.maxInventorySize){
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialog = "Non hai più spazio!";
+                    drawDialogueScreen();
+                }
+                else {
+                    gp.player.coin -= npc.inventory.get(itemIndex).price;
+                    gp.player.inventory.add(npc.inventory.get(itemIndex));
+                }
+            }
+        }
     }
 
     public void trade_sell(){
 
+        //DISEGNA INVENTARIO GIOCATORE
+        drawInventory(gp.player, true);
+
+        int x;
+        int y;
+        int width;
+        int height;
+
+        //DISEGNO FINESTRA CONSIGLI
+        x = gp.tileSize*2;
+        y = gp.tileSize*9;
+        width = gp.tileSize*6;
+        height = gp.tileSize*2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("[ESC] Indietro", x + 24, y + 60);
+
+        //DISEGNO MONETE GIOCATORE
+        x = gp.tileSize*12;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("Monete: " + gp.player.coin, x + 24, y + 60);
+
+        //DISEGNO FINESTRA PREZZO
+        int itemIndex = getItemIndexSlot(playerSlotCol, playerSlotRow);
+        if(itemIndex < gp.player.inventory.size()){
+
+            x = (int)(gp.tileSize*15.5);
+            y = (int)(gp.tileSize*5.5);
+            width = (int)(gp.tileSize*2.5);
+            height = gp.tileSize;
+            drawSubWindow(x, y, width, height);
+            g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
+
+            int price = gp.player.inventory.get(itemIndex).price/2;
+            String text = "" + price;
+            x = alignRightText(text, gp.tileSize * 18 - 20);
+            g2.drawString(text, x, y + 32);
+
+            //VENDITA
+            if(gp.keyH.enterPressed){
+
+                if(gp.player.inventory.get(itemIndex) == gp.player.currentWeapon || gp.player.inventory.get(itemIndex) == gp.player.currentShield){
+                    commandNum = 0;
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialog = "Non puoi vendere un oggetto equipaggiato!";
+                }
+                else{
+                    gp.player.inventory.remove(itemIndex);
+                    gp.player.coin += price;
+                }
+            }
+        }
     }
 }

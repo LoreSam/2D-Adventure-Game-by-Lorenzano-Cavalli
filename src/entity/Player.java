@@ -55,7 +55,7 @@ public class Player extends Entity{
         dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
+        coin = 500;
         maxEnergy = 100;
         energy = maxEnergy;
         ammo = 10;
@@ -508,7 +508,7 @@ public class Player extends Entity{
     }
 
     public void selectItem(){
-        int itemIndex = gp.ui.getItemIndexSlot();
+        int itemIndex = gp.ui.getItemIndexSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
         if (itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
             if (selectedItem.type == type_sword || selectedItem.type == type_axe){
