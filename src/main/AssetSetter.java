@@ -1,5 +1,6 @@
 package main;
 
+import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import monster.MON_Dogs;
 import object.*;
@@ -15,6 +16,7 @@ public class AssetSetter {
 
     public void setObject(){
 
+        /*
         int mapNum = 0;
         int i = 0;
         gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
@@ -47,7 +49,7 @@ public class AssetSetter {
         i++;
         gp.obj[mapNum][i] = new OBJ_Energy(gp);
         gp.obj[mapNum][i].worldX = 22 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 31 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 31 * gp.tileSize;*/
 
     }
 
@@ -56,8 +58,15 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         gp.npc[mapNum][i] = new NPC_OldMan(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 21;
+        gp.npc[mapNum][i].worldX = gp.tileSize * 19;
         gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+
+        //SOTTOTERRA
+        mapNum = 1;
+        i = 0;
+        gp.npc[mapNum][i] = new NPC_Merchant(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 12;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 7;
     }
 
     public void setMonster(){

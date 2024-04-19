@@ -2,7 +2,6 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
 
 public class KeyHandler implements KeyListener {
 
@@ -87,6 +86,11 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.gameOverState){
             gameOverState(code);
         }
+
+        //STATO SCAMBIO
+        else if (gp.gameState == gp.tradeState){
+            tradeState(code);
+        }
     }
 
     public void titleState(int code){
@@ -164,23 +168,23 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_C){
             gp.gameState = gp.playState;
         }
-        if(code == KeyEvent.VK_W && gp.ui.slotRow != 0){
-            gp.ui.slotRow--;
+        if(code == KeyEvent.VK_W && gp.ui.playerSlotRow != 0){
+            gp.ui.playerSlotRow--;
             gp.playSoundEffect(10);
         }
 
-        if(code == KeyEvent.VK_A && gp.ui.slotCol != 0){
-            gp.ui.slotCol--;
+        if(code == KeyEvent.VK_A && gp.ui.playerSlotCol != 0){
+            gp.ui.playerSlotCol--;
             gp.playSoundEffect(10);
         }
 
-        if(code == KeyEvent.VK_S && gp.ui.slotRow != 3){ //RIGHE INVENTARIO
-            gp.ui.slotRow++;
+        if(code == KeyEvent.VK_S && gp.ui.playerSlotRow != 3){ //RIGHE INVENTARIO
+            gp.ui.playerSlotRow++;
             gp.playSoundEffect(10);
         }
 
-        if(code == KeyEvent.VK_D && gp.ui.slotCol != 4){ //COLONNE INVENTARIO
-            gp.ui.slotCol++;
+        if(code == KeyEvent.VK_D && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
+            gp.ui.playerSlotCol++;
             gp.playSoundEffect(10);
         }
         if (code == KeyEvent.VK_ENTER){
@@ -283,6 +287,27 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.titleState;
                 gp.restart();
             }
+        }
+    }
+
+    public void tradeState(int code){
+
+        if(code == KeyEvent.VK_ENTER)
+            enterPressed = true;
+
+        if(gp.ui.subState == 0){
+            if(code == KeyEvent.VK_UP) {
+                gp.ui.commandNum--;
+                if(gp.ui.commandNum < 0)
+                    gp.ui.commandNum = 2;
+            }
+            gp.playSoundEffect(8);
+            if(code == KeyEvent.VK_DOWN) {
+                gp.ui.commandNum++;
+                if(gp.ui.commandNum > 2)
+                    gp.ui.commandNum = 0;
+            }
+            gp.playSoundEffect(8);
         }
     }
 

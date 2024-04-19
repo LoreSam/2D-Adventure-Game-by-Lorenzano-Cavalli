@@ -1,11 +1,14 @@
 package main;
 
+import entity.Entity;
+
 public class EventHandler {
     GamePanel gp;
     EventRect eventRect[][][];
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
+    int tempMap, tempCol, tempRow;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -49,6 +52,8 @@ public class EventHandler {
                 teleport(1, 12, 13);
             else if(hit(1, 12, 16, "any"))
                 teleport(0, 14, 32);
+            else if(hit(1, 12, 9, "up"))
+                speak(gp.npc[1][0]);
         }
 
 
@@ -110,11 +115,24 @@ public class EventHandler {
 
     public void teleport(int map, int col, int row){
 
-        gp.currentMap = map;
+        gp.gameState = gp.transitionState;
+        tempMap = map;
+        tempCol = col;
+        tempRow = row;
+
+        /*gp.currentMap = map;
         gp.player.worldX = gp.tileSize * col;
         gp.player.worldY = gp.tileSize * row;
         previousEventX = gp.player.worldX;
-        previousEventY = gp.player.worldY;
+        previousEventY = gp.player.worldY;*/
         canTouchEvent = false;
+    }
+
+    public void speak(Entity entity){
+
+        if(gp.keyH.enterPressed){
+            gp.gameState = gp.dialogueState;
+            entity.speak();
+        }
     }
 }

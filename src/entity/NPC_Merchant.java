@@ -1,14 +1,13 @@
 package entity;
 
 import main.GamePanel;
+import object.*;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
 import java.util.Random;
 
-public class NPC_OldMan extends Entity{
+public class NPC_Merchant extends Entity{
 
-    public NPC_OldMan(GamePanel gp) {
+    public NPC_Merchant(GamePanel gp) {
         super(gp);
 
         direction = "down";
@@ -16,6 +15,7 @@ public class NPC_OldMan extends Entity{
 
         getNPCImage();
         setDialog();
+        setItems();
     }
 
     public void getNPCImage(){
@@ -30,33 +30,24 @@ public class NPC_OldMan extends Entity{
     }
 
     public void setDialog(){
-        dialogues[0]="ciao";
-        dialogues[1]="quindi sei venuto su quest'isola \nper trovare il tesoro?";
-        dialogues[2]="un tempo ero un bravo mago";
-        dialogues[3]="buona fortuna";
+
+        dialogues[0]="Ah ah, mi hai trovato.\nHo della roba buona\nNe vuoi un po'?";
     }
 
-    public void setAction(){
+    public void setItems(){
 
-        actionLockCounter++;
-        if(actionLockCounter == 120){
-
-            Random random = new Random();
-            int i = random.nextInt(100) + 1; //numero random
-
-            if(i <= 25)
-                direction = "up";
-            if(i > 25 && i <= 50)
-                direction = "down";
-            if(i > 50 && i <= 75)
-                direction = "left";
-            if(i > 75 && i <= 100)
-                direction = "right";
-
-            actionLockCounter = 0;
-        }
+        inventory.add(new OBJ_Potion_Red(gp));
+        inventory.add(new OBJ_Axe(gp));
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Sword_Normal(gp));
+        inventory.add(new OBJ_Shield_Wood(gp));
+        inventory.add(new OBJ_Shield_Blue(gp));
+        inventory.add(new OBJ_Boots(gp));
     }
+
     public void speak(){
         super.speak();
+        gp.gameState = gp.tradeState;
+        gp.ui.npc = this;
     }
 }
