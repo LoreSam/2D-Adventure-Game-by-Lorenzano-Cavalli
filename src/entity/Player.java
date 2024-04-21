@@ -42,9 +42,9 @@ public class Player extends Entity{
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 15;
-        worldX = gp.tileSize * 12;
+        worldX = gp.tileSize * 53;
         worldY = gp.tileSize * 12;
-        gp.currentMap = 1;
+        gp.currentMap = 0;
         speed = 4;
         direction = "down";
 
@@ -70,8 +70,8 @@ public class Player extends Entity{
 
     public void setDefaultPosition(){
 
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 53;
+        worldY = gp.tileSize * 12;
         direction = "down";
     }
 
@@ -124,15 +124,15 @@ public class Player extends Entity{
             attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
             attackRight2 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
         }
-        if(currentWeapon.type == type_axe) {
-            attackUp1 = setup("/player/boy_axe_up_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setup("/player/boy_axe_up_2", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setup("/player/boy_axe_down_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setup("/player/boy_axe_down_2", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setup("/player/boy_axe_left_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setup("/player/boy_axe_left_2", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setup("/player/boy_axe_right_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setup("/player/boy_axe_right_2", gp.tileSize * 2, gp.tileSize);
+        if(currentWeapon.type == type_axe) { //TODO immagini con oggetti in mano
+            attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
         }
     }
 

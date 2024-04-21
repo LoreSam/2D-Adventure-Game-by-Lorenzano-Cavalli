@@ -96,123 +96,123 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 10);
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 27, 18);
         i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 30, 10);
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 28, 18);
         i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 10);
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 18);
         i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 32, 10);
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 30, 18);
         i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 33, 10);
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 18);
         i++;
 
         //CELLE ALTE
-        gp.iTile[mapNum][i] = new IT_Bed(gp, 51, 7);
+        gp.iTile[mapNum][i] = new IT_Bed(gp, 52, 11);
         i++;
-        gp.iTile[mapNum][i] = new IT_Chest(gp, 54, 8);
+        gp.iTile[mapNum][i] = new IT_Chest(gp, 55, 12);
         i++;
-        gp.iTile[mapNum][i] = new IT_Cesso(gp, 54, 7);
-        i++;
-
-        gp.iTile[mapNum][i] = new IT_Bed(gp, 56, 7);
-        i++;
-        gp.iTile[mapNum][i] = new IT_Chest(gp, 59, 8);
-        i++;
-        gp.iTile[mapNum][i] = new IT_Cesso(gp, 59, 7);
+        gp.iTile[mapNum][i] = new IT_Cesso(gp, 55, 11);
         i++;
 
-        gp.iTile[mapNum][i] = new IT_Bed(gp, 61, 7);
+        gp.iTile[mapNum][i] = new IT_Bed(gp, 57, 11);
         i++;
-        gp.iTile[mapNum][i] = new IT_Chest(gp, 64, 8);
+        gp.iTile[mapNum][i] = new IT_Chest(gp, 60, 12);
         i++;
-        gp.iTile[mapNum][i] = new IT_Cesso(gp, 64, 7);
+        gp.iTile[mapNum][i] = new IT_Cesso(gp, 60, 11);
+        i++;
+
+        gp.iTile[mapNum][i] = new IT_Bed(gp, 62, 11);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Chest(gp, 65, 12);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Cesso(gp, 65, 11);
         i++;
 
         //CELLE BASSE
-        gp.iTile[mapNum][i] = new IT_Bed(gp, 51, 18);
+        gp.iTile[mapNum][i] = new IT_Bed(gp, 52, 22);
         i++;
-        gp.iTile[mapNum][i] = new IT_Chest(gp, 54, 18);
+        gp.iTile[mapNum][i] = new IT_Chest(gp, 55, 22);
         i++;
-        gp.iTile[mapNum][i] = new IT_Cesso(gp, 54, 19);
-        i++;
-
-        gp.iTile[mapNum][i] = new IT_Bed(gp, 56, 18);
-        i++;
-        gp.iTile[mapNum][i] = new IT_Chest(gp, 59, 18);
-        i++;
-        gp.iTile[mapNum][i] = new IT_Cesso(gp, 59, 19);
+        gp.iTile[mapNum][i] = new IT_Cesso(gp, 55, 23);
         i++;
 
-        gp.iTile[mapNum][i] = new IT_Bed(gp, 61, 18);
+        gp.iTile[mapNum][i] = new IT_Bed(gp, 57, 22);
         i++;
-        gp.iTile[mapNum][i] = new IT_Chest(gp, 64, 18);
+        gp.iTile[mapNum][i] = new IT_Chest(gp, 60, 22);
         i++;
-        gp.iTile[mapNum][i] = new IT_Cesso(gp, 64, 19);
+        gp.iTile[mapNum][i] = new IT_Cesso(gp, 60, 23);
+        i++;
+
+        gp.iTile[mapNum][i] = new IT_Bed(gp, 62, 22);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Chest(gp, 65, 22);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Cesso(gp, 65, 23);
         i++;
 
         //DOCCINI
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 19, 6);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 22, 10);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 20, 6);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 23, 10);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 21, 6);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 24, 10);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 22, 6);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 25, 10);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 23, 6);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 26, 10);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 24, 6);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 27, 10);
         i++;
 
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 19, 8);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 22, 12);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 20, 8);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 23, 12);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 21, 8);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 24, 12);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 22, 8);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 25, 12);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 23, 8);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 26, 12);
         i++;
-        gp.iTile[mapNum][i] = new IT_Doccia(gp, 24, 8);
+        gp.iTile[mapNum][i] = new IT_Doccia(gp, 27, 12);
         i++;
 
         //PALESTRA
         //TAPIRULANT
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 19, 21);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 20, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 22, 21);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 23, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 25, 21);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 26, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 28, 21);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 29, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 19, 23);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 20, 27);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 22, 23);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 23, 27);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 25, 23);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 26, 27);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 28, 23);
+        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 29, 27);
         i++;
 
         //PANCA
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 19, 25);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 20, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 22, 25);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 23, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 25, 25);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 26, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 28, 25);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 29, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 19, 27);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 20, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 22, 27);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 23, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 25, 27);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 26, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 28, 27);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 29, 29);
         i++;
     }
 }

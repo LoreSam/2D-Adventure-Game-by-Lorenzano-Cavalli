@@ -13,9 +13,9 @@ public class IT_Doccia extends InteractiveTile{
         this.worldX = gp.tileSize*col;
         this.worldY = gp.tileSize*row;
 
-        if(row == 6)
+        if(row == 10)
             down1 = setup("/tiles_interactive/doccia2", gp.tileSize, gp.tileSize);
-        else if(row == 8)
+        else if(row == 12)
             down1 = setup("/tiles_interactive/doccia1", gp.tileSize, gp.tileSize);
     }
 }
