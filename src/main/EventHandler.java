@@ -49,9 +49,9 @@ public class EventHandler {
 
         if(canTouchEvent){
             if(hit(0, 13, 35, "any"))
-                teleport(1, 12, 13);
+                teleport(1, 12, 15);
             else if(hit(1, 12, 16, "any"))
-                teleport(0, 14, 32);
+                teleport(0, 13, 36);
             else if(hit(1, 12, 9, "up"))
                 speak(gp.npc[1][0]);
         }

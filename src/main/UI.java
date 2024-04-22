@@ -98,8 +98,8 @@ public class UI {
 
         //STATO INVENTARIO
         if(gp.gameState == gp.characterState){
-            drawCharacterScreen();
             drawInventory(gp.player, true);
+            drawCharacterScreen();
         }
 
         //STATO OPZIONI
@@ -477,11 +477,16 @@ public class UI {
         }
 
         //CURSORE
-        if(cursor){
-            int cursorX = slotXstart + (slotSize * npcSlotCol);
-            int cursorY = slotYstart + (slotSize * npcSlotRow);
+        if(cursor){ //TODO problema dei cursori degli inventari
+            int cursorX = slotXstart + (slotSize * playerSlotCol);
+            int cursorY = slotYstart + (slotSize * playerSlotRow);
             int cursorWidth = gp.tileSize;
             int cursorHeight = gp.tileSize;
+
+            if(entity == gp.ui.npc){
+                cursorX = slotXstart + (slotSize * npcSlotCol);
+                cursorY = slotYstart + (slotSize * npcSlotRow);
+            }
 
             //DISEGNA CURSORE
             g2.setColor(Color.white);
@@ -492,7 +497,7 @@ public class UI {
             int dFrameX = frameX, dFrameY = frameY + frameHeight, dFrameWidth = frameWidth, dFrameHeight = gp.tileSize*3;
 
             //disegna la descrizione dell' oggetto
-            int textX = dFrameX +20;
+            int textX = dFrameX + 20;
             int textY = dFrameY + gp.tileSize;
             g2.setFont(g2.getFont().deriveFont(28f));
             int itemIndex = getItemIndexSlot(slotCol, slotRow);

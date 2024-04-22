@@ -10,7 +10,7 @@ public class OBJ_Heart extends Entity {
         super(gp);
         this.gp = gp;
         type = type_pickUp;
-        name = "Heart";
+        name = "Cuore";
         value = 2;
         down1 = setup("/objects/heart_full", gp.tileSize, gp.tileSize);
         image = setup("/objects/heart_full", gp.tileSize, gp.tileSize);

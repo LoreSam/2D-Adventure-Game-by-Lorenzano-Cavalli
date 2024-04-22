@@ -12,7 +12,7 @@ public class OBJ_Energy extends Entity {
         this.gp = gp;
 
         type = type_pickUp;
-        name = "Energy";
+        name = "Energia";
         value = 1;
         down1 = setup("/objects/energy_50", gp.tileSize, gp.tileSize);
         image = setup("/objects/energy_100", gp.tileSize, gp.tileSize);

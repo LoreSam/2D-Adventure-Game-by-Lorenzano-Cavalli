@@ -12,7 +12,7 @@ public class OBJ_Key extends Entity {
     public OBJ_Key(GamePanel gp) {
         super(gp);
 
-        name = "Key";
+        name = "Chiave";
         down1 = setup("/objects/key", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\n Apre una porta.";
     }

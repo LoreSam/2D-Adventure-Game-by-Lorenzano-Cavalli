@@ -17,7 +17,7 @@ public class MON_Dogs extends Entity {
         super(gp);
         this.gp = gp;
         type = type_monster;
-        name = "Dog";
+        name = "Cane";
         speed = 1;
         maxLife = 5;
         life = maxLife;
