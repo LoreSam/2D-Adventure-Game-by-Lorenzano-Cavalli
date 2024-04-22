@@ -59,8 +59,8 @@ public class Player extends Entity{
         maxEnergy = 100;
         energy = maxEnergy;
         ammo = 10;
-        //currentWeapon = new OBJ_Sword_Normal(gp);
-        currentWeapon = new OBJ_Axe(gp);
+        currentWeapon = new OBJ_Sword_Normal(gp);
+        //currentWeapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         projectile = new OBJ_Fireball(gp);
         //projectile = new OBJ_Rock(gp);
@@ -301,8 +301,8 @@ public class Player extends Entity{
     }
 
     public void pickUpObject(int i){
-        if(i != 999){
 
+        if(i != 999){
             //prendi solo oggetti
             if (gp.obj[gp.currentMap][i].type == type_pickUp){
                 gp.obj[gp.currentMap][i].use(this);
@@ -324,6 +324,7 @@ public class Player extends Entity{
                 gp.ui.addMessage(text);
                 gp.obj[gp.currentMap][i] = null;
             }
+            gp.playSoundEffect(1);
             /*String objectName = gp.obj[index].name;
             switch(objectName){
                 case "Key":
@@ -364,7 +365,7 @@ public class Player extends Entity{
             gp.npc[gp.currentMap][index].speak();
         }
         else if(gp.keyH.spacePressed){
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(6);
             attacking = true;
         }
     }
@@ -376,7 +377,7 @@ public class Player extends Entity{
                 if (damage < 0 ) {
                     damage = 0;
                 }
-                gp.playSoundEffect(7);
+                gp.playSoundEffect(5);
                 life -= damage;
                 invincible = true;
             }
@@ -386,7 +387,7 @@ public class Player extends Entity{
     public void damageMonster(int i, int attack){
         if (i != 999){
             if (!gp.monster[gp.currentMap][i].invincible){
-                gp.playSoundEffect(6);
+                gp.playSoundEffect(4);
 
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0 ) {

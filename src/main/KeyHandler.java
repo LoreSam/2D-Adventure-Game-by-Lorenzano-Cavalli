@@ -37,7 +37,7 @@ public class KeyHandler implements KeyListener {
                     if (gp.ui.commandNum == 0) {
                         System.out.println("Perfettino Pelatino");
                         gp.gameState = gp.playState;
-                        cambiaMusica(1);
+                        cambiaMusica(2);
                     }
                     if (gp.ui.commandNum == 1) {
                         System.out.println("Cancro");
@@ -335,22 +335,22 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_W && gp.ui.playerSlotRow != 0){
             gp.ui.playerSlotRow--;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
 
         if(code == KeyEvent.VK_A && gp.ui.playerSlotCol != 0){
             gp.ui.playerSlotCol--;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
 
         if(code == KeyEvent.VK_S && gp.ui.playerSlotRow != 3){ //RIGHE INVENTARIO
             gp.ui.playerSlotRow++;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
 
         if(code == KeyEvent.VK_D && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.playerSlotCol++;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
     }
 
@@ -358,22 +358,22 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_W && gp.ui.npcSlotRow != 0){
             gp.ui.npcSlotRow--;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
 
         if(code == KeyEvent.VK_A && gp.ui.npcSlotCol != 0){
             gp.ui.npcSlotCol--;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
 
         if(code == KeyEvent.VK_S && gp.ui.npcSlotRow != 3){ //RIGHE INVENTARIO
             gp.ui.npcSlotRow++;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
 
         if(code == KeyEvent.VK_D && gp.ui.npcSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.npcSlotCol++;
-            gp.playSoundEffect(10);
+            gp.playSoundEffect(8);
         }
     }
 

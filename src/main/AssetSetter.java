@@ -16,18 +16,17 @@ public class AssetSetter {
 
     public void setObject(){
 
-        /*
         int mapNum = 0;
         int i = 0;
-        gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
-        gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 19 * gp.tileSize;
+        gp.obj[mapNum][i] = new OBJ_Axe(gp);
+        gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
-        gp.obj[mapNum][i].worldX = 21 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 19 * gp.tileSize;
+        gp.obj[mapNum][i] = new OBJ_Shield_Blue(gp);
+        gp.obj[mapNum][i].worldX = 33 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
+        /*gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
         gp.obj[mapNum][i].worldX = 26 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 21 * gp.tileSize;
         i++;
@@ -70,26 +69,17 @@ public class AssetSetter {
     }
 
     public void setMonster(){
-        /*int i = 0;
-        gp.monster[i] = new MON_Dogs(gp);
-        gp.monster[i].worldX = gp.tileSize * 22;
-        gp.monster[i].worldY = gp.tileSize * 22;
+
+        int mapNum = 0;
+        int i = 0;
+        gp.monster[mapNum][i] = new MON_Dogs(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 38;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 30;
         i++;
-        gp.monster[i] = new MON_Dogs(gp);
-        gp.monster[i].worldX = gp.tileSize * 23;
-        gp.monster[i].worldY = gp.tileSize * 23;
+        gp.monster[mapNum][i] = new MON_Dogs(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 38;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 35;
         i++;
-        gp.monster[i] = new MON_Dogs(gp);
-        gp.monster[i].worldX = gp.tileSize * 24;
-        gp.monster[i].worldY = gp.tileSize * 37;
-        i++;
-        gp.monster[i] = new MON_Dogs(gp);
-        gp.monster[i].worldX = gp.tileSize * 34;
-        gp.monster[i].worldY = gp.tileSize * 42;
-        i++;
-        gp.monster[i] = new MON_Dogs(gp);
-        gp.monster[i].worldX = gp.tileSize * 38;
-        gp.monster[i].worldY = gp.tileSize * 42;*/
     }
 
     public void setInteractiveTile(){
