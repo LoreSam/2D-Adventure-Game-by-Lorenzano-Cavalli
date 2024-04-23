@@ -40,6 +40,8 @@ public class Entity {
     public boolean collision = false;
     int dialogueIndex = 0;
     public boolean onPath = false;
+    public boolean knockBack = false;
+    int knockBackCounter = 0;
 
     public int type;
     public final int type_player = 0;
@@ -53,6 +55,7 @@ public class Entity {
 
     //stato del personaggio
     public int maxLife;
+    public int defaultSpeed;
     public int life;
     public int maxEnergy;
     public int energy;
@@ -161,49 +164,81 @@ public class Entity {
         gp.particleList.add(p3);
         gp.particleList.add(p4);
     }
+
     public void checkCollision(){
+
         collision = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
         gp.cChecker.checkEntity(this, gp.npc);
         gp.cChecker.checkEntity(this, gp.monster);
         gp.cChecker.checkEntity(this, gp.iTile);
+
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
+
         if (type == type_monster && contactPlayer){
             damagePlayer(attack);
         }
     }
 
     public void update(){
-        setAction();
-        checkCollision();
-        collisionOn = false;
-        gp.cChecker.checkTile(this);
-        gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkEntity(this, gp.npc);
-        gp.cChecker.checkEntity(this, gp.iTile);
-        boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
-        if(this.type == type_monster && contactPlayer){
-            damagePlayer(attack);
-        }
+        if(knockBack){
 
-        if (!collisionOn) {
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
+            checkCollision();
+
+            if(collisionOn){
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else {
+                switch (gp.player.direction){
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+
+            knockBackCounter++;
+            if(knockBackCounter == 10){
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
             }
         }
+        else{
+            setAction();
+            checkCollision();
+
+            if (!collisionOn) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+        }
+
+
 
         spriteCounter++;
         if (spriteCounter > 24) {

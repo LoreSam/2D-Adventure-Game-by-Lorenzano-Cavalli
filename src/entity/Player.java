@@ -40,12 +40,11 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 15;
-        worldX = gp.tileSize * 53;
-        worldY = gp.tileSize * 12;
-        gp.currentMap = 0;
-        speed = 4;
+
+        worldX = gp.tileSize * 16;
+        worldY = gp.tileSize * 17;
+        defaultSpeed = 4;
+        speed = defaultSpeed;
         direction = "down";
 
         level = 1;
@@ -222,7 +221,13 @@ public class Player extends Entity{
             projectile.subtractResource(this);
 
             //AGGIUNTA ALLA LISTA
-            gp.projectileList.add(projectile);
+            for(int i = 0; i < gp.projectile[1].length; i++){
+
+                if(gp.projectile[gp.currentMap][i] == null){
+                    gp.projectile[gp.currentMap][i] = projectile;
+                    break;
+                }
+            }
 
             shotAvailableCounter = 0;
 
@@ -287,6 +292,9 @@ public class Player extends Entity{
 
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
+
+            int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
+            damageProjectile(projectileIndex);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -387,7 +395,10 @@ public class Player extends Entity{
     public void damageMonster(int i, int attack){
         if (i != 999){
             if (!gp.monster[gp.currentMap][i].invincible){
+
                 gp.playSoundEffect(4);
+
+                //knockBack();
 
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0 ) {
@@ -421,6 +432,15 @@ public class Player extends Entity{
                 gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
 
             }
+        }
+    }
+
+    public void damageProjectile(int i){
+
+        if(i != 999){
+            Entity projectile = gp.projectile[gp.currentMap][i];
+            projectile.alive = false;
+            generateParticle(projectile, projectile);
         }
     }
 
@@ -526,5 +546,12 @@ public class Player extends Entity{
                 inventory.remove(itemIndex);
             }
         }
+    }
+
+    public void knockBack(Entity entity){
+
+        entity.direction = direction;
+        entity.speed += 10;
+        entity.knockBack = true;
     }
 }

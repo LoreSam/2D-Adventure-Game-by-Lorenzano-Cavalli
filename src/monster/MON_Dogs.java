@@ -13,12 +13,15 @@ import java.util.Random;
 public class MON_Dogs extends Entity {
 
     GamePanel gp;
+
     public MON_Dogs(GamePanel gp) {
+
         super(gp);
         this.gp = gp;
         type = type_monster;
         name = "Cane";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 5;
         life = maxLife;
         solidArea.x = 3;
@@ -81,7 +84,14 @@ public class MON_Dogs extends Entity {
             int i = new Random().nextInt(200)+1;
             if(i > 197 && !projectile.alive && shotAvailableCounter == 30){
                 projectile.set(worldX, worldY, direction, true, this);
-                gp.projectileList.add(projectile);
+
+                for(int j = 0; j < gp.projectile[1].length; j++){
+                    if(gp.projectile[gp.currentMap][j] == null){
+                        gp.projectile[gp.currentMap][j] = projectile;
+                        break;
+                    }
+                }
+
                 shotAvailableCounter = 0;
             }
         }

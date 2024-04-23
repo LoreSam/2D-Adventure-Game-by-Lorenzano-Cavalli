@@ -105,6 +105,7 @@ public class CollisionChecker {
 
     //COLLISIONE CON NPC
     public int checkEntity(Entity entity, Entity[][] target){
+
         int index = 999;
 
         for(int i = 0; i < target[1].length; i++){
