@@ -343,7 +343,7 @@ public class KeyHandler implements KeyListener {
             gp.playSoundEffect(8);
         }
 
-        if(code == KeyEvent.VK_S && gp.ui.playerSlotRow != 3){ //RIGHE INVENTARIO
+        if(code == KeyEvent.VK_S && gp.ui.playerSlotRow != 4){ //RIGHE INVENTARIO
             gp.ui.playerSlotRow++;
             gp.playSoundEffect(8);
         }
