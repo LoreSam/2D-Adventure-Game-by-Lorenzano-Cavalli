@@ -81,6 +81,7 @@ public class UI {
         //stato di gioco
         if(gp.gameState == gp.playState){
             drawPlayerLife();
+            drawHotbar();
             drawMessage();
         }
 
@@ -261,7 +262,7 @@ public class UI {
         g2.setColor(new Color(25,25,25, 200));
         g2.fillRoundRect(x, y, width, height, 20, 20);
         g2.setColor(new Color(255,255,255));
-        g2.setStroke(new BasicStroke(3));
+        g2.setStroke(new BasicStroke(2.7f));
         g2.drawRoundRect(x+5, y+5,width-10, height-10, 10, 10);
     }
 
@@ -493,12 +494,43 @@ public class UI {
         g2.setColor(new Color(250, 250, 250, 170));
 
         if(gp.gameState == gp.tradeState){
-
             frameX = gp.tileSize * 12 + 20;
             frameY = gp.tileSize * 5 - 16;
         }
 
         g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+    }
+
+    public void drawHotbar(){
+
+        playerSlotRow = 0;
+
+        int frameX = gp.tileSize * 7;
+        int frameY = gp.tileSize * 11 - 12;
+        int frameWidth = gp.tileSize * 5 + 24;
+        int frameHeight = (int) (gp.tileSize * 1.2);
+
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        drawInventoryCursor(gp.tileSize * 7 - 14, gp.tileSize * 10 + 20);
+    }
+
+    public void drawInventoryCursor(int frameX, int frameY){
+
+        final int slotXstart = frameX + 20;
+        final int slotYstart = frameY + 20;
+        int slotX = slotXstart;
+        int slotY = slotYstart;
+        int slotSize = gp.tileSize + 3;
+
+        int cursorX = slotXstart + (slotSize * playerSlotCol);
+        int cursorY = slotYstart + (slotSize * playerSlotRow);
+        int cursorWidth = gp.tileSize;
+        int cursorHeight = gp.tileSize;
+
+        //DISEGNA CURSORE
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
     }
 
     public void drawGameOverScreen(){

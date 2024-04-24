@@ -150,6 +150,8 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P){
             gp.gameState = gp.pauseState;
         }
+
+        hotBar(code);
     }
 
     public void pauseState(int code){
@@ -331,24 +333,37 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void playerInventory(int code){
+    public void hotBar(int code){
 
-        if(code == KeyEvent.VK_W && gp.ui.playerSlotRow != 0){
-            gp.ui.playerSlotRow--;
-            gp.playSoundEffect(8);
-        }
-
-        if(code == KeyEvent.VK_A && gp.ui.playerSlotCol != 0){
+        if(code == KeyEvent.VK_LEFT && gp.ui.playerSlotCol != 0){
             gp.ui.playerSlotCol--;
             gp.playSoundEffect(8);
         }
 
-        if(code == KeyEvent.VK_S && gp.ui.playerSlotRow != 4){ //RIGHE INVENTARIO
+        if(code == KeyEvent.VK_RIGHT && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
+            gp.ui.playerSlotCol++;
+            gp.playSoundEffect(8);
+        }
+    }
+
+    public void playerInventory(int code){
+
+        if(code == KeyEvent.VK_UP && gp.ui.playerSlotRow != 0){
+            gp.ui.playerSlotRow--;
+            gp.playSoundEffect(8);
+        }
+
+        if(code == KeyEvent.VK_LEFT && gp.ui.playerSlotCol != 0){
+            gp.ui.playerSlotCol--;
+            gp.playSoundEffect(8);
+        }
+
+        if(code == KeyEvent.VK_DOWN && gp.ui.playerSlotRow != 4){ //RIGHE INVENTARIO
             gp.ui.playerSlotRow++;
             gp.playSoundEffect(8);
         }
 
-        if(code == KeyEvent.VK_D && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
+        if(code == KeyEvent.VK_RIGHT && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.playerSlotCol++;
             gp.playSoundEffect(8);
         }
@@ -356,22 +371,22 @@ public class KeyHandler implements KeyListener {
 
     public void npcInventory(int code){
 
-        if(code == KeyEvent.VK_W && gp.ui.npcSlotRow != 0){
+        if(code == KeyEvent.VK_UP && gp.ui.npcSlotRow != 0){
             gp.ui.npcSlotRow--;
             gp.playSoundEffect(8);
         }
 
-        if(code == KeyEvent.VK_A && gp.ui.npcSlotCol != 0){
+        if(code == KeyEvent.VK_LEFT && gp.ui.npcSlotCol != 0){
             gp.ui.npcSlotCol--;
             gp.playSoundEffect(8);
         }
 
-        if(code == KeyEvent.VK_S && gp.ui.npcSlotRow != 3){ //RIGHE INVENTARIO
+        if(code == KeyEvent.VK_DOWN && gp.ui.npcSlotRow != 3){ //RIGHE INVENTARIO
             gp.ui.npcSlotRow++;
             gp.playSoundEffect(8);
         }
 
-        if(code == KeyEvent.VK_D && gp.ui.npcSlotCol != 4){ //COLONNE INVENTARIO
+        if(code == KeyEvent.VK_RIGHT && gp.ui.npcSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.npcSlotCol++;
             gp.playSoundEffect(8);
         }
