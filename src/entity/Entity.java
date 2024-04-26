@@ -52,6 +52,7 @@ public class Entity {
     public final int type_shield = 5;
     public final int type_consumable = 6;
     public final int type_pickUp = 7;
+    public final int type_obstacle = 8;
 
     //stato del personaggio
     public int maxLife;
@@ -115,8 +116,15 @@ public class Entity {
                 break;
         }
     }
+
+    public void interact(){
+
+    }
+
     public void use(Entity entity){}
+
     public void checkDrop(){}
+
     public void dropItem(Entity droppedItem){
         for (int i = 0; i<gp.obj[1].length; i++){
             if (gp.obj[gp.currentMap][i] == null){

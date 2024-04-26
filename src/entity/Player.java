@@ -311,10 +311,16 @@ public class Player extends Entity{
     public void pickUpObject(int i){
 
         if(i != 999){
+
             //prendi solo oggetti
             if (gp.obj[gp.currentMap][i].type == type_pickUp){
                 gp.obj[gp.currentMap][i].use(this);
                 gp.obj[gp.currentMap][i]= null;
+            }
+            //OSTACOLI
+            else if (gp.obj[gp.currentMap][i].type == type_obstacle){
+
+                gp.obj[gp.currentMap][i].interact();
             }
             //oggetti nell'inventario
             else {
