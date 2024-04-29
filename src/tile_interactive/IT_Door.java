@@ -26,7 +26,7 @@ public class IT_Door extends InteractiveTile {
         solidAreaDefaultY = solidArea.y;
     }
 
-    @Override
+    /*@Override
     public void interact(){
 
         if(collision){
@@ -35,8 +35,13 @@ public class IT_Door extends InteractiveTile {
         }
         else{
             /*gp.obj[gp.currentMap][0] = new IT_Door(gp, 18, 18);
-            gp.aSetter.setObject();*/
+            gp.aSetter.setObject();
             collision = true;
         }
+    }*/
+
+    public InteractiveTile doorOpened(){
+        InteractiveTile tile = new IT_DoorO(gp, worldX/gp.tileSize, worldY/gp.tileSize);
+        return tile;
     }
 }

@@ -169,6 +169,7 @@ public class Player extends Entity{
 
             //CONTROLLO COLLISIONI OGGETTI INTERATTIVI
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            contactDoor(iTileIndex);
 
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
@@ -313,15 +314,11 @@ public class Player extends Entity{
         if(i != 999){
 
             //prendi solo oggetti
-            if (gp.obj[gp.currentMap][i].type == type_pickUp){
+            if (gp.obj[gp.currentMap][i].type == type_pickUp) {
                 gp.obj[gp.currentMap][i].use(this);
-                gp.obj[gp.currentMap][i]= null;
+                gp.obj[gp.currentMap][i] = null;
             }
-            //OSTACOLI
-            else if (gp.obj[gp.currentMap][i].type == type_obstacle){
 
-                gp.obj[gp.currentMap][i].interact();
-            }
             //oggetti nell'inventario
             else {
                 String text;
@@ -370,6 +367,17 @@ public class Player extends Entity{
                     gp.playSoundEffect(4);
                     break;
             }*/
+        }
+    }
+
+    public void contactDoor(int i){
+        //OSTACOLI
+        if(i != 999){
+            if (gp.iTile[gp.currentMap][i].collision && gp.iTile[gp.currentMap][i].type == type_obstacle){
+
+                System.out.println("putt ana de armas");
+                gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].doorOpened();
+            }
         }
     }
 

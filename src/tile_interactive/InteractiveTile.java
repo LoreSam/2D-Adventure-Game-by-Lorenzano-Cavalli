@@ -26,6 +26,11 @@ public class InteractiveTile extends Entity {
         return tile;
     }
 
+    public InteractiveTile doorOpened(){
+        InteractiveTile tile = null;
+        return tile;
+    }
+
     public void update() {
         if (invincible){
             invincibleCounter++;

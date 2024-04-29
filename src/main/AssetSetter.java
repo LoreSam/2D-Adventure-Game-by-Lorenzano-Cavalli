@@ -86,7 +86,7 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-        gp.obj[mapNum][i] = new IT_Door(gp, 18, 18);
+        gp.iTile[mapNum][i] = new IT_Door(gp, 18, 18);
         i++;
 
         gp.iTile[mapNum][i] = new IT_DryTree(gp, 27, 18);
