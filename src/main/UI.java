@@ -433,7 +433,7 @@ public class UI {
         for(int i = 0; i < entity.inventory.size(); i++){
 
             //CURSORE OGGETTO EQUIPAGGIATO
-            if (entity.inventory.get(i) == entity.currentWeapon || entity.inventory.get(i) == entity.currentShield){
+            if (entity.inventory.get(i) == entity.currentWeapon || entity.inventory.get(i) == entity.currentShield ||entity.inventory.get(i) == entity.currentLight){
                 g2.setColor(new Color(255,255, 255,220));
                 g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
             }

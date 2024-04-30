@@ -13,6 +13,7 @@ public class Player extends Entity{
     KeyHandler keyH;
 
     public final int screenX, screenY;
+    public boolean lightUpdated = false;
 
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -545,7 +546,9 @@ public class Player extends Entity{
     }
 
     public void selectItem(){
+
         int itemIndex = gp.ui.getItemIndexSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
+
         if (itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
             if (selectedItem.type == type_sword || selectedItem.type == type_axe){
@@ -556,6 +559,15 @@ public class Player extends Entity{
             if (selectedItem.type == type_shield){
                 currentShield = selectedItem;
                 defense = getDefense();
+            }
+            if(selectedItem.type == type_light){
+                if(currentLight == selectedItem){
+                    currentLight = null;
+                }
+                else{
+                    currentLight = selectedItem;
+                }
+                lightUpdated = true;
             }
             if (selectedItem.type == type_consumable){
                 selectedItem.use(this);

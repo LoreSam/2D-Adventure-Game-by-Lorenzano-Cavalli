@@ -53,6 +53,7 @@ public class Entity {
     public final int type_consumable = 6;
     public final int type_pickUp = 7;
     public final int type_obstacle = 8;
+    public final int type_light = 9;
 
     //stato del personaggio
     public int maxLife;
@@ -71,6 +72,7 @@ public class Entity {
     public int coin;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Entity currentLight;
     public Projectile projectile;
 
     //ATTRIBUTI OGGETTI
@@ -82,6 +84,7 @@ public class Entity {
     public String description = "";
     public int useCost;
     public int price;
+    public int lightRadius;
 
     public Entity(GamePanel gp){
         this.gp = gp;
