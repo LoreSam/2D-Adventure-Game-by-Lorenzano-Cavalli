@@ -134,7 +134,7 @@ public class UI {
             //TITOLO
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
             String text = "L'escapista";
-            int x = centreText(text);
+            int x = centerText(text);
             int y = gp.tileSize*3;
 
             //OMBRA TESTO
@@ -153,21 +153,21 @@ public class UI {
             //MENU
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 50F));
             text = "Nuova Partita";
-            x = centreText(text);
+            x = centerText(text);
             y += gp.tileSize*3.5;
             g2.drawString(text, x, y);
             if(commandNum == 0)
                 g2.drawString(">", x - gp.tileSize, y);
 
             text = "Carica Partita";
-            x = centreText(text);
+            x = centerText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 1)
                 g2.drawString(">", x - gp.tileSize, y);
 
             text = "Esci";
-            x = centreText(text);
+            x = centerText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 2)
@@ -182,33 +182,33 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(40F));
 
             String text = "Scegli il personaggio";
-            int x = centreText(text);
+            int x = centerText(text);
             int y = gp.tileSize*3;
             g2.drawString(text, x, y);
 
             text = "Gatti";
-            x = centreText(text);
+            x = centerText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 0)
                 g2.drawString(">", x - gp.tileSize, y);
 
             text = "Sardano";
-            x = centreText(text);
+            x = centerText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 1)
                 g2.drawString(">", x - gp.tileSize, y);
 
             text = "Avanzini";
-            x = centreText(text);
+            x = centerText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 2)
                 g2.drawString(">", x - gp.tileSize, y);
 
             text = "Indietro";
-            x = centreText(text);
+            x = centerText(text);
             y += gp.tileSize*2;
             g2.drawString(text, x, y);
             if(commandNum == 3)
@@ -238,7 +238,7 @@ public class UI {
     public void drawPauseScreen(){
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
         String text = "PAUSA";
-        int x = centreText(text);
+        int x = centerText(text);
         int y = gp.screenHeight/2;
         g2.drawString(text, x, y);
     }
@@ -266,7 +266,7 @@ public class UI {
         g2.drawRoundRect(x+5, y+5,width-10, height-10, 10, 10);
     }
 
-    public int centreText(String text){
+    public int centerText(String text){
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth/2 - length/2;
         return x;
@@ -547,7 +547,7 @@ public class UI {
 
         //OMBRA TESTO
         g2.setColor(Color.black);
-        x = centreText(text);
+        x = centerText(text);
         y = gp.tileSize * 4;
         g2.drawString(text, x, y);
 
@@ -558,7 +558,7 @@ public class UI {
         //RIGIOCA
         g2.setFont(g2.getFont().deriveFont(50f));
         text = "Gioca ancora";
-        x = centreText(text);
+        x = centerText(text);
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);
         if(commandNum == 0){
@@ -567,7 +567,7 @@ public class UI {
 
         //TORNA AL MENU
         text = "Torna al menu principale";
-        x = centreText(text);
+        x = centerText(text);
         y += 55;
         g2.drawString(text, x, y);
         if(commandNum == 1){
@@ -613,7 +613,7 @@ public class UI {
         //TITOLO
         g2.setFont(g2.getFont().deriveFont(48F));
         String text = "Impostazioni";
-        textX = centreText(text);
+        textX = centerText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 
@@ -759,7 +759,7 @@ public class UI {
         int textY;
 
         String text = "Comandi";
-        textX = centreText(text);
+        textX = centerText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 
@@ -818,7 +818,7 @@ public class UI {
 
         //SI
         String text = "Si";
-        textX = centreText(text);
+        textX = centerText(text);
         textY = gp.tileSize * 7;
         g2.drawString(text, textX, textY);
         if(commandNum == 0){
@@ -833,7 +833,7 @@ public class UI {
 
         //NO
         text = "No";
-        textX = centreText(text);
+        textX = centerText(text);
         textY = gp.tileSize * 8;
         g2.drawString(text, textX, textY);
         if(commandNum == 1){

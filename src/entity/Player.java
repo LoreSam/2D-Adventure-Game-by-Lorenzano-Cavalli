@@ -171,6 +171,8 @@ public class Player extends Entity{
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             contactDoor(iTileIndex);
 
+
+
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
 
