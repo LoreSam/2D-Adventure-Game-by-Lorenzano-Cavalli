@@ -171,8 +171,7 @@ public class Player extends Entity{
             //CONTROLLO COLLISIONI OGGETTI INTERATTIVI
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             contactDoor(iTileIndex);
-
-
+            sleep(iTileIndex);
 
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
@@ -309,6 +308,14 @@ public class Player extends Entity{
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;
+        }
+    }
+
+    public void sleep(int i){
+        if(i != 999){
+            if(gp.keyH.shotKeyPressed && gp.iTile[gp.currentMap][i].type == type_bed){
+                gp.iTile[gp.currentMap][i].sleep();
+            }
         }
     }
 
@@ -475,6 +482,7 @@ public class Player extends Entity{
             gp.ui.currentDialog = "Ora sei livello "+level +" adesso \nsei piu forte";
         }
     }
+
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         int tempScreenX = screenX, tempScreenY = screenY;

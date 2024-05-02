@@ -122,6 +122,11 @@ public class UI {
         if(gp.gameState == gp.tradeState){
             drawTradeScreen();
         }
+
+        //STATO DORMIRE
+        if(gp.gameState == gp.sleepState){
+            drawSleepScreen();
+        }
     }
 
     public void drawTitleScreen(){
@@ -1036,6 +1041,28 @@ public class UI {
                     gp.player.inventory.remove(itemIndex);
                     gp.player.coin += price;
                 }
+            }
+        }
+    }
+
+    public void drawSleepScreen(){
+
+        counter++;
+
+        if(counter < 120){
+            gp.eManager.lighting.filterAlpha += 0.01f;
+            if(gp.eManager.lighting.filterAlpha > 1f)
+                gp.eManager.lighting.filterAlpha = 1f;
+        }
+
+        if(counter >= 120){
+            gp.eManager.lighting.filterAlpha -= 0.01f;
+            if(gp.eManager.lighting.filterAlpha <= 0f) {
+                gp.eManager.lighting.filterAlpha = 0f;
+                counter = 0;
+                gp.eManager.lighting.dayState = gp.eManager.lighting.day;
+                gp.eManager.lighting.dayCounter = 0;
+                gp.gameState = gp.playState;
             }
         }
     }

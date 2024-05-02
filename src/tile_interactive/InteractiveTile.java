@@ -36,6 +36,10 @@ public class InteractiveTile extends Entity {
         return tile;
     }
 
+    public boolean sleep(){
+        return false;
+    }
+
     public void update() {
         if (invincible){
             invincibleCounter++;
