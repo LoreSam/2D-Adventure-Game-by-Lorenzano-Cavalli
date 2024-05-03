@@ -245,6 +245,11 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
         }
 
+        //MAPPA
+        else if(gameState == mapState){
+            map.drawFullMapScreen(g2);
+        }
+
         //COSA DISEGNAMO DOPO IL TITLE SCREEN
         else {
             //TILE

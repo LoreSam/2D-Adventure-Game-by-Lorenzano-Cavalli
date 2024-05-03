@@ -14,6 +14,7 @@ public class Map extends TileManager{
     public Map(GamePanel gp){
         super(gp);
         this.gp = gp;
+        createWorldMap();
     }
 
     public void createWorldMap(){

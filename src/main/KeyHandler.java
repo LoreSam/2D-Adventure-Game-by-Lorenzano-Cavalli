@@ -91,6 +91,11 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.tradeState){
             tradeState(code);
         }
+
+        //STATO MAPPA
+        else if (gp.gameState == gp.mapState){
+            mapState(code);
+        }
     }
 
     public void titleState(int code){
@@ -150,6 +155,9 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P){
             gp.gameState = gp.pauseState;
         }
+        if(code == KeyEvent.VK_M){
+            gp.gameState = gp.mapState;
+        }
 
         hotBar(code);
     }
@@ -163,6 +171,13 @@ public class KeyHandler implements KeyListener {
     public void dialogState(int code){
         if (code == KeyEvent.VK_ENTER){
             gp.gameState = gp.playState;
+        }
+    }
+
+    public void mapState(int code){
+
+        if(code == KeyEvent.VK_M){
+            gp.gameState = gp.mapState;
         }
     }
 
