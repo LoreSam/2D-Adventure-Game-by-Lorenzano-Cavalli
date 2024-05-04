@@ -15,7 +15,7 @@ public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    Font font;
+    public Font font;
     BufferedImage heart_full, heart_half, heart_blank, energy_full, energy_blank, energy_75, energy_50, energy_25, coin;
     public boolean messageOn = false;
     /*public String message = "";
