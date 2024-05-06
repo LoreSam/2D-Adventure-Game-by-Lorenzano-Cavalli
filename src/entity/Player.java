@@ -291,7 +291,7 @@ public class Player extends Entity{
             solidArea.height = attackArea.height;
 
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, attack);
+            damageMonster(monsterIndex, this, attack, 5);
 
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
@@ -416,13 +416,14 @@ public class Player extends Entity{
         }
     }
 
-    public void damageMonster(int i, int attack){
+    public void damageMonster(int i, Entity attacker, int attack, int knockBackPower){
         if (i != 999){
             if (!gp.monster[gp.currentMap][i].invincible){
 
                 gp.playSoundEffect(4);
 
-                //knockBack();
+                if(knockBackCounter > 0)
+                    setKnockBack(gp.monster[gp.currentMap][i], attacker, knockBackPower);
 
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0 ) {
@@ -582,12 +583,5 @@ public class Player extends Entity{
                 inventory.remove(itemIndex);
             }
         }
-    }
-
-    public void knockBack(Entity entity){
-
-        entity.direction = direction;
-        entity.speed += 10;
-        entity.knockBack = true;
     }
 }

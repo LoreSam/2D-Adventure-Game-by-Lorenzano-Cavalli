@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class Entity {
 
@@ -35,6 +36,7 @@ public class Entity {
     public boolean invincible = false;
     public int invincibleCounter = 0;
     public String dialogues[] = new String[20];
+    public Entity attacker;
     public BufferedImage image, image2, image3, image4, image5;
     public String name;
     public boolean collision = false;
@@ -42,6 +44,7 @@ public class Entity {
     public boolean onPath = false;
     public boolean knockBack = false;
     int knockBackCounter = 0;
+    public String knockBackDirection;
 
     public int type;
     public final int type_player = 0;
@@ -89,6 +92,36 @@ public class Entity {
 
     public Entity(GamePanel gp){
         this.gp = gp;
+    }
+
+    public int getXDistance(Entity target){
+
+        int xDistance = Math.abs(worldX - gp.player.worldX);
+        return xDistance;
+    }
+
+    public int getYDistance(Entity target){
+
+        int yDistance = Math.abs(worldY - gp.player.worldY);
+        return yDistance;
+    }
+
+    public int getTileDistance(Entity target){
+
+        int tileDistance = (getXDistance(target) + getYDistance(target))/gp.tileSize;
+        return tileDistance;
+    }
+
+    public int getGoalCol(Entity target){
+
+        int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+        return goalCol;
+    }
+
+    public int getGoalRow(Entity target){
+
+        int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+        return goalRow;
     }
 
     public void setAction(){
@@ -273,6 +306,54 @@ public class Entity {
         if(shotAvailableCounter < 30){
             shotAvailableCounter++;
         }
+    }
+
+    public void checkStartChasing(Entity target, int distance, int rate){
+
+        if(getTileDistance(target) < distance){
+            int i = new Random().nextInt(rate);
+            if(i == 0)
+                onPath = true;
+        }
+    }
+
+    public void checkStopChasing(Entity target, int distance, int rate){
+
+        if(getTileDistance(target) > distance){
+            int i = new Random().nextInt(rate);
+            if(i == 0)
+                onPath = false;
+        }
+    }
+
+    public void getRandomDirection(){
+
+        actionLockCounter++;
+
+        if(actionLockCounter == 120){
+
+            Random random = new Random();
+            int i = random.nextInt(100) + 1; //numero random
+
+            if(i <= 25)
+                direction = "up";
+            if(i > 25 && i <= 50)
+                direction = "down";
+            if(i > 50 && i <= 75)
+                direction = "left";
+            if(i > 75 && i <= 100)
+                direction = "right";
+
+            actionLockCounter = 0;
+        }
+    }
+
+    public void setKnockBack(Entity target, Entity attacker, int knockBackPower){
+
+        this.attacker = attacker;
+        target.knockBackDirection = attacker.direction;
+        target.speed += knockBackPower;
+        target.knockBack = true;
     }
 
     public void damagePlayer(int attack){
