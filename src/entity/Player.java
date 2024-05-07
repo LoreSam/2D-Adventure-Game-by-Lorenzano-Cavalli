@@ -263,54 +263,6 @@ public class Player extends Entity{
         }
     }
 
-    public void attacking(){
-        spriteCounter++;
-        if (spriteCounter <= 5){
-            spriteNum = 1;
-        }
-        if (spriteCounter > 5 && spriteCounter <= 25){
-            spriteNum = 2;
-            int currentWorldX = worldX, currentWorldY = worldY;
-            int solidAreaWidth = solidArea.width, solidAreaHeight = solidArea.height;
-
-            switch (direction){
-                case "up":
-                    worldY -= attackArea.height;
-                    break;
-                case "down":
-                    worldY += attackArea.height;
-                    break;
-                case "left":
-                    worldX -= attackArea.width;
-                    break;
-                case "right":
-                    worldX += attackArea.width;
-                    break;
-            }
-            solidArea.width = attackArea.width;
-            solidArea.height = attackArea.height;
-
-            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, this, attack, 5);
-
-            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
-            damageInteractiveTile(iTileIndex);
-
-            int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
-            damageProjectile(projectileIndex);
-
-            worldX = currentWorldX;
-            worldY = currentWorldY;
-            solidArea.width = solidAreaWidth;
-            solidArea.height = solidAreaHeight;
-        }
-        if (spriteCounter > 25){
-            spriteNum = 1;
-            spriteCounter = 0;
-            attacking = false;
-        }
-    }
-
     public void sleep(int i){
         if(i != 999){
             if(gp.keyH.shotKeyPressed && gp.iTile[gp.currentMap][i].type == type_bed){
@@ -484,9 +436,43 @@ public class Player extends Entity{
         }
     }
 
+    public void selectItem(){
+
+        int itemIndex = gp.ui.getItemIndexSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
+
+        if (itemIndex < inventory.size()){
+            Entity selectedItem = inventory.get(itemIndex);
+            if (selectedItem.type == type_sword || selectedItem.type == type_axe){
+                currentWeapon = selectedItem;
+                attack = getAttack();
+                getPlayerAttackImage();
+            }
+            if (selectedItem.type == type_shield){
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if(selectedItem.type == type_light){
+                if(currentLight == selectedItem){
+                    currentLight = null;
+                }
+                else{
+                    currentLight = selectedItem;
+                }
+                lightUpdated = true;
+            }
+            if (selectedItem.type == type_consumable){
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+        }
+    }
+
     public void draw(Graphics2D g2){
+
         BufferedImage image = null;
+
         int tempScreenX = screenX, tempScreenY = screenY;
+
         switch(direction){
             case "up":
                 if (!attacking) {
@@ -551,37 +537,7 @@ public class Player extends Entity{
                 break;
         }
         g2.drawImage(image, tempScreenX, tempScreenY, null); //TECNICAMENTE NEL DRAW ANDREBBERO GP.TILESIZE, PERO FUNZIONA ANCHE COSI
+        changeAlpha(g2, 1F);
         //g2.drawImage(image, screenX, screenY, null);
-    }
-
-    public void selectItem(){
-
-        int itemIndex = gp.ui.getItemIndexSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
-
-        if (itemIndex < inventory.size()){
-            Entity selectedItem = inventory.get(itemIndex);
-            if (selectedItem.type == type_sword || selectedItem.type == type_axe){
-                currentWeapon = selectedItem;
-                attack = getAttack();
-                getPlayerAttackImage();
-            }
-            if (selectedItem.type == type_shield){
-                currentShield = selectedItem;
-                defense = getDefense();
-            }
-            if(selectedItem.type == type_light){
-                if(currentLight == selectedItem){
-                    currentLight = null;
-                }
-                else{
-                    currentLight = selectedItem;
-                }
-                lightUpdated = true;
-            }
-            if (selectedItem.type == type_consumable){
-                selectedItem.use(this);
-                inventory.remove(itemIndex);
-            }
-        }
     }
 }

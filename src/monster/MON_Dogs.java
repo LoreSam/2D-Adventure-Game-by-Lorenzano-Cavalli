@@ -87,6 +87,10 @@ public class MON_Dogs extends Entity {
 
             getRandomDirection();
         }
+
+        if(!attacking){
+            checkAttack(30, gp.tileSize*4, gp.tileSize);
+        }
     }
     @Override
     public void damageReaction(){
