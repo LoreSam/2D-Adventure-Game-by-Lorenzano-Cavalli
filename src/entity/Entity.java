@@ -19,7 +19,7 @@ public class Entity {
     boolean hpBarOn = false;
     int hpBarCounter = 0;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2, guardUp, guardDown, guardLeft, guardRight;
     public String direction = "down";
     public boolean alive = true;
     public boolean dying = false;
@@ -45,6 +45,8 @@ public class Entity {
     public boolean knockBack = false;
     int knockBackCounter = 0;
     public String knockBackDirection;
+    public boolean guarding = false;
+    public boolean transparent = false;
 
     public int type;
     public final int type_player = 0;
@@ -398,6 +400,28 @@ public class Entity {
         target.knockBack = true;
     }
 
+    public String getOppositeDirection(String direction){
+
+        String oppositeDirection = "";
+
+        switch(direction){
+            case "up":
+                oppositeDirection = "down";
+                break;
+            case "down":
+                oppositeDirection = "up";
+                break;
+            case "left":
+                oppositeDirection = "right";
+                break;
+            case "right":
+                oppositeDirection = "left";
+                break;
+        }
+
+        return oppositeDirection;
+    }
+
     public void attacking(){
 
         spriteCounter++;
@@ -457,12 +481,28 @@ public class Entity {
     }
 
     public void damagePlayer(int attack){
+
         if(!gp.player.invincible){
-            gp.playSoundEffect(7);
+
             int damage = attack - gp.player.defense;
-            if (damage < 0 ) {
-                damage = 0;
+
+            String canGuardDirection = getOppositeDirection(direction);
+
+            if(gp.player.guarding && gp.player.direction.equals(canGuardDirection)){
+
+                damage /= 3;
+                gp.playSoundEffect(12);
             }
+            else{
+                gp.playSoundEffect(6);
+                if(damage < 1)
+                    damage = 1;
+            }
+
+            if(damage != 0){
+                gp.player.transparent = true;
+            }
+
             gp.player.life -= damage;
             gp.player.invincible = true;
         }
