@@ -33,6 +33,7 @@ public class MON_Dogs extends Entity {
         attack = 5;
         defense = 0;
         exp = 2;
+        knockBackPower = 5;
 
         projectile = new OBJ_Rock(gp);
 

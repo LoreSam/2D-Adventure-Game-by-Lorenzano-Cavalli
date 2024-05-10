@@ -79,6 +79,7 @@ public class Player extends Entity{
         life = maxLife;
         energy = maxEnergy;
         invincible = false;
+        transparent = false;
     }
 
     public void setItems(){
@@ -146,11 +147,51 @@ public class Player extends Entity{
 
     public void update(){
 
-        if(attacking){
+        if(knockBack){
+
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+            gp.cChecker.checkEntity(this, gp.npc);
+            gp.cChecker.checkObject(this, true);
+            gp.cChecker.checkEntity(this, gp.monster);
+            gp.cChecker.checkEntity(this, gp.iTile);
+
+            if(collisionOn){
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else {
+                switch (knockBackDirection){
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+
+            knockBackCounter++;
+            if(knockBackCounter == 10){
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+        }
+
+        else if(attacking){
             attacking();
         }
         else if(keyH.guardKeyPressed){
             guarding = true;
+            guardCounter++;
         }
         else if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed || keyH.spacePressed) {
             if (keyH.upPressed) {
@@ -205,6 +246,7 @@ public class Player extends Entity{
             }
             gp.keyH.enterPressed = false;
             guarding = false;
+            guardCounter = 0;
             //gp.keyH.spacePressed = false;
 
             spriteCounter++;
@@ -383,7 +425,9 @@ public class Player extends Entity{
     }
 
     public void damageMonster(int i, Entity attacker, int attack, int knockBackPower){
+
         if (i != 999){
+
             if (!gp.monster[gp.currentMap][i].invincible){
 
                 gp.playSoundEffect(4);
@@ -391,7 +435,12 @@ public class Player extends Entity{
                 if(knockBackCounter > 0)
                     setKnockBack(gp.monster[gp.currentMap][i], attacker, knockBackPower);
 
+                if(gp.monster[gp.currentMap][i].offBalance){
+                    attack *= 5;
+                }
+
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
+
                 if (damage < 0 ) {
                     damage = 0;
                 }

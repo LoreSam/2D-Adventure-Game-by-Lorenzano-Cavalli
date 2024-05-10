@@ -44,9 +44,13 @@ public class Entity {
     public boolean onPath = false;
     public boolean knockBack = false;
     int knockBackCounter = 0;
+    public int knockBackPower = 0;
     public String knockBackDirection;
     public boolean guarding = false;
     public boolean transparent = false;
+    public int guardCounter = 0;
+    int offBalanceCounter = 0;
+    public boolean offBalance = false;
 
     public int type;
     public final int type_player = 0;
@@ -309,6 +313,14 @@ public class Entity {
         if(shotAvailableCounter < 30){
             shotAvailableCounter++;
         }
+
+        if(offBalance){
+            offBalanceCounter++;
+            if(offBalanceCounter > 60){
+                offBalance = false;
+                offBalanceCounter = 0;
+            }
+        }
     }
 
     public void checkAttack(int rate, int straight, int horizontal){
@@ -490,8 +502,17 @@ public class Entity {
 
             if(gp.player.guarding && gp.player.direction.equals(canGuardDirection)){
 
-                damage /= 3;
-                gp.playSoundEffect(12);
+                if(gp.player.guardCounter < 10){
+                    damage = 0;
+                    gp.playSoundEffect(12);
+                    setKnockBack(this, gp.player, knockBackPower);
+                    offBalance = true;
+                    spriteCounter -= 60;
+                }
+                else{
+                    damage /= 3;
+                    gp.playSoundEffect(12);
+                }
             }
             else{
                 gp.playSoundEffect(6);
@@ -501,6 +522,7 @@ public class Entity {
 
             if(damage != 0){
                 gp.player.transparent = true;
+                setKnockBack(gp.player, this, knockBackPower);
             }
 
             gp.player.life -= damage;
