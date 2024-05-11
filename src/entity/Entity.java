@@ -51,6 +51,8 @@ public class Entity {
     public int guardCounter = 0;
     int offBalanceCounter = 0;
     public boolean offBalance = false;
+    public Entity loot;
+    public boolean opened;
 
     public int type;
     public final int type_player = 0;
@@ -98,6 +100,10 @@ public class Entity {
 
     public Entity(GamePanel gp){
         this.gp = gp;
+    }
+
+    public void setLoot(Entity loot){
+
     }
 
     public int getXDistance(Entity target){

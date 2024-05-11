@@ -833,6 +833,7 @@ public class UI {
                 titleScreenState = 0;
                 gp.keyH.cambiaMusica(0);
                 gp.gameState = gp.titleState;
+                gp.resetGame(true);
             }
         }
 

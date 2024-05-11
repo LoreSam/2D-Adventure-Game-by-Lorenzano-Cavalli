@@ -111,10 +111,13 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ENTER) {
             if (gp.ui.commandNum == 0) {
-                gp.ui.titleScreenState = 1;
+                gp.gameState = gp.playState;
+                cambiaMusica(1);
             }
             if (gp.ui.commandNum == 1) {
-                //TODO carica partita
+                gp.saveLoad.load();
+                gp.gameState = gp.playState;
+                cambiaMusica(1);
             }
             if (gp.ui.commandNum == 2) {
                 System.exit(0);
@@ -284,13 +287,13 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_ENTER){
             if(gp.ui.commandNum == 0){
                 gp.gameState = gp.playState;
-                gp.retry();
+                gp.resetGame(false);
                 gp.playMusic(1);
             }
             else if(gp.ui.commandNum == 1){
                 gp.ui.titleScreenState = 0;
                 gp.gameState = gp.titleState;
-                gp.restart();
+                gp.resetGame(true);
             }
         }
     }

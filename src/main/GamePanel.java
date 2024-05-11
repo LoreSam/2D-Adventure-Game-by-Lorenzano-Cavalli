@@ -1,6 +1,7 @@
 package main;
 
 import ai.PathFinder;
+import data.SaveLoad;
 import entity.Entity;
 import entity.Player;
 import environment.EnvironmentManager;
@@ -55,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
     Config config = new Config(this);
     EnvironmentManager eManager = new EnvironmentManager(this);
     Map map = new Map(this);
+    SaveLoad saveLoad = new SaveLoad(this);
     Thread gameThread;
     public PathFinder pFinder = new PathFinder(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -110,22 +112,18 @@ public class GamePanel extends JPanel implements Runnable{
             setFullscreen();
     }
 
-    public void retry(){
+    public void resetGame(boolean restart){
 
         player.setDefaultPosition();
         player.restoreStatistics();
         aSetter.setNPC();
         aSetter.setMonster();
-        aSetter.setObject();
-        aSetter.setNPC();
-        aSetter.setMonster();
-        aSetter.setInteractiveTile();
-    }
 
-    public void restart(){
-
-        player.setDefaultValues();
-        player.setItems();
+        if(restart) {
+            player.setDefaultValues();
+            aSetter.setObject();
+            aSetter.setInteractiveTile();
+        }
     }
 
     public void setFullscreen(){
@@ -335,16 +333,16 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void playMusic(int i){
         music.setMusic(i);
-        /*music.play();
-        music.loop();*/
+        music.play();
+        music.loop();
     }
 
     public void stopMusic(){
-        //music.stop();
+        music.stop();
     }
 
     public void playSoundEffect(int i){
         se.setSound(i);
-        //se.play();
+        se.play();
     }
 }
