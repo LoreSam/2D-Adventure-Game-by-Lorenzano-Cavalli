@@ -7,12 +7,14 @@ public class OBJ_Potion_Red extends Entity {
 
     GamePanel gp;
 
+    public static final String objName = "Pozione Rossa";
+
     public OBJ_Potion_Red(GamePanel gp) {
 
         super(gp);
         this.gp = gp;
         type = type_consumable;
-        name = "Pozione Rossa";
+        name = objName;
         value = 5;
         down1 = setup("/objects/potion_red", gp.tileSize, gp.tileSize);
         defenseValue = 1;

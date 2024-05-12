@@ -7,12 +7,15 @@ public class OBJ_Energy extends Entity {
 
     GamePanel gp;
 
+    public static final String objName = "Energia";
+
+
     public OBJ_Energy(GamePanel gp) {
         super(gp);
         this.gp = gp;
 
         type = type_pickUp;
-        name = "Energia";
+        name = objName;
         value = 1;
         down1 = setup("/objects/energy_50", gp.tileSize, gp.tileSize);
         image = setup("/objects/energy_100", gp.tileSize, gp.tileSize);

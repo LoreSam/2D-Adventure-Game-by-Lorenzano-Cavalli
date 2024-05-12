@@ -61,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
     public PathFinder pFinder = new PathFinder(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    public EntityGenerator eGenerator = new EntityGenerator(this);
 
     //ENTITÀ ED OGGETTI
     public Player player = new Player(this, keyH);

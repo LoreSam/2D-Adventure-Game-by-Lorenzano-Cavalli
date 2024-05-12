@@ -7,11 +7,13 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class OBJ_Boots extends Entity {
+    public static final String objName = "Stivali";
+
 
     public OBJ_Boots(GamePanel gp) {
         super(gp);
 
-        name = "Stivali";
+        name = objName;
         down1 = setup("/objects/boots", gp.tileSize, gp.tileSize);
     }
 

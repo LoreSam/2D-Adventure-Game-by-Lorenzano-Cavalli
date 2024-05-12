@@ -8,13 +8,14 @@ import java.io.IOException;
 
 public class OBJ_Chest extends Entity {
 
+    public static final String objName = "Cassa";
 
 
     public OBJ_Chest(GamePanel gp) {
 
         super(gp);
 
-        name = "Cassa";
+        name = objName;
         down1 = setup("/objects/chest", gp.tileSize, gp.tileSize);
     }
 
