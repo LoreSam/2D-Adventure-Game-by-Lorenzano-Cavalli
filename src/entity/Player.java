@@ -516,16 +516,22 @@ public class Player extends Entity{
     }
 
     public void checkLevelUp(){
+
         if (exp >= nextLevelExp){
+
             level++;
             nextLevelExp = nextLevelExp*2;
             maxLife +=2;
             strength++;
             dexterity++;
+
             attack = getAttack();
             defense =  getDefense();
+
             gp.playSoundEffect(8);
             gp.gameState = gp.dialogueState;
+
+            setDialogue();
             startDialogue(this, 0);
         }
     }
