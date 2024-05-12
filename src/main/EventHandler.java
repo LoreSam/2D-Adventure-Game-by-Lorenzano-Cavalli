@@ -3,15 +3,21 @@ package main;
 import entity.Entity;
 
 public class EventHandler {
+
     GamePanel gp;
     EventRect eventRect[][][];
+    Entity eventMaster;
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
     int tempMap, tempCol, tempRow;
 
     public EventHandler(GamePanel gp) {
+
         this.gp = gp;
+
+        eventMaster = new Entity(gp);
+
         eventRect = new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         int map = 0;
@@ -37,6 +43,13 @@ public class EventHandler {
                 }
             }
         }
+
+        setDialogue();
+    }
+
+    public void setDialogue(){
+
+        //eventMaster.dialogues[0][0] =
     }
 
     public void checkEvent (){
@@ -93,24 +106,6 @@ public class EventHandler {
         }
 
         return hit;
-    }
-
-    public void damagePit(int gameState){
-        gp.gameState = gameState;
-        gp.ui.currentDialog = "sei cadito in un a trappola";
-        gp.player.life -=1;
-        //eventRect[col][row].eventDone = true;
-        canTouchEvent = false;
-    }
-
-    public void healingPool(int gameState){
-        if (gp.keyH.enterPressed == true){
-            gp.gameState = gameState;
-            gp.ui.currentDialog = "Hai bevuto ubriacone \nHai rigenerato tutta la vita e l'energia!";
-            gp.player.life = gp.player.maxLife;
-            gp.player.energy = gp.player.maxEnergy;
-            gp.aSetter.setMonster();
-        }
     }
 
     public void teleport(int map, int col, int row){

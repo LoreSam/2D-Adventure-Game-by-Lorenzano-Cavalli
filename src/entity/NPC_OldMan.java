@@ -14,6 +14,8 @@ public class NPC_OldMan extends Entity{
         direction = "down";
         speed = 1;
 
+        dialogueSet = -1;
+
         getNPCImage();
         setDialog();
     }
@@ -30,10 +32,16 @@ public class NPC_OldMan extends Entity{
     }
 
     public void setDialog(){
-        dialogues[0]="ciao";
-        dialogues[1]="quindi sei venuto su quest'isola \nper trovare il tesoro?";
-        dialogues[2]="un tempo ero un bravo mago";
-        dialogues[3]="buona fortuna";
+
+        dialogues[0][0]="Ciao!";
+        dialogues[0][1]="Quindi sei venuto su quest'isola \nper trovare il tesoro?";
+        dialogues[0][2]="Un tempo ero un bravo mago";
+        dialogues[0][3]="Buona fortuna!";
+
+        dialogues[1][0]="Ricorda:";
+        dialogues[1][1]="Se hai paura di qualcosa\nstudiala!";
+        dialogues[1][2]="I consigli migliori";
+        dialogues[1][3]="Diocane!";
     }
 
     public void setAction(){
@@ -64,7 +72,18 @@ public class NPC_OldMan extends Entity{
         }
     }
     public void speak(){
-        super.speak();
+
+        facePlayer();
+        startDialogue(this, dialogueSet);
+
+        dialogueSet++;
+
+        //TODO in base alla condizione, settare il set di dialoghi che si vuole
+        if(dialogues[dialogueSet][0] == null){
+
+            dialogueSet = 0;
+        }
+
         onPath = true;
     }
 }

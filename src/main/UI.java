@@ -256,6 +256,24 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
         x += gp.tileSize;
         y += gp.tileSize;
+
+        if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null){
+
+            currentDialog = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+
+            if(gp.keyH.enterPressed){
+                if(gp.gameState == gp.dialogueState){
+                    npc.dialogueIndex++;
+                    gp.keyH.enterPressed = false;
+                }
+            }
+        }
+        else{
+            npc.dialogueIndex = 0;
+            if(gp.gameState == gp.dialogueState)
+                gp.gameState = gp.playState;
+        }
+
         for (String line : currentDialog.split("\n")){
             g2.drawString(line, x, y);
             y += 40;

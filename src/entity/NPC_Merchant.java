@@ -31,7 +31,7 @@ public class NPC_Merchant extends Entity{
 
     public void setDialog(){
 
-        dialogues[0]="Ah ah, mi hai trovato.\nHo della roba buona\nNe vuoi un po'?";
+        dialogues[0][0]="Ah ah, mi hai trovato.\nHo della roba buona\nNe vuoi un po'?";
     }
 
     public void setItems(){

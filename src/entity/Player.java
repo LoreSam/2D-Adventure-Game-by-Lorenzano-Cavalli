@@ -68,6 +68,7 @@ public class Player extends Entity{
         getAttackImage();
         getGuardImage();
         setItems();
+        setDialogue();
     }
 
     public void setDefaultPosition(){
@@ -81,6 +82,7 @@ public class Player extends Entity{
 
         life = maxLife;
         energy = maxEnergy;
+        speed = defaultSpeed;
         invincible = false;
         transparent = false;
         attacking = false;
@@ -429,8 +431,8 @@ public class Player extends Entity{
     }
 
     public void interactNPC(int index) {
+
         if (gp.keyH.enterPressed && index != 999) {
-            gp.gameState = gp.dialogueState;
             gp.npc[gp.currentMap][index].speak();
         }
         else if(gp.keyH.spacePressed){
@@ -524,8 +526,13 @@ public class Player extends Entity{
             defense =  getDefense();
             gp.playSoundEffect(8);
             gp.gameState = gp.dialogueState;
-            gp.ui.currentDialog = "Ora sei livello "+level +" adesso \nsei piu forte";
+            startDialogue(this, 0);
         }
+    }
+
+    public void setDialogue(){
+
+        dialogues[0][0] = "Ora sei livello "+level +" adesso \nsei piu forte";
     }
 
     public void selectItem(){

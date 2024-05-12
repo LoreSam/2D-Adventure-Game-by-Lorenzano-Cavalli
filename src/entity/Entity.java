@@ -35,12 +35,13 @@ public class Entity {
     public int actionLockCounter = 0;
     public boolean invincible = false;
     public int invincibleCounter = 0;
-    public String dialogues[] = new String[20];
+    public String dialogues[][] = new String[20][20];
     public Entity attacker;
     public BufferedImage image, image2, image3, image4, image5;
     public String name;
     public boolean collision = false;
-    int dialogueIndex = 0;
+    public int dialogueSet = 0;
+    public int dialogueIndex = 0;
     public boolean onPath = false;
     public boolean knockBack = false;
     int knockBackCounter = 0;
@@ -102,6 +103,19 @@ public class Entity {
         this.gp = gp;
     }
 
+    public void resetCounter(){
+
+        spriteCounter = 0;
+        actionLockCounter = 0;
+        offBalanceCounter = 0;
+        guardCounter = 0;
+        dyingCounter = 0;
+        hpBarCounter = 0;
+        invincibleCounter = 0;
+        knockBackCounter = 0;
+        shotAvailableCounter = 0;
+    }
+
     public void setLoot(Entity loot){
 
     }
@@ -144,12 +158,10 @@ public class Entity {
 
     }
 
-    public void speak(){
-        if (dialogues[dialogueIndex] == null ) {
-            dialogueIndex = 0;
-        }
-        gp.ui.currentDialog = dialogues[dialogueIndex];
-        dialogueIndex++;
+    public void speak(){}
+
+    public void facePlayer(){
+
         switch (gp.player.direction) {
             case "up":
                 direction = "down";
@@ -164,6 +176,13 @@ public class Entity {
                 direction = "left";
                 break;
         }
+    }
+
+    public void startDialogue(Entity entity, int setNum){
+
+        gp.gameState = gp.dialogueState;
+        gp.ui.npc = entity;
+        dialogueSet = setNum;
     }
 
     public void interact(){
