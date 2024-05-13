@@ -45,7 +45,7 @@ public class Player extends Entity{
         direction = "down";
 
         level = 1;
-        maxLife = 6;
+        maxLife = 100;
         life = maxLife;
         strength = 1; // + FORZA = + DANNO CAUSATO
         dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)

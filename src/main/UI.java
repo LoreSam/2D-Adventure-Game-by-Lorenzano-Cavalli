@@ -296,37 +296,34 @@ public class UI {
     }
 
     public void drawPlayerLife(){
-        int x = gp.tileSize/2;
-        int y = gp.tileSize/2;
-        int i = 0;
-        while (i < gp.player.maxLife/2){
+
+        int x = gp.tileSize/2 - 12;
+        int y = gp.tileSize/2 - 12;
+
+        //VITA
+        if(gp.player.life == 0)
             g2.drawImage(heart_blank, x, y, null);
-            i++;
-            x += gp.tileSize;
-        }
-        x=gp.tileSize/2;
-        y=gp.tileSize/2;
-        i = 0;
-
-        // vita
-        while (i < gp.player.life){
+        else if(gp.player.life <= 50)
             g2.drawImage(heart_half, x, y, null);
-            i++;
-            if (i < gp.player.life){
-                g2.drawImage(heart_full, x, y, null);
-            }
-            i++;
-            x += gp.tileSize;
+        else
+            g2.drawImage(heart_full, x, y, null);
+
+        //SCRITTA VITA
+        int i = 100;
+        x = gp.tileSize + 16;
+        y = gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(50f));
+        g2.setColor(Color.red);
+        g2.drawString(String.valueOf(gp.player.life), x+2, y+2);
+        g2.setColor(Color.white);
+        g2.drawString(String.valueOf(gp.player.life), x, y);
+        if(gp.player.energy < i){
+            g2.drawString(String.valueOf(gp.player.life), x, y);
         }
 
-        //DISEGNO ENERGIA MASSIMA
-        x = gp.tileSize/2 - 5;
-        y = (int) (gp.tileSize*1.5);
-        //g2.drawImage(energy_blank, x, y, null);
-
-        //DISEGNO ENERGIA
-        //g2.drawImage(energy_full, x, y, null);
-
+        //ENERGIA
+        x = gp.tileSize/2 - 12;
+        y = (int) (gp.tileSize * 1.5);
 
         if(gp.player.energy == 0)
             g2.drawImage(energy_blank, x, y, null);
@@ -338,6 +335,18 @@ public class UI {
             g2.drawImage(energy_75, x, y, null);
         else if(gp.player.energy >= 75)
             g2.drawImage(energy_full, x, y, null);
+
+        //SCRITTA ENERGIA
+        x = gp.tileSize + 16;
+        y = gp.tileSize * 2 + 8;
+        g2.setFont(g2.getFont().deriveFont(50f));
+        g2.setColor(new Color(250, 185, 0));
+        g2.drawString(String.valueOf(gp.player.energy), x+2, y+2);
+        g2.setColor(Color.white);
+        g2.drawString(String.valueOf(gp.player.energy), x, y);
+        if(gp.player.energy < i){
+            g2.drawString(String.valueOf(gp.player.energy), x, y);
+        }
     }
 
     public void drawCharacterScreen(){
@@ -380,7 +389,7 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.energy + "/" + gp.player.maxEnergy); //TODO % per l'energia
+        value = String.valueOf(gp.player.energy + "/" + gp.player.maxEnergy);
         textX = alignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
