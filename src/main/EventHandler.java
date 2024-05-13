@@ -62,9 +62,9 @@ public class EventHandler {
 
         if(canTouchEvent){
             if(hit(0, 13, 35, "any"))
-                teleport(1, 12, 15);
+                teleport(1, 12, 15, gp.underground);
             else if(hit(1, 12, 16, "any"))
-                teleport(0, 13, 36);
+                teleport(0, 13, 36, gp.outside);
             else if(hit(1, 12, 9, "up"))
                 speak(gp.npc[1][0]);
         }
@@ -108,9 +108,10 @@ public class EventHandler {
         return hit;
     }
 
-    public void teleport(int map, int col, int row){
+    public void teleport(int map, int col, int row, int area){
 
         gp.gameState = gp.transitionState;
+        gp.nextArea = area;
         tempMap = map;
         tempCol = col;
         tempRow = row;

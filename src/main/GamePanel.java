@@ -88,6 +88,11 @@ public class GamePanel extends JPanel implements Runnable{
     public final int sleepState = 9;
     public final int mapState = 10;
 
+    public int currentArea;
+    public int nextArea;
+    public final int outside = 50;
+    public final int underground = 51;
+
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -105,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         playMusic(0);
         gameState = titleState;
+        currentArea = outside;
 
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
@@ -335,16 +341,21 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void playMusic(int i){
         music.setMusic(i);
-        music.play();
-        music.loop();
+        /*music.play();
+        music.loop();*/
     }
 
     public void stopMusic(){
-        music.stop();
+        //music.stop();
     }
 
     public void playSoundEffect(int i){
         se.setSound(i);
-        se.play();
+        //se.play();
+    }
+
+    public void changeArea(){
+
+        currentArea = nextArea;
     }
 }
