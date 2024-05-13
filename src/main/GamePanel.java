@@ -357,5 +357,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void changeArea(){
 
         currentArea = nextArea;
+
+        aSetter.setNPC();
     }
 }

@@ -37,6 +37,9 @@ public class Sound {
         soundURL[10] = getClass().getResource("/sound/cuttree.wav");
         soundURL[11] = getClass().getResource("/sound/gameover.wav");
         soundURL[12] = getClass().getResource("/sound/parry.wav");
+        //da modificare
+        soundURL[13] = getClass().getResource("/sound/chipwall.wav");
+        soundURL[14] = getClass().getResource("/sound/dooropened.wav");
     }
 
     public void setSound(int i){

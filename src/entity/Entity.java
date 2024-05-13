@@ -54,6 +54,7 @@ public class Entity {
     public boolean offBalance = false;
     public Entity loot;
     public boolean opened;
+    public Entity linkedEntity;
 
     public int type;
     public final int type_player = 0;
@@ -67,6 +68,7 @@ public class Entity {
     public final int type_obstacle = 8;
     public final int type_light = 9;
     public final int type_bed = 10;
+    public final int type_pickaxe = 11;
 
     //stato del personaggio
     public int maxLife;
@@ -157,6 +159,8 @@ public class Entity {
     public void damageReaction(){
 
     }
+
+    public void move (String direction){}
 
     public void speak(){}
 

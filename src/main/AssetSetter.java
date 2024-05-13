@@ -22,6 +22,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
         i++;
+        gp.obj[mapNum][i] = new OBJ_Pickaxe(gp);
+        gp.obj[mapNum][i].worldX = 35 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        i++;
         gp.obj[mapNum][i] = new OBJ_Lantern(gp);
         gp.obj[mapNum][i].worldX = 18 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
@@ -211,5 +215,12 @@ public class AssetSetter {
         i++;
         gp.iTile[mapNum][i] = new IT_Panca(gp, 29, 29);
         i++;
+
+        //MURI DISTRUGGIBILI
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 27, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 28, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 29, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 30, 17);
+
     }
 }
