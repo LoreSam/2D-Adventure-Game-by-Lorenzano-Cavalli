@@ -127,6 +127,10 @@ public class UI {
         if(gp.gameState == gp.sleepState){
             drawSleepScreen();
         }
+
+        if(gp.gameState == gp.craftingState){
+            drawCraftingScreen();
+        }
     }
 
     public void drawTitleScreen(){
@@ -441,6 +445,10 @@ public class UI {
                 frameY = gp.tileSize;
                 frameHeight = gp.tileSize * 5;
             }
+            else if(gp.gameState == gp.craftingState){
+
+                frameX = gp.tileSize * 3;
+            }
         }
         else {
             frameX = gp.tileSize * 2;
@@ -536,14 +544,25 @@ public class UI {
     public void drawHotbar(){
 
         playerSlotRow = 0;
+        int frameX = 0;
+        int frameY = 0;
+        int frameWidth = 0;
+        int frameHeight = 0;
 
-        int frameX = gp.tileSize * 7;
-        int frameY = gp.tileSize * 11 - 12;
-        int frameWidth = gp.tileSize * 5 + 24;
-        int frameHeight = (int) (gp.tileSize * 1.2);
+        if(gp.gameState == gp.characterState) {
+            frameX = gp.tileSize * 7;
+            frameY = gp.tileSize * 11 - 12;
+            frameWidth = gp.tileSize * 5 + 24;
+            frameHeight = (int) (gp.tileSize * 1.2);
 
-        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-        drawInventoryCursor(gp.tileSize * 7 - 14, gp.tileSize * 10 + 20);
+            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+            drawInventoryCursor(gp.tileSize * 7 - 14, gp.tileSize * 10 + 20);
+        }
+        else if(gp.gameState == gp.craftingState){
+            frameX = gp.tileSize * 3;
+            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+            drawInventoryCursor(gp.tileSize * 3 - 14, gp.tileSize * 10 + 20);
+        }
     }
 
     public void drawInventoryCursor(int frameX, int frameY){
@@ -563,6 +582,32 @@ public class UI {
         g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+    }
+
+    public void drawCraftingScreen(){
+
+        drawInventory(gp.player, true);
+        //drawInventoryCursor(gp.tileSize * 7 - 14, gp.tileSize * 10 + 20);
+
+        int frameX = 0;
+        int frameY = 0;
+        int frameWidth = 0;
+        int frameHeight = 0;
+        int slotCol = 0;
+        int slotRow = 0;
+
+        frameX = gp.tileSize * 11;
+        frameY = gp.tileSize * 2;
+        frameWidth = gp.tileSize * 6;
+        frameHeight = (int) (gp.tileSize * 1.5);
+
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        for(int i = 0; i < 3; i++){
+
+            //TODO DISEGNO OGGETTI CRAFTING
+            //g2.drawImage();
+        }
     }
 
     public void drawGameOverScreen(){

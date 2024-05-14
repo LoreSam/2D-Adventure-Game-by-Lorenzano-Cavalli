@@ -218,9 +218,12 @@ public class AssetSetter {
 
         //MURI DISTRUGGIBILI
         gp.iTile[mapNum][i] = new IT_Wall(gp, 27, 17);
+        i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 28, 17);
+        i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 29, 17);
+        i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 30, 17);
-
+        i++;
     }
 }

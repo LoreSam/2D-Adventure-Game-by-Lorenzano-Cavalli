@@ -58,7 +58,7 @@ public class Player extends Entity{
         currentWeapon = new OBJ_Sword_Normal(gp);
         //currentWeapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
-        currentLight = null;
+        currentLight = new OBJ_Lantern(gp);
         projectile = new OBJ_Fireball(gp);
         //projectile = new OBJ_Rock(gp);
         attack = getAttack();
@@ -445,11 +445,11 @@ public class Player extends Entity{
         if (gp.keyH.enterPressed && index != 999) {
             gp.npc[gp.currentMap][index].speak();
         }
-       /* else if(gp.keyH.spacePressed){
+        else if(gp.keyH.spacePressed){
             gp.playSoundEffect(6);
             attacking = true;
-        }*/
-        gp.npc[gp.currentMap][index].move(direction);
+        }
+        //gp.npc[gp.currentMap][index].move(direction);
     }
 
     public void contactMonster(int index){
@@ -568,7 +568,8 @@ public class Player extends Entity{
                 currentShield = selectedItem;
                 defense = getDefense();
             }
-            if(selectedItem.type == type_light){
+
+            /*if(selectedItem.type == type_light){
                 if(currentLight == selectedItem){
                     currentLight = null;
                 }
@@ -576,7 +577,7 @@ public class Player extends Entity{
                     currentLight = selectedItem;
                 }
                 lightUpdated = true;
-            }
+            }*/
             if (selectedItem.type == type_consumable){
                 selectedItem.use(this);
                 inventory.remove(itemIndex);

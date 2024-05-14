@@ -96,6 +96,11 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.mapState){
             mapState(code);
         }
+
+        //STATO CRAFTING
+        else if(gp.gameState == gp.craftingState){
+            craftingState(code);
+        }
     }
 
     public void titleState(int code){
@@ -149,7 +154,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_SPACE){
             spacePressed = true;
         }
-        if(code == KeyEvent.VK_C){
+        if(code == KeyEvent.VK_E){
             gp.gameState = gp.characterState;
         }
         if(code == KeyEvent.VK_F){
@@ -163,6 +168,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_Q){
             guardKeyPressed = true;
+        }
+        if(code == KeyEvent.VK_C){
+            gp.gameState = gp.craftingState;
         }
 
         hotBar(code);
@@ -189,7 +197,7 @@ public class KeyHandler implements KeyListener {
 
     public void characterState(int code){
 
-        if(code == KeyEvent.VK_C){
+        if(code == KeyEvent.VK_E){
             gp.gameState = gp.playState;
         }
 
@@ -198,6 +206,13 @@ public class KeyHandler implements KeyListener {
         }
 
         playerInventory(code);
+    }
+
+    public void craftingState(int code){
+
+        if (code == KeyEvent.VK_C){
+            gp.gameState = gp.playState;
+        }
     }
 
     public void cambiaMusica(int i){
