@@ -24,6 +24,7 @@ public class TileManager {
         getTileImage();
         loadMap("/maps/mappav1.txt", 0);
         loadMap("/maps/underground.txt", 1);
+        loadMap("/maps/tutorial.txt", 2);
     }
 
     public void getTileImage(){

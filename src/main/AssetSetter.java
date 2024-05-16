@@ -74,6 +74,13 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Merchant(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 12;
         gp.npc[mapNum][i].worldY = gp.tileSize * 7;
+
+        if(gp.currentMap == 2){
+            mapNum = 2;
+            gp.npc[mapNum][i] = new NPC_OldMan(gp);
+            gp.npc[mapNum][i].worldX = gp.tileSize * 50;
+            gp.npc[mapNum][i].worldY = gp.tileSize * 48;
+        }
     }
 
     public void setMonster(){
@@ -225,5 +232,15 @@ public class AssetSetter {
         i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 30, 17);
         i++;
+
+        if(gp.currentMap == 2){
+            mapNum = 2;
+            gp.iTile[mapNum][i] = new IT_Bed(gp, 48, 47);
+            i++;
+            gp.iTile[mapNum][i] = new IT_Cesso(gp, 52, 47);
+            i++;
+            gp.iTile[mapNum][i] = new IT_Chest(gp, 52, 48);
+            i++;
+        }
     }
 }

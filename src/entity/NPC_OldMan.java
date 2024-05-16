@@ -2,22 +2,23 @@ package entity;
 
 import main.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
 import java.util.Random;
 
 public class NPC_OldMan extends Entity{
+
+    public static final String npcName = "Old Man";
 
     public NPC_OldMan(GamePanel gp) {
         super(gp);
 
         direction = "down";
         speed = 1;
+        name = npcName;
 
-        dialogueSet = -1;
+        dialogueSet = 0;
 
         getNPCImage();
-        setDialog();
+        setDialogue();
     }
 
     public void getNPCImage(){
@@ -31,17 +32,15 @@ public class NPC_OldMan extends Entity{
         right2 = setup("/npc/oldman_right_2", gp.tileSize, gp.tileSize);
     }
 
-    public void setDialog(){
+    public void setDialogue(){
 
-        dialogues[0][0]="Ciao!";
-        dialogues[0][1]="Quindi sei venuto su quest'isola \nper trovare il tesoro?";
-        dialogues[0][2]="Un tempo ero un bravo mago";
-        dialogues[0][3]="Buona fortuna!";
-
-        dialogues[1][0]="Ricorda:";
-        dialogues[1][1]="Se hai paura di qualcosa\nstudiala!";
-        dialogues[1][2]="I consigli migliori";
-        dialogues[1][3]="Diocane!";
+        dialogues[0][0] = "Benvenuto in prigione! \n(ENTER per passare al prossimo dialogo...)";
+        dialogues[0][1] = "Prima di cominciare, credo che tu abbia bisogno \ndi qualche dritta per scappare...";
+        dialogues[0][2] = "Per muoverti utilizza i tasti WASD";
+        dialogues[0][3] = "Con il tasto E puoi aprire l'inventario \ne con il tasto C il menù di crafting.";
+        dialogues[0][4] = "Con il tasto F interagisci con i vari elementi \nsulla mappa.";
+        dialogues[0][5] = "Se premi SPAZIO puoi picchiare i neg.. \nehm gli altri detenuti e utilizzare gli utensili.";
+        dialogues[0][6] = "Direi che possiamo cominciare! \nBuona fu.. ehm, detenzione...";
     }
 
     public void setAction(){

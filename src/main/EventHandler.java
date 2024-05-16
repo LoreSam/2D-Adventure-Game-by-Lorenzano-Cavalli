@@ -132,4 +132,11 @@ public class EventHandler {
             entity.speak();
         }
     }
+
+    public void tutorial(){
+
+        gp.currentMap = 2;
+        gp.gameState = gp.cutsceneState;
+        gp.csManager.sceneNum = gp.csManager.tutorial;
+    }
 }

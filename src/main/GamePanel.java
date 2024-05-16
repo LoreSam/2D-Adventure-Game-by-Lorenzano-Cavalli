@@ -9,15 +9,12 @@ import tile.Map;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Objects;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -41,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable{
     //IMPOSTAZIONI MONDO
     public final int maxWorldCol = 100;
     public final int maxWorldRow = 100;
-    public final int maxMap = 2; //ci servono normale e sottoterra
+    public final int maxMap = 3; //ci servono normale e sottoterra
     public int currentMap = 0;
 
     int FPS = 60;
@@ -57,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable{
     EnvironmentManager eManager = new EnvironmentManager(this);
     Map map = new Map(this);
     SaveLoad saveLoad = new SaveLoad(this);
+    public CutSceneManager csManager = new CutSceneManager(this);
     Thread gameThread;
     public PathFinder pFinder = new PathFinder(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -88,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int sleepState = 9;
     public final int mapState = 10;
     public final int craftingState = 11;
+    public final int cutsceneState = 12;
 
     public int currentArea;
     public int nextArea;
@@ -328,6 +327,9 @@ public class GamePanel extends JPanel implements Runnable{
             //MINIMAPPA
             map.drawMiniMap(g2);
 
+            //CUTSCENES
+            csManager.draw(g2);
+
             //UI
             ui.draw(g2);
         }
@@ -342,17 +344,17 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void playMusic(int i){
         music.setMusic(i);
-        /*music.play();
-        music.loop();*/
+        music.play();
+        music.loop();
     }
 
     public void stopMusic(){
-        //music.stop();
+        music.stop();
     }
 
     public void playSoundEffect(int i){
         se.setSound(i);
-        //se.play();
+        se.play();
     }
 
     public void changeArea(){

@@ -55,6 +55,7 @@ public class Entity {
     public Entity loot;
     public boolean opened;
     public Entity linkedEntity;
+    public boolean sleep = false;
 
     public int type;
     public final int type_player = 0;

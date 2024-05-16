@@ -21,7 +21,9 @@ public class Sound {
         musicURL[0] = getClass().getResource("/sound/Menu Principale.wav");
         musicURL[1] = getClass().getResource("/sound/gymv1.wav");
         musicURL[2] = getClass().getResource("/sound/Tempo Libero.wav");
-        musicURL[3] = getClass().getResource("/sound/Luci Spente.wav");
+        musicURL[3] = getClass().getResource("/sound/showerv1.wav");
+        musicURL[4] = getClass().getResource("/sound/Tutorial.wav");
+        musicURL[5] = getClass().getResource("/sound/Luci Spente.wav");
 
         //SOUND EFFECTS
         soundURL[0] = getClass().getResource("/sound/coin.wav");

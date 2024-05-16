@@ -68,8 +68,8 @@ public class KeyHandler implements KeyListener {
         }
 
         //stato di dialogo
-        else if (gp.gameState == gp.dialogueState){
-            dialogState(code);
+        else if (gp.gameState == gp.dialogueState || gp.gameState == gp.cutsceneState){
+            dialogueState(code);
         }
 
         //STATO INVENTARIO
@@ -116,13 +116,13 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ENTER) {
             if (gp.ui.commandNum == 0) {
-                gp.gameState = gp.playState;
-                cambiaMusica(1);
+                gp.eHandler.tutorial();
+                cambiaMusica(4);
             }
             if (gp.ui.commandNum == 1) {
                 gp.saveLoad.load();
                 gp.gameState = gp.playState;
-                cambiaMusica(1);
+                cambiaMusica(4);
             }
             if (gp.ui.commandNum == 2) {
                 System.exit(0);
@@ -182,7 +182,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void dialogState(int code){
+    public void dialogueState(int code){
         if (code == KeyEvent.VK_ENTER){
             enterPressed = true;
         }
