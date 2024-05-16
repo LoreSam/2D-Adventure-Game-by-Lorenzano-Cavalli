@@ -31,25 +31,10 @@ public class CutSceneManager {
 
     public void sceneTutorial(){
 
-        if(scenePhase == 0){
-
-            gp.player.worldX = gp.tileSize*50;
-            gp.player.worldY = gp.tileSize*49;
-            gp.aSetter.setInteractiveTile();
-            gp.aSetter.setNPC();
-
-            for(int i = 0; i < gp.npc[1].length; i++){
-
-                if(gp.npc[gp.currentMap][i] != null && gp.npc[gp.currentMap][i].name == NPC_OldMan.npcName){
-                    gp.ui.npc = gp.npc[gp.currentMap][i];
-                    gp.ui.drawDialogueScreen();
-                    //scenePhase++;
-                    break;
-                }
-            }
-        }
-        if(scenePhase == 1){
-
+        if(!gp.ui.temp)
+            gp.eHandler.tutorial();
+        else {
+            gp.gameState = gp.playState;
         }
     }
 }

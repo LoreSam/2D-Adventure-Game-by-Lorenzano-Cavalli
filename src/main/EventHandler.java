@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import entity.NPC_OldMan;
 
 public class EventHandler {
 
@@ -68,19 +69,6 @@ public class EventHandler {
             else if(hit(1, 12, 9, "up"))
                 speak(gp.npc[1][0]);
         }
-
-
-        /*if(canTouchEvent){
-            if (hit(0, 27, 16, "right") == true){
-                damagePit(27, 16, gp.dialogueState);
-            }
-            if (hit(0, 23, 12, "up") == true){
-                healingPool(23, 12, gp.dialogueState);
-            }
-            if (hit(0, 27, 16, "right") == true){
-                teleport(gp.dialogueState);
-            }
-        }*/
     }
 
     public boolean hit(int map, int col, int row, String reqDirection){
@@ -135,8 +123,18 @@ public class EventHandler {
 
     public void tutorial(){
 
-        gp.currentMap = 2;
+        //gp.currentMap = 2;
+
         gp.gameState = gp.cutsceneState;
         gp.csManager.sceneNum = gp.csManager.tutorial;
+
+        for(int i = 0; i < gp.npc[1].length; i++){
+
+            if(gp.npc[gp.currentMap][i] != null && gp.npc[gp.currentMap][i].name == NPC_OldMan.npcName){
+                gp.ui.npc = gp.npc[gp.currentMap][i];
+                gp.ui.drawDialogueScreen();
+                break;
+            }
+        }
     }
 }

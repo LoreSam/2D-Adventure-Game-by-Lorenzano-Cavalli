@@ -21,7 +21,7 @@ public class KeyHandler implements KeyListener {
 
             if (gp.ui.titleScreenState == 0) {
                 titleState(code);
-            }
+            }/*
             else if(gp.ui.titleScreenState == 1){
                 if (code == KeyEvent.VK_UP) {
                     gp.ui.commandNum--;
@@ -54,7 +54,7 @@ public class KeyHandler implements KeyListener {
                         gp.ui.titleScreenState = 0;
                     }
                 }
-            }
+            }*/
         }
 
         //stato di gioco
@@ -117,6 +117,7 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             if (gp.ui.commandNum == 0) {
                 gp.eHandler.tutorial();
+                //gp.gameState = gp.playState;
                 cambiaMusica(4);
             }
             if (gp.ui.commandNum == 1) {

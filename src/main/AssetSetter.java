@@ -68,6 +68,10 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = gp.tileSize * 19;
         gp.npc[mapNum][i].worldY = gp.tileSize * 15;
 
+        /*gp.npc[mapNum][i] = new NPC_OldMan(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 54;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 12;*/
+
         //SOTTOTERRA
         mapNum = 1;
         i = 0;
@@ -75,12 +79,12 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = gp.tileSize * 12;
         gp.npc[mapNum][i].worldY = gp.tileSize * 7;
 
-        if(gp.currentMap == 2){
+        /*if(gp.currentMap == 2){
             mapNum = 2;
             gp.npc[mapNum][i] = new NPC_OldMan(gp);
             gp.npc[mapNum][i].worldX = gp.tileSize * 50;
             gp.npc[mapNum][i].worldY = gp.tileSize * 48;
-        }
+        }*/
     }
 
     public void setMonster(){
