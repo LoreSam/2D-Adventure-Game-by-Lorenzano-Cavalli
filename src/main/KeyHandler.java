@@ -229,9 +229,7 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_ENTER){
 
-            gp.player.craftingObject(0);
-
-            /*switch(gp.ui.playerSlotCol){
+            switch(gp.ui.playerSlotCol){
 
                 case 0:
                     for(int i = 0; i < gp.player.inventory.size(); i++){
@@ -252,7 +250,7 @@ public class KeyHandler implements KeyListener {
                 case 4:
                     gp.player.inventory.add(new OBJ_Scissors(gp));
                     break;
-            }*/
+            }
         }
     }
 

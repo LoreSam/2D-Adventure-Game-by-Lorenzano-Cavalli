@@ -371,6 +371,9 @@ public class Player extends Entity{
 
     public void pickUpObject(int i){
 
+        boolean obj1 = false, obj2 = false, obj3 = false;
+        int i1 = 0, i2 = 0, i3 = 0;
+
         if(i != 999){
 
             //prendi solo oggetti
@@ -389,6 +392,22 @@ public class Player extends Entity{
                     //gp.playSoundEffect(1);
                     text = "Hai ottenuto 1 " + gp.obj[gp.currentMap][i].name + "!";
 
+                    switch(gp.ui.playerSlotCol){
+
+                    }
+                    if(gp.obj[gp.currentMap][i].name.equals("Stick")) {
+                        obj1 = true;
+                        i1 = i;
+                    }
+                    if(gp.obj[gp.currentMap][i].name.equals("Roccia")) {
+                        obj2 = true;
+                        i2 = i;
+                    }
+                    if(obj1 && obj2){
+                        gp.player.inventory.add(new OBJ_Axe(gp));
+                        gp.player.inventory.remove(i1);
+                        gp.player.inventory.remove(i2);
+                    }
                 }
                 else {
                     text = "Spazi esauriti!";
@@ -428,62 +447,6 @@ public class Player extends Entity{
                     gp.playSoundEffect(4);
                     break;
             }*/
-        }
-    }
-
-    public void craftingObject(int i){
-
-        boolean obj1 = false, obj2 = false, obj3 = false;
-        int i1 = 0, i2 = 0, i3 = 0;
-
-        if(i != 999) {
-
-            if (gp.obj[gp.currentMap][i].type != type_pickUp) {
-
-                String text;
-
-                if (inventory.size() != maxInventorySize) {
-
-                    inventory.add(gp.obj[gp.currentMap][i]);
-                    //gp.playSoundEffect(1);
-                    text = "Hai ottenuto 1 " + gp.obj[gp.currentMap][i].name + "!";
-
-                    switch (gp.ui.playerSlotCol) {
-
-                        case 0:
-                            for (int j = 0; j < gp.player.inventory.size(); j++) {
-
-                                if(gp.obj[gp.currentMap][j].name != null) {
-
-                                    if (gp.obj[gp.currentMap][j].name.equals("Stick")) {
-                                        obj1 = true;
-                                        i1 = j;
-                                    }
-                                    if (gp.obj[gp.currentMap][j].name.equals("Roccia")) {
-                                        obj2 = true;
-                                        i2 = j;
-                                    }
-                                    if (obj1 && obj2) {
-                                        gp.player.inventory.add(new OBJ_Axe(gp));
-                                        gp.player.inventory.remove(i1);
-                                        gp.player.inventory.remove(i2);
-                                    }
-                                }
-                            }
-                            break;
-                        case 2:
-                            break;
-                        case 4:
-                            break;
-                    }
-
-                } else {
-                    text = "Spazi esauriti!";
-                }
-                gp.ui.addMessage(text);
-                gp.obj[gp.currentMap][i] = null;
-            }
-            gp.playSoundEffect(1);
         }
     }
 
