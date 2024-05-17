@@ -611,7 +611,6 @@ public class UI {
         for(int i = 0; i < 3; i++){
 
             g2.drawImage(gp.obj[gp.currentMap][i].down1, slotX, slotY, null);
-            //slotX = slotXstart;
             slotX += 100;
         }
 
@@ -627,6 +626,13 @@ public class UI {
             g2.setStroke(new BasicStroke(3));
             g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
         }
+    }
+
+    public void drawMissingItemsText(){
+
+        g2.getFont().deriveFont(Font.BOLD, 28f);
+        g2.setColor(Color.WHITE);
+        g2.drawString("Non hai gli oggetti necessari!", gp.tileSize * 11, gp.tileSize * 3);
     }
 
     public void drawGameOverScreen(){

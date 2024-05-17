@@ -153,6 +153,18 @@ public class TileManager {
             tile[35].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/porta_p.png")));
             tile[35].collision = true;
 
+            tile[36] = new Tile();
+            tile[36].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/tavolo_sx.png")));
+            tile[36].collision = true;
+
+            tile[37] = new Tile();
+            tile[37].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/tavolo_cen.png")));
+            tile[37].collision = true;
+
+            tile[38] = new Tile();
+            tile[38].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/tavolo_dx.png")));
+            tile[38].collision = true;
+
 
         }catch (IOException e){
             e.printStackTrace();

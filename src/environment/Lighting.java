@@ -90,7 +90,7 @@ public class Lighting {
 
             dayCounter++;
 
-            if(dayCounter > 600){ //MODIFICARE IL COUNTER PER MODIFICARE LA DURATA DELLA GIORNATA
+            if(dayCounter > 600){ //MODIFICARE IL COUNTER PER MODIFICARE LA DURATA DELLA GIORNATA (1200 = 2 minuti)
                 dayState = dusk;
                 dayCounter = 0;
             }

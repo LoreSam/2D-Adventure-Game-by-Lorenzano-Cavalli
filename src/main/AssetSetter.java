@@ -18,7 +18,7 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-        gp.obj[mapNum][i] = new OBJ_Axe(gp);
+        /*gp.obj[mapNum][i] = new OBJ_Axe(gp);
         gp.obj[mapNum][i].worldX = 90 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 90 * gp.tileSize;
         i++;
@@ -33,7 +33,24 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Stick(gp);
         gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        i++;*/
+
+
+        gp.obj[mapNum][i] = new OBJ_Axe(gp);
+        gp.obj[mapNum][i].visible();
+        gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+
         i++;
+        gp.obj[mapNum][i] = new OBJ_Pickaxe(gp);
+        gp.obj[mapNum][i].worldX = 37 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        i++;
+        gp.obj[mapNum][i] = new OBJ_Scissors(gp);
+        gp.obj[mapNum][i].worldX = 38 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        i++;
+
         /*gp.obj[mapNum][i] = new OBJ_Rock(gp);
         gp.obj[mapNum][i].worldX = 35 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 18 * gp.tileSize;

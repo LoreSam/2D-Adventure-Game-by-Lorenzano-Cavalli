@@ -250,18 +250,35 @@ public class KeyHandler implements KeyListener {
                                 gp.player.inventory.add(new OBJ_Axe(gp));
                                 gp.player.inventory.remove(i);
                                 gp.player.inventory.remove(temp_i);
-                            }
-                            else {
-                                gp.g2.drawString("Non hai gli oggetti necessari!", gp.tileSize * 11, gp.tileSize * 4); // non funziona
+                                break;
                             }
                         }
                     }
+                    //gp.ui.drawMissingItemsText();
                     break;
                 case 2:
                     gp.player.inventory.add(new OBJ_Pickaxe(gp));
                     break;
                 case 4:
-                    gp.player.inventory.add(new OBJ_Scissors(gp));
+                    for(int i = 0; i < gp.player.inventory.size(); i++){
+
+                        if(gp.player.inventory.get(i) != null) {
+
+                            if (gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_pickaxe) {
+                                a = true;
+                                temp_i = i;
+                            }
+                            if(gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_axe){
+                                b = true;
+                            }
+                            if(a && b){
+                                gp.player.inventory.add(new OBJ_Scissors(gp));
+                                gp.player.inventory.remove(i);
+                                gp.player.inventory.remove(temp_i);
+                                break;
+                            }
+                        }
+                    }
                     break;
             }
         }
