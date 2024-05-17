@@ -101,6 +101,7 @@ public class Player extends Entity{
         inventory.add(new OBJ_Chest(gp));
         inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Potion_Red(gp));
     }
 
     public int getCurrentWeaponSlot(){
@@ -387,6 +388,7 @@ public class Player extends Entity{
                     inventory.add(gp.obj[gp.currentMap][i]);
                     //gp.playSoundEffect(1);
                     text = "Hai ottenuto 1 " + gp.obj[gp.currentMap][i].name + "!";
+
                 }
                 else {
                     text = "Spazi esauriti!";
@@ -426,6 +428,62 @@ public class Player extends Entity{
                     gp.playSoundEffect(4);
                     break;
             }*/
+        }
+    }
+
+    public void craftingObject(int i){
+
+        boolean obj1 = false, obj2 = false, obj3 = false;
+        int i1 = 0, i2 = 0, i3 = 0;
+
+        if(i != 999) {
+
+            if (gp.obj[gp.currentMap][i].type != type_pickUp) {
+
+                String text;
+
+                if (inventory.size() != maxInventorySize) {
+
+                    inventory.add(gp.obj[gp.currentMap][i]);
+                    //gp.playSoundEffect(1);
+                    text = "Hai ottenuto 1 " + gp.obj[gp.currentMap][i].name + "!";
+
+                    switch (gp.ui.playerSlotCol) {
+
+                        case 0:
+                            for (int j = 0; j < gp.player.inventory.size(); j++) {
+
+                                if(gp.obj[gp.currentMap][j].name != null) {
+
+                                    if (gp.obj[gp.currentMap][j].name.equals("Stick")) {
+                                        obj1 = true;
+                                        i1 = j;
+                                    }
+                                    if (gp.obj[gp.currentMap][j].name.equals("Roccia")) {
+                                        obj2 = true;
+                                        i2 = j;
+                                    }
+                                    if (obj1 && obj2) {
+                                        gp.player.inventory.add(new OBJ_Axe(gp));
+                                        gp.player.inventory.remove(i1);
+                                        gp.player.inventory.remove(i2);
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            break;
+                        case 4:
+                            break;
+                    }
+
+                } else {
+                    text = "Spazi esauriti!";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[gp.currentMap][i] = null;
+            }
+            gp.playSoundEffect(1);
         }
     }
 
@@ -511,7 +569,7 @@ public class Player extends Entity{
             generateParticle(gp.iTile[gp.currentMap][i], gp.iTile[gp.currentMap][i]);
 
             if (gp.iTile[gp.currentMap][i].life <= 0) {
-        //        gp.iTile[gp.currentMap][i].checkDrop(); se volgiamo droppare qualcosa quando miniamo
+                gp.iTile[gp.currentMap][i].checkDrop(); //se volgiamo droppare qualcosa quando miniamo
                 gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
 
             }
@@ -582,6 +640,11 @@ public class Player extends Entity{
                 selectedItem.use(this);
                 inventory.remove(itemIndex);
             }
+
+            /*if(selectedItem.type == type_stick){
+                inventory.add(gp.obj[gp.currentMap][itemIndex]);
+                selectedItem.inside_inventory = true;
+            }*/
         }
     }
 

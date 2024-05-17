@@ -1,5 +1,7 @@
 package main;
 
+import object.*;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -213,6 +215,44 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_C){
             gp.gameState = gp.playState;
+        }
+
+        if(code == KeyEvent.VK_LEFT && gp.ui.playerSlotCol != 0){
+            gp.ui.playerSlotCol-=2;
+            gp.playSoundEffect(8);
+        }
+
+        if(code == KeyEvent.VK_RIGHT && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
+            gp.ui.playerSlotCol+=2;
+            gp.playSoundEffect(8);
+        }
+
+        if(code == KeyEvent.VK_ENTER){
+
+            gp.player.craftingObject(0);
+
+            /*switch(gp.ui.playerSlotCol){
+
+                case 0:
+                    for(int i = 0; i < gp.player.inventory.size(); i++){
+                        if(gp.player.inventory.get(i).stickIn && gp.player.inventory.get(i).rockIn){
+                            gp.player.inventory.add(new OBJ_Axe(gp));
+                            gp.player.inventory.get(i).stickIn = false;
+                            gp.player.inventory.get(i).rockIn = false;
+                            gp.player.inventory.remove(i);
+                        }
+                        else{
+                            gp.g2.drawString("Non hai gli oggetti necessari!", gp.tileSize * 11, gp.tileSize * 4); // non funziona
+                        }
+                    }
+                    break;
+                case 2:
+                    gp.player.inventory.add(new OBJ_Pickaxe(gp));
+                    break;
+                case 4:
+                    gp.player.inventory.add(new OBJ_Scissors(gp));
+                    break;
+            }*/
         }
     }
 

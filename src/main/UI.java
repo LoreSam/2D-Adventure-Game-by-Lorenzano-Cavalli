@@ -1,9 +1,8 @@
 package main;
 
 import entity.Entity;
-import object.OBJ_Coin_Bronze;
-import object.OBJ_Energy;
-import object.OBJ_Heart;
+import entity.NPC_OldMan;
+import object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -129,7 +128,7 @@ public class UI {
         }
 
         if(gp.gameState == gp.craftingState){
-            drawCraftingScreen();
+            drawCraftingScreen(gp.player, true);
         }
     }
 
@@ -453,6 +452,7 @@ public class UI {
             else if(gp.gameState == gp.craftingState){
 
                 frameX = gp.tileSize * 3;
+
             }
         }
         else {
@@ -542,6 +542,9 @@ public class UI {
             frameX = gp.tileSize * 12 + 20;
             frameY = gp.tileSize * 5 - 16;
         }
+        else if(gp.gameState == gp.craftingState){
+            frameX = gp.tileSize * 3 + 18;
+        }
 
         g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
     }
@@ -554,20 +557,13 @@ public class UI {
         int frameWidth = 0;
         int frameHeight = 0;
 
-        if(gp.gameState == gp.characterState) {
-            frameX = gp.tileSize * 7;
-            frameY = gp.tileSize * 11 - 12;
-            frameWidth = gp.tileSize * 5 + 24;
-            frameHeight = (int) (gp.tileSize * 1.2);
+        frameX = gp.tileSize * 7;
+        frameY = gp.tileSize * 11 - 12;
+        frameWidth = gp.tileSize * 5 + 24;
+        frameHeight = (int) (gp.tileSize * 1.2);
 
-            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-            drawInventoryCursor(gp.tileSize * 7 - 14, gp.tileSize * 10 + 20);
-        }
-        else if(gp.gameState == gp.craftingState){
-            frameX = gp.tileSize * 3;
-            drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-            drawInventoryCursor(gp.tileSize * 3 - 14, gp.tileSize * 10 + 20);
-        }
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        drawInventoryCursor(gp.tileSize * 7 - 14, gp.tileSize * 10 + 20);
     }
 
     public void drawInventoryCursor(int frameX, int frameY){
@@ -589,10 +585,9 @@ public class UI {
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
     }
 
-    public void drawCraftingScreen(){
+    public void drawCraftingScreen(Entity entity, boolean cursor){
 
-        drawInventory(gp.player, true);
-        //drawInventoryCursor(gp.tileSize * 7 - 14, gp.tileSize * 10 + 20);
+        drawInventory(gp.player, false);
 
         int frameX = 0;
         int frameY = 0;
@@ -600,6 +595,11 @@ public class UI {
         int frameHeight = 0;
         int slotCol = 0;
         int slotRow = 0;
+        final int slotXstart = frameX + gp.tileSize * 11 + 20;
+        final int slotYstart = frameY + gp.tileSize * 2 + 10;
+        int slotX = slotXstart;
+        int slotY = slotYstart;
+        int slotSize = gp.tileSize + 3;
 
         frameX = gp.tileSize * 11;
         frameY = gp.tileSize * 2;
@@ -610,8 +610,22 @@ public class UI {
 
         for(int i = 0; i < 3; i++){
 
-            //TODO DISEGNO OGGETTI CRAFTING
-            //g2.drawImage();
+            g2.drawImage(gp.obj[gp.currentMap][i].down1, slotX, slotY, null);
+            //slotX = slotXstart;
+            slotX += 100;
+        }
+
+        if(cursor){
+
+            int cursorX = slotXstart + (slotSize * playerSlotCol);
+            int cursorY = slotYstart + (slotSize * playerSlotRow);
+            int cursorWidth = gp.tileSize;
+            int cursorHeight = gp.tileSize;
+
+            //DISEGNA CURSORE
+            g2.setColor(Color.white);
+            g2.setStroke(new BasicStroke(3));
+            g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
         }
     }
 

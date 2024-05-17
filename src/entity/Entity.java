@@ -56,6 +56,8 @@ public class Entity {
     public boolean opened;
     public Entity linkedEntity;
     public boolean sleep = false;
+    public boolean stickIn = false;
+    public boolean rockIn = false;
 
     public int type;
     public final int type_player = 0;
@@ -70,6 +72,9 @@ public class Entity {
     public final int type_light = 9;
     public final int type_bed = 10;
     public final int type_pickaxe = 11;
+    public final int type_axe_craft = 12;
+    public final int type_pickaxe_craft = 13;
+    public final int type_scissors_craft = 14;
 
     //stato del personaggio
     public int maxLife;
