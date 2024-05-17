@@ -13,10 +13,10 @@ public class OBJ_Stick extends Entity {
         super(gp);
         this.gp = gp;
 
-        type = type_axe_craft;
+        type = type_stick;
         name = objName;
         down1 = setup("/objects/stick", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\n Bastone";
-        stickIn = false;
+        //stickIn = false;
     }
 }

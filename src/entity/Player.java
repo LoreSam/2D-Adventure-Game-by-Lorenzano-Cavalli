@@ -371,9 +371,6 @@ public class Player extends Entity{
 
     public void pickUpObject(int i){
 
-        boolean obj1 = false, obj2 = false, obj3 = false;
-        int i1 = 0, i2 = 0, i3 = 0;
-
         if(i != 999){
 
             //prendi solo oggetti
@@ -392,22 +389,6 @@ public class Player extends Entity{
                     //gp.playSoundEffect(1);
                     text = "Hai ottenuto 1 " + gp.obj[gp.currentMap][i].name + "!";
 
-                    switch(gp.ui.playerSlotCol){
-
-                    }
-                    if(gp.obj[gp.currentMap][i].name.equals("Stick")) {
-                        obj1 = true;
-                        i1 = i;
-                    }
-                    if(gp.obj[gp.currentMap][i].name.equals("Roccia")) {
-                        obj2 = true;
-                        i2 = i;
-                    }
-                    if(obj1 && obj2){
-                        gp.player.inventory.add(new OBJ_Axe(gp));
-                        gp.player.inventory.remove(i1);
-                        gp.player.inventory.remove(i2);
-                    }
                 }
                 else {
                     text = "Spazi esauriti!";

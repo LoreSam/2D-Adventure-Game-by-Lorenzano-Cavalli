@@ -213,6 +213,9 @@ public class KeyHandler implements KeyListener {
 
     public void craftingState(int code){
 
+        boolean a = false, b = false;
+        int temp_i = 0;
+
         if (code == KeyEvent.VK_C){
             gp.gameState = gp.playState;
         }
@@ -233,14 +236,24 @@ public class KeyHandler implements KeyListener {
 
                 case 0:
                     for(int i = 0; i < gp.player.inventory.size(); i++){
-                        if(gp.player.inventory.get(i).stickIn && gp.player.inventory.get(i).rockIn){
-                            gp.player.inventory.add(new OBJ_Axe(gp));
-                            gp.player.inventory.get(i).stickIn = false;
-                            gp.player.inventory.get(i).rockIn = false;
-                            gp.player.inventory.remove(i);
-                        }
-                        else{
-                            gp.g2.drawString("Non hai gli oggetti necessari!", gp.tileSize * 11, gp.tileSize * 4); // non funziona
+
+                        if(gp.player.inventory.get(i) != null) {
+
+                            if (gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_stick) {
+                                a = true;
+                                temp_i = i;
+                            }
+                            if(gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_rock){
+                                b = true;
+                            }
+                            if(a && b){
+                                gp.player.inventory.add(new OBJ_Axe(gp));
+                                gp.player.inventory.remove(i);
+                                gp.player.inventory.remove(temp_i);
+                            }
+                            else {
+                                gp.g2.drawString("Non hai gli oggetti necessari!", gp.tileSize * 11, gp.tileSize * 4); // non funziona
+                            }
                         }
                     }
                     break;

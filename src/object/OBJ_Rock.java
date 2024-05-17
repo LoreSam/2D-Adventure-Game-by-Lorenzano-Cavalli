@@ -13,7 +13,7 @@ public class OBJ_Rock extends Projectile {
         super(gp);
         this.gp = gp;
 
-        type = type_axe_craft;
+        type = type_rock;
         name = objName;
         speed = 8;
         maxLife = 80;
@@ -21,7 +21,7 @@ public class OBJ_Rock extends Projectile {
         attack = 2;
         useCost = 1;
         alive = false;
-        rockIn = false;
+        //rockIn = false;
         getImage();
     }
 
