@@ -35,8 +35,10 @@ public class CutSceneManager {
 
         if(!gp.ui.temp)
             gp.eHandler.tutorial();
-        else {
-            gp.gameState = gp.playState;
-        }
+    }
+
+    public void start(){
+
+        gp.gameState = gp.playState;
     }*/
 }
