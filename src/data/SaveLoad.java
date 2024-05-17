@@ -18,6 +18,8 @@ public class SaveLoad {
 
     public void save() {
 
+        System.out.println("AUTOSALVATAGGIO");
+
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
 
@@ -37,6 +39,8 @@ public class SaveLoad {
             ds.exp = gp.player.exp;
             ds.nextLevelExp = gp.player.nextLevelExp;
             ds.coin = gp.player.coin;
+            ds.worldX = gp.player.worldX;
+            ds.worldY = gp.player.worldY;
 
             for(int i = 0; i < gp.player.inventory.size(); i++){
                 ds.itemNames.add(gp.player.inventory.get(i).name);
@@ -98,6 +102,8 @@ public class SaveLoad {
             gp.player.exp = ds.exp;
             gp.player.coin = ds.coin;
             gp.player.nextLevelExp = ds.nextLevelExp;
+            gp.player.worldX = ds.worldX;
+            gp.player.worldY = ds.worldY;
 
             gp.player.inventory.clear();
             for(int i = 0; i < ds.itemNames.size(); i++){

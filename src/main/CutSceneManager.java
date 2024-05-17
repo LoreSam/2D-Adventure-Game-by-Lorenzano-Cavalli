@@ -6,6 +6,8 @@ import java.awt.*;
 
 public class CutSceneManager {
 
+    //TODO SE VOGLIAMO USARLA, PER ALTRE CUTSCENE, IL TUTORIAL è APPOSTO
+
     GamePanel gp;
     Graphics2D g2;
     public int sceneNum;
@@ -24,10 +26,10 @@ public class CutSceneManager {
 
         switch(sceneNum){
             case tutorial:
-                sceneTutorial();
+                //sceneTutorial();
                 break;
         }
-    }
+    }/*
 
     public void sceneTutorial(){
 
@@ -36,5 +38,5 @@ public class CutSceneManager {
         else {
             gp.gameState = gp.playState;
         }
-    }
+    }*/
 }

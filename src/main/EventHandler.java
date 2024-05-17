@@ -110,7 +110,7 @@ public class EventHandler {
         previousEventX = gp.player.worldX;
         previousEventY = gp.player.worldY;*/
         canTouchEvent = false;
-        gp.saveLoad.save();
+        //gp.saveLoad.save();
     }
 
     public void speak(Entity entity){
@@ -125,8 +125,8 @@ public class EventHandler {
 
         //gp.currentMap = 2;
 
-        gp.gameState = gp.cutsceneState;
-        gp.csManager.sceneNum = gp.csManager.tutorial;
+        /*gp.gameState = gp.cutsceneState;
+        gp.csManager.sceneNum = gp.csManager.tutorial;*/
 
         for(int i = 0; i < gp.npc[1].length; i++){
 

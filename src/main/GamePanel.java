@@ -86,7 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int sleepState = 9;
     public final int mapState = 10;
     public final int craftingState = 11;
-    public final int cutsceneState = 12;
+    public final int tutorialState = 12;
 
     public int currentArea;
     public int nextArea;
@@ -159,6 +159,7 @@ public class GamePanel extends JPanel implements Runnable{
         long lastTime = System.nanoTime();
         long currentTime;
         long timer = 0;
+        long cont = 0;
         int drawCount = 0;
 
         while (gameThread != null){
@@ -182,6 +183,12 @@ public class GamePanel extends JPanel implements Runnable{
                 //System.out.println("FPS: " + drawCount);
                 drawCount=0;
                 timer=0;
+                cont++;
+            }
+
+            if(cont == 60){
+                saveLoad.save();
+                cont = 0;
             }
         }
     }
@@ -328,7 +335,7 @@ public class GamePanel extends JPanel implements Runnable{
             map.drawMiniMap(g2);
 
             //CUTSCENES
-            csManager.draw(g2);
+            //csManager.draw(g2); //TODO ATTIVARE IN CASO DI UTILIZZO DI CUTSCENES
 
             //UI
             ui.draw(g2);
@@ -344,17 +351,17 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void playMusic(int i){
         music.setMusic(i);
-        music.play();
-        music.loop();
+        /*music.play();
+        music.loop();*/
     }
 
     public void stopMusic(){
-        music.stop();
+        //music.stop();
     }
 
     public void playSoundEffect(int i){
         se.setSound(i);
-        se.play();
+        //se.play();
     }
 
     public void changeArea(){
