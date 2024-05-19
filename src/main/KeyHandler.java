@@ -120,12 +120,12 @@ public class KeyHandler implements KeyListener {
             if (gp.ui.commandNum == 0) {
                 gp.gameState = gp.dialogueState;
                 gp.eHandler.tutorial();
-                cambiaMusica(4);
+                changeMusic(4);
             }
             if (gp.ui.commandNum == 1) {
                 gp.saveLoad.load();
                 gp.gameState = gp.playState;
-                cambiaMusica(4);
+                changeMusic(4);
             }
             if (gp.ui.commandNum == 2) {
                 System.exit(0);
@@ -222,12 +222,12 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_LEFT && gp.ui.playerSlotCol != 0){
             gp.ui.playerSlotCol-=2;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_RIGHT && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.playerSlotCol+=2;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_ENTER){
@@ -284,7 +284,7 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void cambiaMusica(int i){
+    public void changeMusic(int i){
         gp.stopMusic();
         gp.playMusic(i);
     }
@@ -312,14 +312,14 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_UP){
             gp.ui.commandNum--;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
             if(gp.ui.commandNum < 0)
                 gp.ui.commandNum = maxCommandNum;
         }
 
         if(code == KeyEvent.VK_DOWN){
             gp.ui.commandNum++;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
             if(gp.ui.commandNum > maxCommandNum)
                 gp.ui.commandNum = 0;
         }
@@ -329,11 +329,11 @@ public class KeyHandler implements KeyListener {
                 if(gp.ui.commandNum == 1 && gp.music.volumeScale > 0){
                     gp.music.volumeScale--;
                     gp.music.checkVolume();
-                    gp.playSoundEffect(8);
+                    gp.playSoundEffect(0);
                 }
                 if(gp.ui.commandNum == 2 && gp.se.volumeScale > 0){
                     gp.se.volumeScale--;
-                    gp.playSoundEffect(8);
+                    gp.playSoundEffect(0);
                 }
             }
         }
@@ -343,11 +343,11 @@ public class KeyHandler implements KeyListener {
                 if(gp.ui.commandNum == 1 && gp.music.volumeScale < 10){
                     gp.music.volumeScale++;
                     gp.music.checkVolume();
-                    gp.playSoundEffect(8);
+                    gp.playSoundEffect(0);
                 }
                 if(gp.ui.commandNum == 2 && gp.se.volumeScale < 10){
                     gp.se.volumeScale++;
-                    gp.playSoundEffect(8);
+                    gp.playSoundEffect(0);
                 }
             }
         }
@@ -359,14 +359,14 @@ public class KeyHandler implements KeyListener {
             gp.ui.commandNum--;
             if(gp.ui.commandNum < 0)
                 gp.ui.commandNum = 1;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_DOWN){
             gp.ui.commandNum++;
             if(gp.ui.commandNum > 1)
                 gp.ui.commandNum = 0;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_ENTER){
@@ -394,13 +394,13 @@ public class KeyHandler implements KeyListener {
                 if(gp.ui.commandNum < 0)
                     gp.ui.commandNum = 2;
             }
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
             if(code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
                 if(gp.ui.commandNum > 2)
                     gp.ui.commandNum = 0;
             }
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(gp.ui.subState == 1){
@@ -446,12 +446,12 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_LEFT && gp.ui.playerSlotCol != 0){
             gp.ui.playerSlotCol--;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_RIGHT && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.playerSlotCol++;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
     }
 
@@ -459,22 +459,22 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_UP && gp.ui.playerSlotRow != 0){
             gp.ui.playerSlotRow--;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_LEFT && gp.ui.playerSlotCol != 0){
             gp.ui.playerSlotCol--;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_DOWN && gp.ui.playerSlotRow != 4){ //RIGHE INVENTARIO
             gp.ui.playerSlotRow++;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_RIGHT && gp.ui.playerSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.playerSlotCol++;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
     }
 
@@ -482,22 +482,22 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_UP && gp.ui.npcSlotRow != 0){
             gp.ui.npcSlotRow--;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_LEFT && gp.ui.npcSlotCol != 0){
             gp.ui.npcSlotCol--;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_DOWN && gp.ui.npcSlotRow != 3){ //RIGHE INVENTARIO
             gp.ui.npcSlotRow++;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
 
         if(code == KeyEvent.VK_RIGHT && gp.ui.npcSlotCol != 4){ //COLONNE INVENTARIO
             gp.ui.npcSlotCol++;
-            gp.playSoundEffect(8);
+            gp.playSoundEffect(0);
         }
     }
 

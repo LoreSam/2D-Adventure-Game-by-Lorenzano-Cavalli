@@ -543,14 +543,14 @@ public class Entity {
 
                 if(gp.player.guardCounter < 10){
                     damage = 0;
-                    gp.playSoundEffect(12);
+                    gp.playSoundEffect(3);
                     setKnockBack(this, gp.player, knockBackPower);
                     offBalance = true;
                     spriteCounter -= 60;
                 }
                 else{
                     damage /= 3;
-                    gp.playSoundEffect(12);
+                    gp.playSoundEffect(4);
                 }
             }
             else{

@@ -331,7 +331,7 @@ public class Player extends Entity{
 
             shotAvailableCounter = 0;
 
-            gp.playSoundEffect(11);
+            //gp.playSoundEffect(11);
         }
 
         if(invincible){
@@ -357,7 +357,7 @@ public class Player extends Entity{
             gp.gameState = gp.gameOverState;
             gp.ui.commandNum = -1;
             gp.stopMusic();
-            gp.playSoundEffect(11);
+            gp.playSoundEffect(7);
         }
     }
 
@@ -396,7 +396,7 @@ public class Player extends Entity{
                 gp.ui.addMessage(text);
                 gp.obj[gp.currentMap][i] = null;
             }
-            gp.playSoundEffect(1);
+            gp.playSoundEffect(0);
             /*String objectName = gp.obj[index].name;
             switch(objectName){
                 case "Key":
@@ -474,7 +474,7 @@ public class Player extends Entity{
 
             if (!gp.monster[gp.currentMap][i].invincible){
 
-                gp.playSoundEffect(4);
+                gp.playSoundEffect(2);
 
                 if(knockBackCounter > 0)
                     setKnockBack(gp.monster[gp.currentMap][i], attacker, knockBackPower);
@@ -542,7 +542,7 @@ public class Player extends Entity{
             attack = getAttack();
             defense =  getDefense();
 
-            gp.playSoundEffect(8);
+            //gp.playSoundEffect(8);
             gp.gameState = gp.dialogueState;
 
             setDialogue();

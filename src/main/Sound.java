@@ -18,30 +18,25 @@ public class Sound {
     public Sound() {
         //TODO funzione per caricare i suoni con un indice e non con i numeri fissi
         //MUSICHE
-        musicURL[0] = getClass().getResource("/sound/Menu Principale.wav");
-        musicURL[1] = getClass().getResource("/sound/gymv1.wav");
-        musicURL[2] = getClass().getResource("/sound/Tempo Libero.wav");
-        musicURL[3] = getClass().getResource("/sound/showerv1.wav");
-        musicURL[4] = getClass().getResource("/sound/Tutorial.wav");
-        musicURL[5] = getClass().getResource("/sound/Luci Spente.wav");
+        musicURL[0] = getClass().getResource("/sound/music/Menu Principale.wav");
+        musicURL[1] = getClass().getResource("/sound/music/Tutorial.wav");
+        musicURL[2] = getClass().getResource("/sound/music/Appello.wav");
+        musicURL[3] = getClass().getResource("/sound/music/Mangiate Ragazzi.wav");
+        musicURL[4] = getClass().getResource("/sound/music/Tempo Libero.wav");
+        musicURL[5] = getClass().getResource("/sound/music/Hit The Gym.wav");
+        musicURL[6] = getClass().getResource("/sound/music/Lavarsi.wav");
+        musicURL[7] = getClass().getResource("/sound/music/Luci Spente.wav");
 
-        //SOUND EFFECTS
-        soundURL[0] = getClass().getResource("/sound/coin.wav");
-        soundURL[1] = getClass().getResource("/sound/powerup.wav");
-        soundURL[2] = getClass().getResource("/sound/unlock.wav");
-        soundURL[3] = getClass().getResource("/sound/fanfare.wav");
-        soundURL[4] = getClass().getResource("/sound/hitmonster.wav");
-        soundURL[5] = getClass().getResource("/sound/receivedamage.wav");
-        soundURL[6] = getClass().getResource("/sound/swingweapon.wav");
-        soundURL[7] = getClass().getResource("/sound/levelup.wav");
-        soundURL[8] = getClass().getResource("/sound/cursor.wav");
-        soundURL[9] = getClass().getResource("/sound/burning.wav");
-        soundURL[10] = getClass().getResource("/sound/cuttree.wav");
-        soundURL[11] = getClass().getResource("/sound/gameover.wav");
-        soundURL[12] = getClass().getResource("/sound/parry.wav");
-        //da modificare
-        soundURL[13] = getClass().getResource("/sound/chipwall.wav");
-        soundURL[14] = getClass().getResource("/sound/dooropened.wav");
+        //SOUND FX
+        soundURL[0] = getClass().getResource("/sound/soundfx/cursor.wav");
+        soundURL[1] = getClass().getResource("/sound/soundfx/cuttree.wav");
+        soundURL[2] = getClass().getResource("/sound/soundfx/hit.wav");
+        soundURL[3] = getClass().getResource("/sound/soundfx/parry (brutto).wav");
+        soundURL[4] = getClass().getResource("/sound/soundfx/receivedamage.wav");
+        soundURL[5] = getClass().getResource("/sound/soundfx/unlock.wav");
+        soundURL[6] = getClass().getResource("/sound/soundfx/swingarm.wav");
+        soundURL[7] = getClass().getResource("/sound/soundfx/gameover.wav");
+        soundURL[8] = getClass().getResource("/sound/soundfx/escaped.wav");
     }
 
     public void setSound(int i){

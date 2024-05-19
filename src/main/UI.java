@@ -1,7 +1,6 @@
 package main;
 
 import entity.Entity;
-import entity.NPC_OldMan;
 import object.*;
 
 import java.awt.*;
@@ -928,7 +927,7 @@ public class UI {
             if(gp.keyH.enterPressed){
                 subState = 0;
                 titleScreenState = 0;
-                gp.keyH.cambiaMusica(0);
+                gp.keyH.changeMusic(0);
                 gp.gameState = gp.titleState;
                 gp.resetGame(true);
             }
