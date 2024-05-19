@@ -37,18 +37,18 @@ public class AssetSetter {
 
 
         gp.obj[mapNum][i] = new OBJ_Axe(gp);
-        gp.obj[mapNum][i].visible();
-        gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        //gp.obj[mapNum][i].visible();
+        gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 11 * gp.tileSize;
 
         i++;
         gp.obj[mapNum][i] = new OBJ_Pickaxe(gp);
-        gp.obj[mapNum][i].worldX = 37 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 12 * gp.tileSize;
         i++;
         gp.obj[mapNum][i] = new OBJ_Scissors(gp);
-        gp.obj[mapNum][i].worldX = 38 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
+        gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
         i++;
 
         /*gp.obj[mapNum][i] = new OBJ_Rock(gp);
