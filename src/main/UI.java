@@ -21,6 +21,7 @@ public class UI {
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
     public boolean gameDone = false;
+    public boolean start = false;
 
     public String currentDialog = "";
     public int commandNum = 0;
@@ -81,28 +82,33 @@ public class UI {
             drawPlayerLife();
             drawHotbar();
             drawMessage();
+            drawClock();
         }
 
         //stato di pausa
         if(gp.gameState == gp.pauseState){
+            drawClock();
             drawPlayerLife();
             drawPauseScreen();
         }
 
         //stato di dialogo
         if (gp.gameState == gp.dialogueState) {
+            drawClock();
             drawPlayerLife();
             drawDialogueScreen();
         }
 
         //STATO INVENTARIO
         if(gp.gameState == gp.characterState){
+            drawClock();
             drawInventory(gp.player, true);
             drawCharacterScreen();
         }
 
         //STATO OPZIONI
         if(gp.gameState == gp.optionsState){
+            drawClock();
             drawOptionScreen();
         }
 
@@ -113,11 +119,13 @@ public class UI {
 
         //STATO TRANSIZIONE
         if(gp.gameState == gp.transitionState){
+            drawClock();
             drawTransition();
         }
 
         //STATO SCAMBIO
         if(gp.gameState == gp.tradeState){
+            drawClock();
             drawTradeScreen();
         }
 
@@ -127,6 +135,7 @@ public class UI {
         }
 
         if(gp.gameState == gp.craftingState){
+            drawClock();
             drawCraftingScreen(gp.player, true);
         }
     }
@@ -275,10 +284,11 @@ public class UI {
         else{
             temp = true;
             npc.dialogueIndex = 0;
-            if(gp.gameState == gp.dialogueState)
+            if(gp.gameState == gp.dialogueState || gp.gameState == gp.tutorialState){
                 gp.gameState = gp.playState;
-            else if(gp.gameState == gp.tutorialState)
-                gp.csManager.scenePhase++;
+                changeDayMusic();
+                start = true;
+            }
         }
 
         for (String line : currentDialog.split("\n")){
@@ -1162,6 +1172,74 @@ public class UI {
                 gp.eManager.lighting.dayCounter = 0;
                 gp.gameState = gp.playState;
             }
+        }
+    }
+
+    int cont = 0, min = 0, hours = 10;
+    String smin = null, shours = null;
+
+    public void drawClock(){
+
+        if(cont < 60) {
+            cont++;
+        }
+        else {
+            cont = 0;
+            min++;
+        }
+
+        if(min >= 60){
+            min = 0;
+            hours++;
+        }
+
+        if(hours >= 24)
+            hours = 0;
+
+        if(min <= 9){
+            smin = "0" + min;
+        }
+        else
+            smin = "" + min;
+        if(hours <= 9){
+            shours = "0" + hours;
+        }
+        else
+            shours = "" + hours;
+        g2.drawString(shours + " : " + smin, gp.tileSize * 18 + 32, gp.tileSize * 5 - 8);
+
+    }
+
+    boolean twoHours = false;
+
+    public void changeDayMusic(){
+
+        if(hours >= 8 && hours < 9 || hours >= 13 && hours < 14 || hours >= 21 && hours < 22){
+            gp.keyH.changeMusic(2);
+        }
+
+        if(hours >= 9 && hours < 10 || hours >= 12 && hours < 13 || hours >= 20 && hours < 21){
+            gp.keyH.changeMusic(3);
+        }
+
+        if(hours >= 10 && hours < 12 || hours >= 17 && hours < 19){
+            twoHours = true;
+            gp.keyH.changeMusic(4);
+        }
+
+        if(hours >= 14 && hours < 16){
+            twoHours = true;
+            gp.keyH.changeMusic(5);
+        }
+
+        twoHours = false;
+
+        if(hours >= 16 && hours < 17){
+            gp.keyH.changeMusic(6);
+        }
+
+        if(hours >= 22){
+            gp.keyH.changeMusic(7);
         }
     }
 }

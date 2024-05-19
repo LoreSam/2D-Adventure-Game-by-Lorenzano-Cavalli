@@ -151,6 +151,8 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
 
+    boolean changed = false;
+
     @Override
     public void run() {
 
@@ -160,6 +162,7 @@ public class GamePanel extends JPanel implements Runnable{
         long currentTime;
         long timer = 0;
         long cont = 0;
+        int dcont = -2;
         int drawCount = 0;
 
         while (gameThread != null){
@@ -180,15 +183,31 @@ public class GamePanel extends JPanel implements Runnable{
 
             if (timer >= 1000000000)
             {
-                //System.out.println("FPS: " + drawCount);
-                drawCount=0;
-                timer=0;
+                drawCount = 0;
+                timer = 0;
                 cont++;
+                if(ui.start)
+                    dcont++;
             }
 
             if(cont == 60){
                 saveLoad.save();
                 cont = 0;
+            }
+
+            System.out.println(dcont);
+
+            if(ui.twoHours) {
+                if (dcont >= 120) {
+                    ui.changeDayMusic();
+                    dcont = -1;
+                }
+            }
+            else {
+                if (dcont >= 60) {
+                    ui.changeDayMusic();
+                    dcont = -1;
+                }
             }
         }
     }

@@ -18,12 +18,12 @@ public class IT_Door extends InteractiveTile {
         down1 = setup("/objects/door", gp.tileSize, gp.tileSize);
         collision = true;
 
-        solidArea.x = 0;
+        /*solidArea.x = 0;
         solidArea.y = 16;
         solidArea.width = 48;
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultY = solidArea.y;*/
     }
 
     /*@Override

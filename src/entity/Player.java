@@ -3,6 +3,8 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import object.*;
+import tile_interactive.IT_Door;
+import tile_interactive.InteractiveTile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -59,14 +61,13 @@ public class Player extends Entity{
         //currentWeapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         currentLight = new OBJ_Lantern(gp);
-        projectile = new OBJ_Fireball(gp);
         //projectile = new OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
 
         getImage();
         getAttackImage();
-        getGuardImage();
+        //getGuardImage();
         setItems();
         setDialogue();
     }
@@ -98,7 +99,6 @@ public class Player extends Entity{
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Boots(gp));
-        inventory.add(new OBJ_Chest(gp));
         inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Potion_Red(gp));
@@ -148,45 +148,24 @@ public class Player extends Entity{
     }
 
     public void getAttackImage(){
-        if(currentWeapon.type == type_sword) {
-            attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
-        }
-        if(currentWeapon.type == type_axe) { //TODO immagini con oggetti in mano
-            attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
-        }
-        if(currentWeapon.type == type_pickaxe || currentWeapon.type == type_scissors) { //TODO immagini con oggetti in mano
-            attackUp1 = setup("/player/boy_pick_up_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setup("/player/boy_pick_up_2", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setup("/player/boy_pick_down_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setup("/player/boy_pick_down_2", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setup("/player/boy_pick_left_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setup("/player/boy_pick_left_2", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setup("/player/boy_pick_right_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setup("/player/boy_pick_right_2", gp.tileSize * 2, gp.tileSize);
-        }
+
+        attackUp1 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
+        attackUp2 = setup("/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
+        attackDown1 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+        attackDown2 = setup("/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+        attackLeft1 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
+        attackLeft2 = setup("/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
+        attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
+        attackRight2 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
     }
 
-    public void getGuardImage(){
+    /*public void getGuardImage(){
 
         guardUp = setup("/player/boy_guard_up", gp.tileSize, gp.tileSize);
         guardDown = setup("/player/boy_guard_down", gp.tileSize, gp.tileSize);
         guardLeft = setup("/player/boy_guard_left", gp.tileSize, gp.tileSize);
         guardRight = setup("/player/boy_guard_right", gp.tileSize, gp.tileSize);
-    }
+    }*/
 
     public void update(){
 
@@ -237,6 +216,7 @@ public class Player extends Entity{
             guardCounter++;
         }
         else if(keyH.downPressed || keyH.upPressed || keyH.leftPressed || keyH.rightPressed || keyH.enterPressed || keyH.spacePressed) {
+
             if (keyH.upPressed) {
                 direction = "up";
             } else if (keyH.downPressed) {
@@ -314,7 +294,7 @@ public class Player extends Entity{
         }*/
 
 
-        if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)){
+        /*if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)){
             //IMPOSTA COORDINATE, DIREZIONE E UTENTE DI DEFAULT
             projectile.set(worldX, worldY, direction, true, this);
 
@@ -333,7 +313,7 @@ public class Player extends Entity{
             shotAvailableCounter = 0;
 
             //gp.playSoundEffect(11);
-        }
+        }*/
 
         if(invincible){
             invincibleCounter++;
@@ -433,6 +413,7 @@ public class Player extends Entity{
     }
 
     public void contactDoor(int i){
+
         //OSTACOLI
         if(i != 999){
             if (gp.iTile[gp.currentMap][i].collision && gp.iTile[gp.currentMap][i].type == type_obstacle){

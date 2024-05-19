@@ -120,12 +120,12 @@ public class KeyHandler implements KeyListener {
             if (gp.ui.commandNum == 0) {
                 gp.gameState = gp.dialogueState;
                 gp.eHandler.tutorial();
-                changeMusic(4);
+                changeMusic(1);
             }
             if (gp.ui.commandNum == 1) {
                 gp.saveLoad.load();
                 gp.gameState = gp.playState;
-                changeMusic(4);
+                changeMusic(1);
             }
             if (gp.ui.commandNum == 2) {
                 System.exit(0);
