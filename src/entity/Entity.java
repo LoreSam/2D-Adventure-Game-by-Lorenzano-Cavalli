@@ -124,8 +124,6 @@ public class Entity {
         shotAvailableCounter = 0;
     }
 
-    public void visible(){}
-
     public void setLoot(Entity loot){
 
     }
