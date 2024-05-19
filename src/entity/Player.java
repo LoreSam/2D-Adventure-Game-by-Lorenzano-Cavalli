@@ -102,6 +102,7 @@ public class Player extends Entity{
         inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Potion_Red(gp));
+        inventory.add(new OBJ_Scissors(gp));
     }
 
     public int getCurrentWeaponSlot(){
@@ -167,7 +168,7 @@ public class Player extends Entity{
             attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
             attackRight2 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
         }
-        if(currentWeapon.type == type_pickaxe) { //TODO immagini con oggetti in mano
+        if(currentWeapon.type == type_pickaxe || currentWeapon.type == type_scissors) { //TODO immagini con oggetti in mano
             attackUp1 = setup("/player/boy_pick_up_1", gp.tileSize, gp.tileSize * 2);
             attackUp2 = setup("/player/boy_pick_up_2", gp.tileSize, gp.tileSize * 2);
             attackDown1 = setup("/player/boy_pick_down_1", gp.tileSize, gp.tileSize * 2);
@@ -561,7 +562,7 @@ public class Player extends Entity{
 
         if (itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
-            if (selectedItem.type == type_sword || selectedItem.type == type_axe || selectedItem.type == type_pickaxe){
+            if (selectedItem.type == type_sword || selectedItem.type == type_axe || selectedItem.type == type_pickaxe || selectedItem.type == type_scissors){
                 currentWeapon = selectedItem;
                 attack = getAttack();
                 getAttackImage();

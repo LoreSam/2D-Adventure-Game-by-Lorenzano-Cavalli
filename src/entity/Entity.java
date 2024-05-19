@@ -74,7 +74,7 @@ public class Entity {
     public final int type_pickaxe = 11;
     public final int type_stick = 12;
     public final int type_rock = 13;
-    //public final int type_scissors_craft = 14;
+    public final int type_scissors = 14;
 
     //stato del personaggio
     public int maxLife;
@@ -125,6 +125,10 @@ public class Entity {
     }
 
     public void setLoot(Entity loot){
+
+    }
+
+    public void drawGrateBar(){
 
     }
 

@@ -276,14 +276,19 @@ public class AssetSetter {
         gp.iTile[mapNum][i] = new IT_Wall(gp, 30, 17);
         i++;
 
-        if(gp.currentMap == 2){
-            mapNum = 2;
-            gp.iTile[mapNum][i] = new IT_Bed(gp, 48, 47);
-            i++;
-            gp.iTile[mapNum][i] = new IT_Cesso(gp, 52, 47);
-            i++;
-            gp.iTile[mapNum][i] = new IT_Chest(gp, 52, 48);
-            i++;
-        }
+        //GRATE DISTRUGGIBILI
+        gp.iTile[mapNum][i] = new IT_Grate(gp, 9, 10);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Grate(gp, 9, 11);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Grate(gp, 9, 12);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Grate(gp, 17, 6);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Grate(gp, 18, 6);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Grate(gp, 19, 6);
+        i++;
+
     }
 }

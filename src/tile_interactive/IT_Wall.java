@@ -15,6 +15,7 @@ public class IT_Wall extends InteractiveTile{
     GamePanel gp;
 
     public IT_Wall(GamePanel gp, int col, int row) {
+
         super(gp, col, row);
         this.gp = gp;
         this.worldX = gp.tileSize*col;

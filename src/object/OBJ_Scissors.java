@@ -9,7 +9,7 @@ public class OBJ_Scissors extends Entity {
 
     public OBJ_Scissors(GamePanel gp) {
         super(gp);
-        type = type_pickaxe;
+        type = type_scissors;
         name = objName;
         down1 = setup("/objects/scissors", gp.tileSize, gp.tileSize);
         attackValue = 2;
