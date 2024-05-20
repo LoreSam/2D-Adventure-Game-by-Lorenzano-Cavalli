@@ -20,8 +20,13 @@ public class OBJ_Coin_Bronze extends Entity {
     }
 
     public void use(Entity entity){
+        String text;
         gp.playSoundEffect(2);
-        gp.ui.addMessage("Moneta +"+value);
+        if(gp.language == 1)
+            text = "Coin";
+        else
+            text = "Moneta";
+        gp.ui.addMessage(text+value);
         gp.player.coin += value;
     }
 }

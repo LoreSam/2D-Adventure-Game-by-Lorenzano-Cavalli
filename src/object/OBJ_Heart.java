@@ -21,8 +21,13 @@ public class OBJ_Heart extends Entity {
     }
 
     public void use(Entity entity){
+        String text;
         gp.playSoundEffect(2);
-        gp.ui.addMessage("Vita +"+value);
+        if (gp.language == 1)
+            text = "Life +";
+        else
+            text = "Vita +";
+        gp.ui.addMessage(text+value);
         entity.life += value;
     }
 }

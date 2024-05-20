@@ -15,7 +15,10 @@ public class OBJ_Pickaxe extends Entity {
         attackValue = 2;
         attackArea.width = 30;
         attackArea.height = 30;
-        description = "[Piccone] \n Piccone del porcodio";
+        if (gp.language == 1)
+            description = "[Pickaxe] \nCan break rocks";
+        else
+            description = "[Piccone] \nPuo rempere le roccie";
         price = 75;
     }
 }

@@ -16,7 +16,10 @@ public class OBJ_Stick extends Entity {
         type = type_stick;
         name = objName;
         down1 = setup("/objects/stick", gp.tileSize, gp.tileSize);
-        description = "[" + name + "]\n Bastone";
+        if (gp.language == 1)
+            description = "[" + name + "]\nRod";
+        else
+            description = "[" + name + "]\n Bastone";
         //stickIn = false;
     }
 }

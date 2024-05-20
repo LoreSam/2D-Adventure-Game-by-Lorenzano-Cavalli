@@ -16,6 +16,9 @@ public class OBJ_Key extends Entity {
 
         name = objName;
         down1 = setup("/objects/key", gp.tileSize, gp.tileSize);
-        description = "[" + name + "]\n Apre una porta.";
+        if (gp.language == 1)
+            description = "[" + name + "]\n Open every door.";
+        else
+            description = "[" + name + "]\n Apre una porta.";
     }
 }

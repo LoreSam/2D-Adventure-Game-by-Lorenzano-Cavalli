@@ -6,6 +6,7 @@ import main.GamePanel;
 public class OBJ_Scissors extends Entity {
 
     public static final String objName = "Forbici";
+    String text;
 
     public OBJ_Scissors(GamePanel gp) {
         super(gp);
@@ -15,7 +16,13 @@ public class OBJ_Scissors extends Entity {
         attackValue = 2;
         attackArea.width = 30;
         attackArea.height = 30;
-        description = "[Piccone] \n Piccone del porcodio";
+        if (gp.language == 1) {
+            text = "[Scissors] \nCan break fences rust";
+        }
+        else {
+            text = "[Forbici] \nPuò rompere le recinzioni arrugginite";
+        }
+        description = text;
         price = 75;
     }
 }

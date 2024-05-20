@@ -26,8 +26,13 @@ public class OBJ_Energy extends Entity {
     }
 
     public void use(Entity entity){
+        String text;
         gp.playSoundEffect(2);
-        gp.ui.addMessage("Energia +"+value);
+        if (gp.language == 1)
+            text = "Energy +";
+        else
+            text = "Energia +";
+        gp.ui.addMessage(text+value);
         entity.energy += value;
     }
 }
