@@ -1439,7 +1439,7 @@ public class UI {
         }
     }
 
-    int cont = 0, min = 0, hours = 8;
+    public int cont = 0, min = 0, hours = 8;
     String smin = null, shours = null;
 
     public void drawClock(){
@@ -1480,55 +1480,26 @@ public class UI {
 
         if(hours >= 8 && hours < 9 || hours >= 13 && hours < 14 || hours >= 21 && hours < 22){
             gp.keyH.changeMusic(2);
-            if(gp.language == 1)
-                text = "Roll Call";
-            else
-                text = "Appello";
         }
 
         if(hours >= 9 && hours < 10 || hours >= 12 && hours < 13 || hours >= 20 && hours < 21){
             gp.keyH.changeMusic(3);
-            if(gp.language == 1)
-                text = "Lunch";
-            else
-                text = "Pranzo";
         }
 
         if(hours >= 10 && hours < 12 || hours >= 17 && hours < 20){
             gp.keyH.changeMusic(4);
-
-            if(gp.language == 1)
-                text = "Free Time";
-            else
-                text = "Tempo Libero";
         }
 
         if(hours >= 14 && hours < 16){
             gp.keyH.changeMusic(5);
-
-            if(gp.language == 1)
-                text = "Workout";
-            else
-                text = "Allenamento";
         }
 
         if(hours >= 16 && hours < 17){
             gp.keyH.changeMusic(6);
-
-            if(gp.language == 1)
-                text = "Shower";
-            else
-                text = "Doccia";
         }
 
         if(hours >= 22){
             gp.keyH.changeMusic(7);
-
-            if(gp.language == 1)
-                text = "Lights Out";
-            else
-                text = "Luci Spente";
-
         }
         g2.drawString(text, gp.tileSize * 16 + 32, gp.tileSize * 5 - 8);
     }
@@ -1547,10 +1518,22 @@ public class UI {
 
         if(hours >= 9 && hours < 10 || hours >= 12 && hours < 13 || hours >= 20 && hours < 21){
 
-            if(gp.language == 1)
-                text = "Lunch";
-            else
-                text = "Pranzo";
+            if(gp.language == 1) {
+                if (hours == 9)
+                    text = "Breakfast";
+                else if(hours == 12)
+                    text = "Lunch";
+                else if(hours == 20)
+                    text = "Dinner";
+            }
+            else {
+                if (hours == 9)
+                    text = "Colazione";
+                else if (hours == 12)
+                    text = "Pranzo";
+                else if (hours == 20)
+                    text = "Cena";
+            }
         }
 
         if(hours >= 10 && hours < 12 || hours >= 17 && hours < 20){
@@ -1577,7 +1560,7 @@ public class UI {
                 text = "Doccia";
         }
 
-        if(hours >= 22){
+        if(hours >= 22 || hours < 8){
 
             if(gp.language == 1)
                 text = "Lights Out";

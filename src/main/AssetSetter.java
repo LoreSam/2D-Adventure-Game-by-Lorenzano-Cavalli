@@ -290,5 +290,31 @@ public class AssetSetter {
         gp.iTile[mapNum][i] = new IT_Grate(gp, 19, 6);
         i++;
 
+        //TAVOLI MENSA
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 20, 51);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 21, 51);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 22, 51);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 27, 51);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 28, 51);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 29, 51);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 20, 55);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 21, 55);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 22, 55);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 27, 55);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 28, 55);
+        i++;
+        gp.iTile[mapNum][i] = new IT_FoodTable(gp, 29, 55);
+        i++;
+
     }
 }

@@ -88,9 +88,7 @@ public class Lighting {
 
         if(dayState == day){
 
-            dayCounter++;
-
-            if(dayCounter > 600){ //MODIFICARE IL COUNTER PER MODIFICARE LA DURATA DELLA GIORNATA (1200 = 2 minuti)
+            if(gp.ui.hours >= 18 && gp.ui.hours < 22){ //MODIFICARE IL COUNTER PER MODIFICARE LA DURATA DELLA GIORNATA (1200 = 2 minuti)
                 dayState = dusk;
                 dayCounter = 0;
             }
@@ -98,27 +96,26 @@ public class Lighting {
 
         if(dayState == dusk){
 
-            filterAlpha += 0.001f;
+            filterAlpha += 0.00005f;
 
             if(filterAlpha > 1f){
                 filterAlpha = 1f;
-                dayState = night;
+                //dayState = night;
             }
         }
 
-        if(dayState == night){
 
-            dayCounter++;
-
-            if(dayCounter > 36000){
-                dayState = dawn;
-                dayCounter = 0;
-            }
+        if(gp.ui.hours >= 22){
+            dayState = night;
+            dayCounter = 0;
         }
+
+        if(gp.ui.hours == 7 && dayState == night)
+            dayState = dawn;
 
         if(dayState == dawn){
 
-            filterAlpha -= 0.001f;
+            filterAlpha -= 0.0003f;
 
             if(filterAlpha < 0f){
                 filterAlpha = 0;
