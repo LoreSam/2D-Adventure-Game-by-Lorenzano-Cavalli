@@ -13,6 +13,7 @@ public class Player extends Entity{
 
     public final int screenX, screenY;
     public boolean lightUpdated = false;
+    public int speed_cont = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
         super(gp);
@@ -40,20 +41,20 @@ public class Player extends Entity{
 
         worldX = gp.tileSize * 54;
         worldY = gp.tileSize * 13;
-        defaultSpeed = 4;
+        defaultSpeed = 3;
         speed = defaultSpeed;
         direction = "down";
 
         level = 1;
         maxLife = 100;
         life = maxLife;
-        strength = 1; // + FORZA = + DANNO CAUSATO
-        dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)
+        strength = 10; // + FORZA = + DANNO CAUSATO
+        //dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)
         exp = 0;
         nextLevelExp = 5;
         coin = 500;
         maxEnergy = 100;
-        energy = 2;
+        energy = maxEnergy;
         ammo = 10;
         currentWeapon = new OBJ_Sword_Normal(gp);
         //currentWeapon = new OBJ_Axe(gp);
@@ -247,7 +248,7 @@ public class Player extends Entity{
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             contactDoor(iTileIndex);
             sleep(iTileIndex);
-            eat(iTileIndex);
+
 
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
@@ -275,12 +276,19 @@ public class Player extends Entity{
 
             spriteCounter++;
             if (spriteCounter > 12) { //FIXATO PORCODIO
+                eat(iTileIndex);
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+
+            trainingCounter++;
+            if(trainingCounter > 60){
+                training(iTileIndex);
+                trainingCounter = 0;
             }
         }
 
@@ -356,6 +364,15 @@ public class Player extends Entity{
         if(i != 999){
             if(gp.iTile[gp.currentMap][i].type == type_eatable && gp.keyH.interactKeyPressed) {
                 gp.iTile[gp.currentMap][i].eat();
+            }
+        }
+    }
+
+    public void training(int i){
+
+        if(i != 999){
+            if(gp.iTile[gp.currentMap][i].type == type_training && gp.keyH.interactKeyPressed) {
+                gp.iTile[gp.currentMap][i].training();
             }
         }
     }

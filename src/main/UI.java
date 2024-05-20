@@ -423,12 +423,12 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.strength);
+        value = String.valueOf(gp.player.strength + "/100");
         textX = alignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gp.player.dexterity);
+        value = String.valueOf(gp.player.speed_cont*2 + "/100");
         textX = alignRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -1511,7 +1511,7 @@ public class UI {
         if(hours >= 8 && hours < 9 || hours >= 13 && hours < 14 || hours >= 21 && hours < 22){
 
             if(gp.language == 1)
-                text = "Roll Call";
+                text = "Rollcall";
             else
                 text = "Appello";
         }

@@ -25,6 +25,7 @@ public class Entity {
     public boolean dying = false;
     int dyingCounter = 0 ;
     public int spriteCounter = 0;
+    public int trainingCounter = 0;
     public int shotAvailableCounter = 0;
     public int spriteNum = 1;
     public boolean attacking = false;
@@ -76,6 +77,7 @@ public class Entity {
     public final int type_rock = 13;
     public final int type_scissors = 14;
     public final int type_eatable = 15;
+    public final int type_training = 16;
 
     //stato del personaggio
     public int maxLife;
@@ -225,6 +227,8 @@ public class Entity {
         gp.ui.npc = entity;
         dialogueSet = setNum;
     }
+
+    public void training(){}
 
     public void interact(){
 

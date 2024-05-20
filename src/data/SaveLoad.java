@@ -1,8 +1,6 @@
 package data;
 
-import entity.Entity;
 import main.GamePanel;
-import object.*;
 
 import java.io.*;
 
@@ -13,8 +11,6 @@ public class SaveLoad {
     public SaveLoad(GamePanel gp) {
         this.gp = gp;
     }
-
-
 
     public void save() {
 
@@ -124,13 +120,13 @@ public class SaveLoad {
                     }
                     else{
                         gp.obj[i][j] = gp.eGenerator.getObject(ds.mapObjectNames[i][j]);
-                        //gp.obj[i][j].worldX = ds.mapObjectWorldX[i][j];
-                        //gp.obj[i][j].worldY = ds.mapObjectWorldY[i][j];
+                        /*gp.obj[i][j].worldX = ds.mapObjectWorldX[i][j];
+                        gp.obj[i][j].worldY = ds.mapObjectWorldY[i][j];
                         if(ds.mapObjectLootNames[i][j] != null){
                             gp.obj[i][j].loot = gp.eGenerator.getObject(ds.mapObjectLootNames[i][j]);
                         }
-                        //gp.obj[i][j].opened = ds.mapObjectOpened[i][j];
-                        /*if(gp.obj[i][j].opened){
+                        gp.obj[i][j].opened = ds.mapObjectOpened[i][j];
+                        if(gp.obj[i][j].opened){
                             //TODO per interazione con chest
                         }*/
                     }

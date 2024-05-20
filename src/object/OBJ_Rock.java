@@ -22,18 +22,7 @@ public class OBJ_Rock extends Projectile {
         useCost = 1;
         alive = false;
         //rockIn = false;
-        getImage();
-    }
-
-    public void getImage(){
-        up1 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        up2 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        down1 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        left1 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        left2 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        right1 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
-        right2 = setup("/projectile/rock_down_1", gp.tileSize, gp.tileSize);
+        down1 = setup("/objects/rock", gp.tileSize, gp.tileSize);
     }
 
     public boolean haveResource(Entity user){

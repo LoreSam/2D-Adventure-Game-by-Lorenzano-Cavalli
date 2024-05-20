@@ -2,6 +2,8 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Rock;
+import object.OBJ_Stick;
 
 import java.awt.*;
 
@@ -55,5 +57,10 @@ public class IT_DryTree extends InteractiveTile{
     public int getParticleMaxlife(){
         int maxLife = 20;
         return maxLife;
+    }
+
+    public void checkDrop(){
+
+        dropItem(new OBJ_Stick(gp));
     }
 }
