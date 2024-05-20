@@ -159,6 +159,34 @@ public class AssetSetter {
         gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 18);
         i++;
 
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 45, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 46, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 47, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 48, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 49, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 50, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 51, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 52, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 53, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 54, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 55, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 56, 81);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 57, 81);
+        i++;
+
+
         //CELLE ALTE
         gp.iTile[mapNum][i] = new IT_Bed(gp, 52, 11);
         i++;
