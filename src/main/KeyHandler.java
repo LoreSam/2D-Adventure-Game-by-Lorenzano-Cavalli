@@ -138,9 +138,9 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P){
             gp.gameState = gp.pauseState;
         }
-        if(code == KeyEvent.VK_M){
+        /*if(code == KeyEvent.VK_M){
             gp.gameState = gp.mapState;
-        }
+        }*/
         if(code == KeyEvent.VK_Q){
             guardKeyPressed = true;
         }
@@ -165,15 +165,17 @@ public class KeyHandler implements KeyListener {
 
     public void mapState(int code){
 
-        if(code == KeyEvent.VK_M){
+        /*if(code == KeyEvent.VK_M){
             gp.gameState = gp.mapState;
-        }
+        }*/
     }
 
     public void characterState(int code){
 
         if(code == KeyEvent.VK_E){
             gp.gameState = gp.playState;
+            gp.ui.playerSlotCol = 0;
+            gp.ui.playerSlotRow = 0;
         }
 
         if (code == KeyEvent.VK_ENTER){
@@ -190,6 +192,8 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_C){
             gp.gameState = gp.playState;
+            gp.ui.playerSlotCol = 0;
+            gp.ui.playerSlotRow = 0;
         }
 
         if(code == KeyEvent.VK_LEFT && gp.ui.playerSlotCol != 0){

@@ -52,17 +52,15 @@ public class Player extends Entity{
         //dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)
         exp = 0;
         nextLevelExp = 5;
-        coin = 500;
+        coin = 100;
         maxEnergy = 100;
         energy = maxEnergy;
-        ammo = 10;
         currentWeapon = new OBJ_Sword_Normal(gp);
         //currentWeapon = new OBJ_Axe(gp);
-        currentShield = new OBJ_Shield_Wood(gp);
         currentLight = new OBJ_Lantern(gp);
         //projectile = new OBJ_Rock(gp);
         attack = getAttack();
-        defense = getDefense();
+        defense = 0;
 
         getImage();
         getAttackImage();
@@ -95,10 +93,8 @@ public class Player extends Entity{
 
         inventory.clear();
         inventory.add(currentWeapon);
-        inventory.add(currentShield);
+        //inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Boots(gp));
-        inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Potion_Red(gp));
         inventory.add(new OBJ_Scissors(gp));
@@ -117,25 +113,14 @@ public class Player extends Entity{
         return currentWeaponSlot;
     }
 
-    public int getCurrentShieldSlot(){
-        int curretShieldSlot = 0;
-        for(int i = 0; i < inventory.size(); i++){
-            if(inventory.get(i) == currentShield){
-                curretShieldSlot = i;
-            }
-        }
-
-        return curretShieldSlot;
-    }
-
     public int getAttack(){
         attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
 
-    public int getDefense(){
+    /*public int getDefense(){
         return defense = dexterity * currentShield.defenseValue;
-    }
+    }*/
 
     public void getImage(){
         up1 = setup("/player/boy_up_1", gp.tileSize, gp.tileSize);
@@ -169,6 +154,8 @@ public class Player extends Entity{
     }*/
 
     public void update(){
+
+        int iTileIndex = 0;
 
         if(knockBack){
 
@@ -245,10 +232,9 @@ public class Player extends Entity{
             contactMonster(monsterIndex);
 
             //CONTROLLO COLLISIONI OGGETTI INTERATTIVI
-            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             contactDoor(iTileIndex);
             sleep(iTileIndex);
-
 
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
@@ -284,13 +270,33 @@ public class Player extends Entity{
                 }
                 spriteCounter = 0;
             }
-
-            trainingCounter++;
-            if(trainingCounter > 60){
-                training(iTileIndex);
-                trainingCounter = 0;
-            }
         }
+
+        trainingCounter++;
+        if(trainingCounter > 60){
+            training(iTileIndex);
+            trainingCounter = 0;
+        }
+
+        /*if(gp.iTile[gp.currentMap][iTileIndex].collision && gp.iTile[gp.currentMap][iTileIndex].type == type_obstacle){ //TODO per apertura e chiusura porte (non funziona)
+            contactDoor(iTileIndex);
+            doorCounter++;
+            if(doorCounter > 90) {
+                System.out.println("ciao");
+                doorClosed(iTileIndex);
+                //gp.aSetter.setInteractiveTile();
+                doorCounter = 0;
+            }
+        }*/
+
+        /*if(gp.gameState == gp.playState || gp.gameState == gp.dialogueState || gp.gameState == gp.craftingState || gp.gameState == gp.optionsState || gp.gameState == gp.characterState || gp.gameState == gp.tradeState || gp.gameState == gp.mapState){
+            dayCounter++;
+            if(dayCounter > 3601){
+                gp.ui.changeDayMusic();
+                dayCounter = 0;
+            }
+            System.out.println(dayCounter);
+        }*/
 
         /*spriteCounter++;
         if (spriteCounter > 12) { //se messo qua abbiamo il continuo aggiornamento del personaggio
@@ -353,7 +359,7 @@ public class Player extends Entity{
 
     public void sleep(int i){
         if(i != 999){
-            if(gp.keyH.interactKeyPressed && gp.iTile[gp.currentMap][i].type == type_bed){
+            if(gp.keyH.interactKeyPressed && gp.iTile[gp.currentMap][i].type == type_bed && gp.eManager.lighting.dayState == gp.eManager.lighting.night){
                 gp.iTile[gp.currentMap][i].sleep();
             }
         }
@@ -371,10 +377,36 @@ public class Player extends Entity{
     public void training(int i){
 
         if(i != 999){
-            if(gp.iTile[gp.currentMap][i].type == type_training && gp.keyH.interactKeyPressed) {
+            if(gp.iTile[gp.currentMap][i] != null && gp.iTile[gp.currentMap][i].type == type_training && gp.keyH.interactKeyPressed) {
                 gp.iTile[gp.currentMap][i].training();
             }
         }
+    }
+
+    public boolean doorOpened(int i){
+
+        if(i != 999){
+            if(gp.iTile[gp.currentMap][i].type == type_obstacle && gp.player.collisionOn) {
+                gp.iTile[gp.currentMap][i].doorOpened();
+                return true;
+            }
+        }
+        else
+            return false;
+        return false;
+    }
+
+    public boolean doorClosed(int i){
+
+        if(i != 999){
+            if(gp.iTile[gp.currentMap][i].type != type_obstacle && !gp.player.collisionOn) {
+                gp.iTile[gp.currentMap][i].doorClosed();
+                return true;
+            }
+        }
+        else
+            return false;
+        return false;
     }
 
     public void pickUpObject(int i){
@@ -401,41 +433,10 @@ public class Player extends Entity{
                 else {
                     text = "Spazi esauriti!";
                 }
-                gp.ui.addMessage(text);
+                //gp.ui.addMessage(text); //TODO PER I MESSAGGI LATERALI
                 gp.obj[gp.currentMap][i] = null;
             }
             gp.playSoundEffect(0);
-            /*String objectName = gp.obj[index].name;
-            switch(objectName){
-                case "Key":
-                    gp.playSoundEffect(1);
-                    hasKey++;
-                    gp.obj[index] = null;
-                    gp.ui.showMessage("Hai ottenuto una chiave!");
-                    break;
-                case "Door":
-                    if(hasKey > 0) {
-                        gp.playSoundEffect(3);
-                        gp.obj[index] = null;
-                        hasKey--;
-                        gp.ui.showMessage("Hai aperto una porta!");
-                    }
-                    else{
-                        gp.ui.showMessage("Ti serve una chiave!");
-                    }
-                    break;
-                case "Boots":
-                    gp.playSoundEffect(2);
-                    speed += 1;
-                    gp.obj[index] = null;
-                    gp.ui.showMessage("Più veloce!");
-                    break;
-                case "Chest":
-                    gp.ui.gameDone = true;
-                    gp.stopMusic();
-                    gp.playSoundEffect(4);
-                    break;
-            }*/
         }
     }
 
@@ -446,17 +447,14 @@ public class Player extends Entity{
             if (gp.iTile[gp.currentMap][i].collision && gp.iTile[gp.currentMap][i].type == type_obstacle){
 
                 System.out.println("putt ana de armas");
-                gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].doorOpened();
+                gp.iTile[gp.currentMap][i].doorOpened();
             }
         }
     }
 
     public void interactNPC(int index) {
 
-        if (gp.keyH.enterPressed && index != 999) {
-            gp.npc[gp.currentMap][index].speak();
-        }
-        else if(gp.keyH.spacePressed){
+        if(gp.keyH.spacePressed){
             gp.playSoundEffect(6);
             attacking = true;
         }
@@ -498,13 +496,13 @@ public class Player extends Entity{
                     damage = 0;
                 }
                 gp.monster[gp.currentMap][i].life -= damage;
-                gp.ui.addMessage(damage + " danno!");
+                //gp.ui.addMessage(damage + " danno!");
                 gp.monster[gp.currentMap][i].invincible = true;
                 gp.monster[gp.currentMap][i].damageReaction();
                 if (gp.monster[gp.currentMap][i].life <= 0){
                     gp.monster[gp.currentMap][i].dying = true;
-                    gp.ui.addMessage("mostro ucciso " + gp.monster[gp.currentMap][i].name);
-                    gp.ui.addMessage("Exp " + gp.monster[gp.currentMap][i].exp);
+                    //gp.ui.addMessage("mostro ucciso " + gp.monster[gp.currentMap][i].name);
+                    //gp.ui.addMessage("Exp " + gp.monster[gp.currentMap][i].exp);
                     exp += gp.monster[gp.currentMap][i].exp;
                     checkLevelUp();
                 }
@@ -549,7 +547,7 @@ public class Player extends Entity{
             dexterity++;
 
             attack = getAttack();
-            defense =  getDefense();
+            defense = 0;
 
             //gp.playSoundEffect(8);
             gp.gameState = gp.dialogueState;
@@ -577,7 +575,7 @@ public class Player extends Entity{
             }
             if (selectedItem.type == type_shield){
                 currentShield = selectedItem;
-                defense = getDefense();
+                defense = 0;
             }
 
             /*if(selectedItem.type == type_light){

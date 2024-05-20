@@ -159,6 +159,25 @@ public class TileManager {
             tile[39] = new Tile();
             tile[39].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/void.png")));
 
+            tile[40] = new Tile();
+            tile[40].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/acqua_f.png")));
+            tile[40].collision = true;
+
+            tile[41] = new Tile();
+            tile[41].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/acqua_mb.png")));
+            tile[41].collision = true;
+
+            tile[42] = new Tile();
+            tile[42].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/acqua_md.png")));
+            tile[42].collision = true;
+
+            tile[43] = new Tile();
+            tile[43].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/acqua_ms.png")));
+            tile[43].collision = true;
+
+            tile[44] = new Tile();
+            tile[44].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/acqua_mt.png")));
+            tile[44].collision = true;
 
         }catch (IOException e){
             e.printStackTrace();
@@ -210,16 +229,6 @@ public class TileManager {
             if (worldCol == gp.maxWorldCol){
                 worldCol=0;
                 worldRow++;
-            }
-        }
-        if (drawPath){
-            g2.setColor(new Color(255, 0, 0, 70));
-            for (int i = 0; i < gp.pFinder.pathList.size(); i++){
-                int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
-                int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
-                int screenX = worldX - gp.player.worldX + gp.player.screenX;
-                int screenY = worldY - gp.player.worldY + gp.player.screenY;
-                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
             }
         }
     }

@@ -56,7 +56,7 @@ public class UI {
         energy_50 = energy.image3;
         energy_25 = energy.image4;
         energy_blank = energy.image5;
-        Entity bronzecoin = new OBJ_Coin_Bronze(gp);
+        Entity bronzecoin = new OBJ_Coin(gp);
         coin = bronzecoin.down1;
     }
 
@@ -80,7 +80,7 @@ public class UI {
         //stato di gioco
         if(gp.gameState == gp.playState){
             drawPlayerLife();
-            drawHotbar();
+            //drawHotbar();
             drawMessage();
             drawClock();
             changeDayText();
@@ -499,7 +499,7 @@ public class UI {
         for(int i = 0; i < entity.inventory.size(); i++){
 
             //CURSORE OGGETTO EQUIPAGGIATO
-            if (entity.inventory.get(i) == entity.currentWeapon || entity.inventory.get(i) == entity.currentShield ||entity.inventory.get(i) == entity.currentLight){
+            if (entity.inventory.get(i) == entity.currentWeapon  ||entity.inventory.get(i) == entity.currentLight){
                 g2.setColor(new Color(255,255, 255,220));
                 g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
             }
@@ -1474,31 +1474,51 @@ public class UI {
 
     }
 
+    public boolean twoHours = false, threeHours = false;
+
     public void changeDayMusic(){
 
         String text = "";
 
         if(hours >= 8 && hours < 9 || hours >= 13 && hours < 14 || hours >= 21 && hours < 22){
+            twoHours = false;
+            threeHours = false;
             gp.keyH.changeMusic(2);
         }
 
         if(hours >= 9 && hours < 10 || hours >= 12 && hours < 13 || hours >= 20 && hours < 21){
+            twoHours = false;
+            threeHours = false;
             gp.keyH.changeMusic(3);
         }
 
-        if(hours >= 10 && hours < 12 || hours >= 17 && hours < 20){
+        if(hours >= 10 && hours < 12){
+            twoHours = true;
+            threeHours = false;
+            gp.keyH.changeMusic(4);
+        }
+
+        if(hours >= 17 && hours < 20){
+            twoHours = false;
+            threeHours = true;
             gp.keyH.changeMusic(4);
         }
 
         if(hours >= 14 && hours < 16){
+            twoHours = true;
+            threeHours = false;
             gp.keyH.changeMusic(5);
         }
 
         if(hours >= 16 && hours < 17){
+            twoHours = false;
+            threeHours = false;
             gp.keyH.changeMusic(6);
         }
 
         if(hours >= 22){
+            twoHours = false;
+            threeHours = false;
             gp.keyH.changeMusic(7);
         }
         g2.drawString(text, gp.tileSize * 16 + 32, gp.tileSize * 5 - 8);

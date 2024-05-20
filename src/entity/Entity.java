@@ -26,6 +26,7 @@ public class Entity {
     int dyingCounter = 0 ;
     public int spriteCounter = 0;
     public int trainingCounter = 0;
+    public int doorCounter = 0;
     public int shotAvailableCounter = 0;
     public int spriteNum = 1;
     public boolean attacking = false;

@@ -1,8 +1,8 @@
 package main;
 
 import entity.NPC_Merchant;
-import entity.NPC_OldMan;
-import monster.MON_Dogs;
+import entity.NPC_Guard;
+import monster.NPC_Prisoner;
 import object.*;
 import tile_interactive.*;
 
@@ -18,24 +18,6 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-        /*gp.obj[mapNum][i] = new OBJ_Axe(gp);
-        gp.obj[mapNum][i].worldX = 90 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 90 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Pickaxe(gp);
-        gp.obj[mapNum][i].worldX = 91 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 90 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Scissors(gp);
-        gp.obj[mapNum][i].worldX = 92 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 90 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Stick(gp);
-        gp.obj[mapNum][i].worldX = 34 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
-        i++;*/
-
-
         gp.obj[mapNum][i] = new OBJ_Axe(gp);
         gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 11 * gp.tileSize;
@@ -48,8 +30,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
         i++;
-
-        gp.obj[mapNum][i] = new OBJ_Void(gp);
+        /*gp.obj[mapNum][i] = new OBJ_Void(gp);
         gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 11 * gp.tileSize;
         i++;
@@ -60,43 +41,7 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Void(gp);
         gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
-        i++;
-
-        /*gp.obj[mapNum][i] = new OBJ_Rock(gp);
-        gp.obj[mapNum][i].worldX = 35 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
         i++;*/
-        gp.obj[mapNum][i] = new OBJ_Lantern(gp);
-        gp.obj[mapNum][i].worldX = 18 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 20 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Shield_Blue(gp);
-        gp.obj[mapNum][i].worldX = 33 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 18 * gp.tileSize;
-        i++;
-        /*gp.obj[mapNum][i] = new OBJ_Coin_Bronze(gp);
-        gp.obj[mapNum][i].worldX = 26 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 21 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Axe(gp);
-        gp.obj[mapNum][i].worldX = 33 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 21 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Shield_Blue(gp);
-        gp.obj[mapNum][i].worldX = 35 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 21 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Potion_Red(gp);
-        gp.obj[mapNum][i].worldX = 36 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 21 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Heart(gp);
-        gp.obj[mapNum][i].worldX = 22 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 29 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Energy(gp);
-        gp.obj[mapNum][i].worldX = 22 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 31 * gp.tileSize;*/
 
     }
 
@@ -104,13 +49,30 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-        gp.npc[mapNum][i] = new NPC_OldMan(gp);
+        gp.npc[mapNum][i] = new NPC_Guard(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 17;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        i++;
+
+        gp.npc[mapNum][i] = new NPC_Guard(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 18;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        i++;
+
+        gp.npc[mapNum][i] = new NPC_Guard(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 19;
         gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        i++;
 
-        /*gp.npc[mapNum][i] = new NPC_OldMan(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 54;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 12;*/
+        gp.npc[mapNum][i] = new NPC_Guard(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 20;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        i++;
+
+        gp.npc[mapNum][i] = new NPC_Guard(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 21;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        i++;
 
         //SOTTOTERRA
         mapNum = 1;
@@ -118,26 +80,39 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new NPC_Merchant(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 12;
         gp.npc[mapNum][i].worldY = gp.tileSize * 7;
-
-        /*if(gp.currentMap == 2){
-            mapNum = 2;
-            gp.npc[mapNum][i] = new NPC_OldMan(gp);
-            gp.npc[mapNum][i].worldX = gp.tileSize * 50;
-            gp.npc[mapNum][i].worldY = gp.tileSize * 48;
-        }*/
     }
 
     public void setMonster(){
 
         int mapNum = 0;
         int i = 0;
-        gp.monster[mapNum][i] = new MON_Dogs(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 39;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 30;
+        gp.monster[mapNum][i] = new NPC_Prisoner(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 58;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 13;
         i++;
-        gp.monster[mapNum][i] = new MON_Dogs(gp);
+        gp.monster[mapNum][i] = new NPC_Prisoner(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 62;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 13;
+        i++;
+        gp.monster[mapNum][i] = new NPC_Prisoner(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 54;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 20;
+        i++;
+        gp.monster[mapNum][i] = new NPC_Prisoner(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 38;
         gp.monster[mapNum][i].worldY = gp.tileSize * 35;
+        i++;
+        gp.monster[mapNum][i] = new NPC_Prisoner(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 45;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 38;
+        i++;
+        gp.monster[mapNum][i] = new NPC_Prisoner(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 43;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 33;
+        i++;
+        gp.monster[mapNum][i] = new NPC_Prisoner(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 50;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 29;
         i++;
     }
 

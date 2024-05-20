@@ -4,11 +4,11 @@ import main.GamePanel;
 
 import java.util.Random;
 
-public class NPC_OldMan extends Entity{
+public class NPC_Guard extends Entity{
 
     public static final String npcName = "Old Man";
 
-    public NPC_OldMan(GamePanel gp) {
+    public NPC_Guard(GamePanel gp) {
         super(gp);
 
         direction = "down";
@@ -22,14 +22,14 @@ public class NPC_OldMan extends Entity{
     }
 
     public void getNPCImage(){
-        up1 = setup("/npc/oldman_up_1", gp.tileSize, gp.tileSize);
-        up2 = setup("/npc/oldman_up_2", gp.tileSize, gp.tileSize);
-        down1 = setup("/npc/oldman_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("/npc/oldman_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("/npc/oldman_left_1", gp.tileSize, gp.tileSize);
-        left2 = setup("/npc/oldman_left_2", gp.tileSize, gp.tileSize);
-        right1 = setup("/npc/oldman_right_1", gp.tileSize, gp.tileSize);
-        right2 = setup("/npc/oldman_right_2", gp.tileSize, gp.tileSize);
+        up1 = setup("/npc/guard_up_1", gp.tileSize, gp.tileSize);
+        up2 = setup("/npc/guard_up_2", gp.tileSize, gp.tileSize);
+        down1 = setup("/npc/guard_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("/npc/guard_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("/npc/guard_left_1", gp.tileSize, gp.tileSize);
+        left2 = setup("/npc/guard_left_2", gp.tileSize, gp.tileSize);
+        right1 = setup("/npc/guard_right_1", gp.tileSize, gp.tileSize);
+        right2 = setup("/npc/guard_right_2", gp.tileSize, gp.tileSize);
     }
 
     public void setDialogue(){
@@ -92,7 +92,5 @@ public class NPC_OldMan extends Entity{
 
             dialogueSet = 0;
         }
-
-        onPath = true;
     }
 }

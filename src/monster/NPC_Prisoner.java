@@ -1,28 +1,26 @@
 package monster;
 
 import entity.Entity;
-import entity.Projectile;
 import main.GamePanel;
-import object.OBJ_Coin_Bronze;
+import object.OBJ_Coin;
 import object.OBJ_Energy;
 import object.OBJ_Heart;
-import object.OBJ_Rock;
 
 import java.util.Random;
 
-public class MON_Dogs extends Entity {
+public class NPC_Prisoner extends Entity {
 
     GamePanel gp;
 
-    public MON_Dogs(GamePanel gp) {
+    public NPC_Prisoner(GamePanel gp) {
 
         super(gp);
         this.gp = gp;
         type = type_monster;
-        name = "Cane";
+        name = "Prigioniero";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 5;
+        maxLife = 100;
         life = maxLife;
         solidArea.x = 3;
         solidArea.y = 18;
@@ -32,32 +30,21 @@ public class MON_Dogs extends Entity {
         solidAreaDefaultY = solidArea.y;
         attack = 5;
         defense = 0;
-        exp = 2;
         knockBackPower = 5;
-
-        projectile = new OBJ_Rock(gp);
 
         getImage(gp);
     }
 
     public void getImage(GamePanel gp){
-        /*down1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);
-        up1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
-        up2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
-        left2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);
-        right1 = setup("/dogs/greenslime_down_1", gp.tileSize, gp.tileSize);
-        right2 = setup("/dogs/greenslime_down_2", gp.tileSize, gp.tileSize);*/
 
-        up1 = setup("/npc/oldman_up_1", gp.tileSize, gp.tileSize);
-        up2 = setup("/npc/oldman_up_2", gp.tileSize, gp.tileSize);
-        down1 = setup("/npc/oldman_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("/npc/oldman_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("/npc/oldman_left_1", gp.tileSize, gp.tileSize);
-        left2 = setup("/npc/oldman_left_2", gp.tileSize, gp.tileSize);
-        right1 = setup("/npc/oldman_right_1", gp.tileSize, gp.tileSize);
-        right2 = setup("/npc/oldman_right_2", gp.tileSize, gp.tileSize);
+        up1 = setup("/npc/prisoner_up_1", gp.tileSize, gp.tileSize);
+        up2 = setup("/npc/prisoner_up_2", gp.tileSize, gp.tileSize);
+        down1 = setup("/npc/prisoner_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("/npc/prisoner_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("/npc/prisoner_left_1", gp.tileSize, gp.tileSize);
+        left2 = setup("/npc/prisoner_left_2", gp.tileSize, gp.tileSize);
+        right1 = setup("/npc/prisoner_right_1", gp.tileSize, gp.tileSize);
+        right2 = setup("/npc/prisoner_right_2", gp.tileSize, gp.tileSize);
     }
 
     public void setAction(){
@@ -68,7 +55,7 @@ public class MON_Dogs extends Entity {
 
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
 
-            int i = new Random().nextInt(200)+1;
+            /*int i = new Random().nextInt(200)+1;
             if(i > 197 && !projectile.alive && shotAvailableCounter == 30){
                 projectile.set(worldX, worldY, direction, true, this);
 
@@ -80,7 +67,7 @@ public class MON_Dogs extends Entity {
                 }
 
                 shotAvailableCounter = 0;
-            }
+            }*/
         }
         else{
 
@@ -103,7 +90,7 @@ public class MON_Dogs extends Entity {
     public void checkDrop(){
         int i = new Random().nextInt(100)+1;
         if (i < 50){
-            dropItem(new OBJ_Coin_Bronze(gp));
+            dropItem(new OBJ_Coin(gp));
         }
         if (i >= 50 && i < 75){
             dropItem(new OBJ_Heart(gp));

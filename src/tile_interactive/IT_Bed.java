@@ -23,6 +23,8 @@ public class IT_Bed extends InteractiveTile{
         gp.gameState = gp.sleepState;
         gp.player.life = gp.player.maxLife;
         gp.player.energy = gp.player.maxEnergy;
+        gp.player.coin += 25;
+        gp.ui.hours = 8;
         return false;
     }
 }

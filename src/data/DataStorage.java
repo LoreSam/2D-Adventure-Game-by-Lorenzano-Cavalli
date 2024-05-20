@@ -18,17 +18,18 @@ public class DataStorage implements Serializable {
     int strength;
     int dexterity;
     int attack;
-    int defense;
+    //int defense;
     int exp;
     int nextLevelExp;
     int coin;
     int worldX;
     int worldY;
+    int hours;
+    int minutes;
 
     //INVENTARIO
     ArrayList<String> itemNames = new ArrayList<>();
     int currentWeaponSlot;
-    int currentShieldSLot;
 
     String mapObjectNames[][];
     int mapObjectWorldX[][];

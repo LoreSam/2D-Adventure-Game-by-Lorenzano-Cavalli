@@ -31,19 +31,21 @@ public class SaveLoad {
             ds.strength = gp.player.strength;
             ds.dexterity = gp.player.dexterity;
             ds.attack = gp.player.attack;
-            ds.defense = gp.player.defense;
+            //ds.defense = gp.player.defense;
             ds.exp = gp.player.exp;
             ds.nextLevelExp = gp.player.nextLevelExp;
             ds.coin = gp.player.coin;
             ds.worldX = gp.player.worldX;
             ds.worldY = gp.player.worldY;
+            ds.hours = gp.ui.hours;
+            ds.minutes = gp.ui.min;
 
             for(int i = 0; i < gp.player.inventory.size(); i++){
                 ds.itemNames.add(gp.player.inventory.get(i).name);
             }
 
             ds.currentWeaponSlot = gp.player.getCurrentWeaponSlot();
-            ds.currentShieldSLot = gp.player.getCurrentShieldSlot();
+            //ds.currentShieldSLot = gp.player.getCurrentShieldSlot();
 
             ds.mapObjectNames = new String[gp.mapState][gp.obj[1].length];
             ds.mapObjectWorldX = new int[gp.mapState][gp.obj[1].length];
@@ -94,12 +96,14 @@ public class SaveLoad {
             gp.player.strength = ds.strength;
             gp.player.dexterity = ds.dexterity;
             gp.player.attack = ds.attack;
-            gp.player.defense = ds.defense;
+            //gp.player.defense = ds.defense;
             gp.player.exp = ds.exp;
             gp.player.coin = ds.coin;
             gp.player.nextLevelExp = ds.nextLevelExp;
             gp.player.worldX = ds.worldX;
             gp.player.worldY = ds.worldY;
+            gp.ui.hours = ds.hours;
+            gp.ui.min = ds.minutes;
 
             gp.player.inventory.clear();
             for(int i = 0; i < ds.itemNames.size(); i++){
@@ -107,8 +111,8 @@ public class SaveLoad {
             }
 
             gp.player.currentWeapon = gp.player.inventory.get(ds.currentWeaponSlot);
-            gp.player.currentShield = gp.player.inventory.get(ds.currentShieldSLot);
-            gp.player.getDefense();
+            ///gp.player.currentShield = gp.player.inventory.get(ds.currentShieldSLot);
+            //gp.player.getDefense();
             gp.player.getAttackImage();
 
             for(int i = 0; i < gp.maxMap; i++){
@@ -120,7 +124,7 @@ public class SaveLoad {
                     }
                     else{
                         gp.obj[i][j] = gp.eGenerator.getObject(ds.mapObjectNames[i][j]);
-                        /*gp.obj[i][j].worldX = ds.mapObjectWorldX[i][j];
+                        gp.obj[i][j].worldX = ds.mapObjectWorldX[i][j];
                         gp.obj[i][j].worldY = ds.mapObjectWorldY[i][j];
                         if(ds.mapObjectLootNames[i][j] != null){
                             gp.obj[i][j].loot = gp.eGenerator.getObject(ds.mapObjectLootNames[i][j]);
@@ -128,7 +132,7 @@ public class SaveLoad {
                         gp.obj[i][j].opened = ds.mapObjectOpened[i][j];
                         if(gp.obj[i][j].opened){
                             //TODO per interazione con chest
-                        }*/
+                        }
                     }
                 }
             }

@@ -1,7 +1,5 @@
 package main;
 
-import entity.NPC_OldMan;
-
 import java.awt.*;
 
 public class CutSceneManager {
@@ -20,16 +18,19 @@ public class CutSceneManager {
 
     public CutSceneManager(GamePanel gp) {
         this.gp = gp;
+
+
     }
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
 
-        switch(sceneNum){
+        credits();
+        /*switch(sceneNum){
             case tutorial:
                 //sceneTutorial();
                 break;
-        }
+        }*/
     }/*
 
     public void sceneTutorial(){
@@ -43,13 +44,16 @@ public class CutSceneManager {
         gp.gameState = gp.playState;
     }*/
     public void drawBackground(float alpha){
+
         //TODO DA CHIAMARE ALLA FINE DEL GIOCO
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0,  gp.screenWidth, gp.screenHeight);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
+
     public void drawString(float alpha, float fontSize, int y, String text, int lineHeight){
+
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(fontSize));
@@ -61,7 +65,9 @@ public class CutSceneManager {
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
-    public void titoliCoda(){
+
+    public void credits(){
+
         int y = gp.screenHeight/2;
         endCredit = "Realizzato da\n"
                 +"Saverio Enzano & Gabriele Cavalli\n\n"
@@ -70,12 +76,13 @@ public class CutSceneManager {
                 +"Supporto morale Tommasetti Samuele\n"
                 +"Insulti Giovanni Pantaleo\n"
                 +"Un grazie speciale a Intellij IDEA 2024.1\n";
-        /*drawBackground(1f);
-        drawString(1f,38f, y,endCredit, 40);*/
+
+        drawBackground(1f);
+        drawString(1f,38f, y,endCredit, 40);
 
         drawBackground(1f);
         y--;
-        drawString(1f,38f, y,endCredit, 40);
+        drawString(1f,38f, y, endCredit, 40);
 
     }
 }

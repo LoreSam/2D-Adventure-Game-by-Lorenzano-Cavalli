@@ -153,6 +153,6 @@ public class Lighting {
 
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(50f));
-        g2.drawString(situation, 800, 500);
+        //g2.drawString(situation, 800, 500);
     }
 }

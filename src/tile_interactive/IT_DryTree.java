@@ -58,9 +58,4 @@ public class IT_DryTree extends InteractiveTile{
         int maxLife = 20;
         return maxLife;
     }
-
-    public void checkDrop(){
-
-        dropItem(new OBJ_Stick(gp));
-    }
 }

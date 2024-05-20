@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
     Config config = new Config(this);
-    EnvironmentManager eManager = new EnvironmentManager(this);
+    public EnvironmentManager eManager = new EnvironmentManager(this);
     Map map = new Map(this);
     SaveLoad saveLoad = new SaveLoad(this);
     public CutSceneManager csManager = new CutSceneManager(this);
@@ -192,7 +192,7 @@ public class GamePanel extends JPanel implements Runnable{
                     dcont++;
             }
 
-            if(cont == 60){
+            /*if(cont == 60){
                 saveLoad.save();
                 cont = 0;
             }
@@ -210,11 +210,14 @@ public class GamePanel extends JPanel implements Runnable{
                     ui.changeDayMusic();
                     dcont = -1;
                 }
-            }
+            }*/
         }
     }
 
+    int dayCounter = 0;
+
     public void update(){
+
         if(gameState == playState) {
             //GIOCATORE
             player.update();
@@ -271,6 +274,25 @@ public class GamePanel extends JPanel implements Runnable{
         if(gameState == pauseState){
             //TODO in futuro
         }
+
+        if(gameState != titleState && ui.start) {
+            dayCounter++;
+            if (dayCounter > 3650) {
+                ui.changeDayMusic();
+                dayCounter = 0;
+            }
+        }
+        else if(gameState != titleState && ui.twoHours){
+            dayCounter++;
+            if (dayCounter > 7300) {
+                ui.changeDayMusic();
+                dayCounter = 0;
+            }
+        }
+
+        /*if(gameState == playState) {
+            csManager.draw(g2);
+        }*/
     }
 
     public void drawToTempScreen(){
@@ -280,9 +302,9 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         //MAPPA
-        else if(gameState == mapState){
+        /*else if(gameState == mapState){
             map.drawFullMapScreen(g2);
-        }
+        }*/
 
         //COSA DISEGNAMO DOPO IL TITLE SCREEN
         else {

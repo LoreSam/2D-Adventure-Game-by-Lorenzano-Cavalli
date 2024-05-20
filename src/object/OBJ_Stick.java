@@ -20,6 +20,6 @@ public class OBJ_Stick extends Entity {
             description = "[" + name + "]\nRod";
         else
             description = "[" + name + "]\n Bastone";
-        //stickIn = false;
+        price = 100;
     }
 }

@@ -1,7 +1,7 @@
 package main;
 
 import entity.Entity;
-import entity.NPC_OldMan;
+import entity.NPC_Guard;
 
 public class EventHandler {
 
@@ -130,7 +130,7 @@ public class EventHandler {
 
         for(int i = 0; i < gp.npc[1].length; i++){
 
-            if(gp.npc[gp.currentMap][i] != null && gp.npc[gp.currentMap][i].name == NPC_OldMan.npcName){
+            if(gp.npc[gp.currentMap][i] != null && gp.npc[gp.currentMap][i].name == NPC_Guard.npcName){
                 gp.ui.npc = gp.npc[gp.currentMap][i];
                 gp.ui.drawDialogueScreen();
                 break;

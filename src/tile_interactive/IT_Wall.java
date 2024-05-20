@@ -2,13 +2,9 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Coin_Bronze;
-import object.OBJ_Energy;
-import object.OBJ_Heart;
 import object.OBJ_Rock;
 
 import java.awt.*;
-import java.util.Random;
 
 public class IT_Wall extends InteractiveTile{
 
