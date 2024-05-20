@@ -83,6 +83,7 @@ public class UI {
             drawHotbar();
             drawMessage();
             drawClock();
+            changeDayText();
         }
 
         //stato di pausa
@@ -1045,9 +1046,9 @@ public class UI {
         int textY = frameY + gp.tileSize * 3;
         String text;
         if(gp.language == 1)
-            text = "choose the language you want to play in";
+            text = "Choose the language you want to play with";
         else
-            text = "Scegli la lingua con cui vuoi giocare\nRiavvia il gioco per applicare!";
+            text = "Scegli la lingua con cui vuoi giocare";
 
         currentDialog = text;
 
@@ -1112,7 +1113,7 @@ public class UI {
         int textY = frameY + gp.tileSize * 3;
         String text;
         if(gp.language == 1)
-            text = "Are you sure\nthat you want to abandon the game?";
+            text = "Are you sure\nyou want to quit the game?";
         else
             text = "Sei sicuro \ndi voler abbandonare la partita?";
         currentDialog = text;
@@ -1232,18 +1233,27 @@ public class UI {
         }
 
         y += gp.tileSize;
-        g2.drawString("Esci", x, y);
+        if(gp.language == 1)
+            text = "Exit";
+        else
+            text = "Esci";
+        g2.drawString(text, x, y);
         if(commandNum == 2) {
             g2.drawString(">", x - 24, y);
             if(gp.keyH.enterPressed) {
                 commandNum = 0;
                 gp.gameState = gp.dialogueState;
-                currentDialog = "Torna eh, ahah!";
+                if(gp.language == 1)
+                    currentDialog = "Come back, ahah!";
+                else
+                    currentDialog = "Torna eh, ahah!";
             }
         }
     }
 
     public void trade_buy(){
+
+        String text;
 
         //DISEGNO INVENTARIO GIOCATORE
         drawInventory(gp.player, false);
@@ -1257,12 +1267,24 @@ public class UI {
         int width = gp.tileSize*6;
         int height = gp.tileSize*2;
         drawSubWindow(x, y, width, height);
-        g2.drawString("[ESC] Indietro", x + 24, y + 60);
+
+        if(gp.language == 1)
+            text = "[ESC] Back";
+        else
+            text = "[ESC] Indietro";
+        g2.drawString(text, x + 24, y + 60);
 
         //DISEGNO MONETE GIOCATORE
         x = gp.tileSize*12;
         drawSubWindow(x, y, width, height);
-        g2.drawString("Monete: " + gp.player.coin, x + 24, y + 60);
+
+        if(gp.language == 1)
+            text = "Coins: ";
+        else
+            text = "Monete: ";
+        g2.drawString(text, x + 24, y + 60);
+
+        g2.drawString(text + gp.player.coin, x + 24, y + 60);
 
         //DISEGNO FINESTRA PREZZO
         int itemIndex = getItemIndexSlot(npcSlotCol, npcSlotRow);
@@ -1276,22 +1298,36 @@ public class UI {
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
 
             int price = npc.inventory.get(itemIndex).price;
-            String text = "" + price;
-            x = alignRightText(text, gp.tileSize * 8 - 20);
-            g2.drawString(text, x, y + 32);
+            String text2 = "" + price;
+            x = alignRightText(text2, gp.tileSize * 8 - 20);
+            g2.drawString(text2, x, y + 32);
 
             //ACQUISTO
             if(gp.keyH.enterPressed){
                 if(npc.inventory.get(itemIndex).price > gp.player.coin){
                     subState = 0;
                     gp.gameState = gp.dialogueState;
-                    currentDialog = "Ti servono più monete!";
+
+                    if(gp.language == 1)
+                        text2 = "You need more coins!";
+                    else
+                        text2 = "Ti servono più monete!";
+                    g2.drawString(text, x + 24, y + 60);
+
+                    currentDialog = text2;
                     drawDialogueScreen();
                 }
                 else if(gp.player.inventory.size() == gp.player.maxInventorySize){
                     subState = 0;
                     gp.gameState = gp.dialogueState;
-                    currentDialog = "Non hai più spazio!";
+
+                    if(gp.language == 1)
+                        text2 = "You're out of space!";
+                    else
+                        text2 = "Non hai più spazio!";
+                    g2.drawString(text, x + 24, y + 60);
+
+                    currentDialog = text2;
                     drawDialogueScreen();
                 }
                 else {
@@ -1303,6 +1339,8 @@ public class UI {
     }
 
     public void trade_sell(){
+
+        String text;
 
         //DISEGNA INVENTARIO GIOCATORE
         drawInventory(gp.player, true);
@@ -1318,12 +1356,26 @@ public class UI {
         width = gp.tileSize*6;
         height = gp.tileSize*2;
         drawSubWindow(x, y, width, height);
-        g2.drawString("[ESC] Indietro", x + 24, y + 60);
+
+        if(gp.language == 1)
+            text = "[ESC] Back";
+        else
+            text = "[ESC] Indietro";
+        g2.drawString(text, x + 24, y + 60);
+
+        g2.drawString(text, x + 24, y + 60);
 
         //DISEGNO MONETE GIOCATORE
         x = gp.tileSize*12;
         drawSubWindow(x, y, width, height);
-        g2.drawString("Monete: " + gp.player.coin, x + 24, y + 60);
+
+        if(gp.language == 1)
+            text = "Coins: ";
+        else
+            text = "Monete: ";
+        g2.drawString(text, x + 24, y + 60);
+
+        g2.drawString(text + gp.player.coin, x + 24, y + 60);
 
         //DISEGNO FINESTRA PREZZO
         int itemIndex = getItemIndexSlot(playerSlotCol, playerSlotRow);
@@ -1337,9 +1389,9 @@ public class UI {
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
 
             int price = gp.player.inventory.get(itemIndex).price/2;
-            String text = "" + price;
-            x = alignRightText(text, gp.tileSize * 18 - 20);
-            g2.drawString(text, x, y + 32);
+            String text2 = "" + price;
+            x = alignRightText(text2, gp.tileSize * 18 - 20);
+            g2.drawString(text2, x, y + 32);
 
             //VENDITA
             if(gp.keyH.enterPressed){
@@ -1348,7 +1400,14 @@ public class UI {
                     commandNum = 0;
                     subState = 0;
                     gp.gameState = gp.dialogueState;
-                    currentDialog = "Non puoi vendere un oggetto equipaggiato!";
+
+                    if(gp.language == 1)
+                        text2 = "You can't sell an equipped object!";
+                    else
+                        text2 = "Non puoi vendere un oggetto equipaggiato!";
+                    g2.drawString(text, x + 24, y + 60);
+
+                    currentDialog = text2;
                 }
                 else{
                     gp.player.inventory.remove(itemIndex);
@@ -1380,7 +1439,7 @@ public class UI {
         }
     }
 
-    int cont = 0, min = 0, hours = 10;
+    int cont = 0, min = 0, hours = 8;
     String smin = null, shours = null;
 
     public void drawClock(){
@@ -1415,36 +1474,117 @@ public class UI {
 
     }
 
-    boolean twoHours = false;
-
     public void changeDayMusic(){
+
+        String text = "";
 
         if(hours >= 8 && hours < 9 || hours >= 13 && hours < 14 || hours >= 21 && hours < 22){
             gp.keyH.changeMusic(2);
+            if(gp.language == 1)
+                text = "Roll Call";
+            else
+                text = "Appello";
         }
 
         if(hours >= 9 && hours < 10 || hours >= 12 && hours < 13 || hours >= 20 && hours < 21){
             gp.keyH.changeMusic(3);
+            if(gp.language == 1)
+                text = "Lunch";
+            else
+                text = "Pranzo";
         }
 
-        if(hours >= 10 && hours < 12 || hours >= 17 && hours < 19){
-            twoHours = true;
+        if(hours >= 10 && hours < 12 || hours >= 17 && hours < 20){
             gp.keyH.changeMusic(4);
+
+            if(gp.language == 1)
+                text = "Free Time";
+            else
+                text = "Tempo Libero";
         }
 
         if(hours >= 14 && hours < 16){
-            twoHours = true;
             gp.keyH.changeMusic(5);
-        }
 
-        twoHours = false;
+            if(gp.language == 1)
+                text = "Workout";
+            else
+                text = "Allenamento";
+        }
 
         if(hours >= 16 && hours < 17){
             gp.keyH.changeMusic(6);
+
+            if(gp.language == 1)
+                text = "Shower";
+            else
+                text = "Doccia";
         }
 
         if(hours >= 22){
             gp.keyH.changeMusic(7);
+
+            if(gp.language == 1)
+                text = "Lights Out";
+            else
+                text = "Luci Spente";
+
         }
+        g2.drawString(text, gp.tileSize * 16 + 32, gp.tileSize * 5 - 8);
+    }
+
+    public void changeDayText(){
+
+        String text = "";
+
+        if(hours >= 8 && hours < 9 || hours >= 13 && hours < 14 || hours >= 21 && hours < 22){
+
+            if(gp.language == 1)
+                text = "Roll Call";
+            else
+                text = "Appello";
+        }
+
+        if(hours >= 9 && hours < 10 || hours >= 12 && hours < 13 || hours >= 20 && hours < 21){
+
+            if(gp.language == 1)
+                text = "Lunch";
+            else
+                text = "Pranzo";
+        }
+
+        if(hours >= 10 && hours < 12 || hours >= 17 && hours < 20){
+
+            if(gp.language == 1)
+                text = "Free Time";
+            else
+                text = "Tempo Libero";
+        }
+
+        if(hours >= 14 && hours < 16){
+
+            if(gp.language == 1)
+                text = "Workout";
+            else
+                text = "Allenamento";
+        }
+
+        if(hours >= 16 && hours < 17){
+
+            if(gp.language == 1)
+                text = "Shower";
+            else
+                text = "Doccia";
+        }
+
+        if(hours >= 22){
+
+            if(gp.language == 1)
+                text = "Lights Out";
+            else
+                text = "Luci Spente";
+
+        }
+        g2.drawString(text, gp.tileSize * 16 - 8, gp.tileSize * 5 - 8);
     }
 }

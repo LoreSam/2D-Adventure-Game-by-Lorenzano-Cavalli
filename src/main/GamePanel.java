@@ -199,10 +199,10 @@ public class GamePanel extends JPanel implements Runnable{
 
             //System.out.println(dcont);
 
-            if(ui.twoHours) {
-                if (dcont >= 120) {
+            if(ui.hours >= 10 && ui.hours < 12 || ui.hours >= 17 && ui.hours < 19) {
+                if (dcont >= 121) {
                     ui.changeDayMusic();
-                    dcont = -1;
+                    dcont = -2;
                 }
             }
             else {
