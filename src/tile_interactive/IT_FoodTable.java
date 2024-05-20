@@ -7,11 +7,15 @@ public class IT_FoodTable extends InteractiveTile{
     GamePanel gp;
 
     public IT_FoodTable(GamePanel gp, int col, int row) {
+
         super(gp, col, row);
 
         this.gp = gp;
         this.worldX = gp.tileSize*col;
         this.worldY = gp.tileSize*row;
+
+
+        name = "Tavolo";
 
         if(col == 20 || col == 27)
             down1 = setup("/tiles_interactive/tavolo_sx", gp.tileSize, gp.tileSize);
@@ -21,5 +25,11 @@ public class IT_FoodTable extends InteractiveTile{
             down1 = setup("/tiles_interactive/tavolo_dx", gp.tileSize, gp.tileSize);
     }
 
+    @Override
+    public void eat(){
+
+        if(gp.player.energy < 100)
+            gp.player.energy++;
+    }
 
 }

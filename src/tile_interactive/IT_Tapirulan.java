@@ -2,11 +2,11 @@ package tile_interactive;
 
 import main.GamePanel;
 
-public class IT_Tapirulant extends InteractiveTile{
+public class IT_Tapirulan extends InteractiveTile{
 
     GamePanel gp;
 
-    public IT_Tapirulant(GamePanel gp, int col, int row) {
+    public IT_Tapirulan(GamePanel gp, int col, int row) {
         super(gp, col, row);
 
         this.gp = gp;

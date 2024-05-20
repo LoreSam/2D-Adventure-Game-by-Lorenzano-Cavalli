@@ -3,8 +3,6 @@ package entity;
 import main.GamePanel;
 import main.KeyHandler;
 import object.*;
-import tile_interactive.IT_Door;
-import tile_interactive.InteractiveTile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -55,7 +53,7 @@ public class Player extends Entity{
         nextLevelExp = 5;
         coin = 500;
         maxEnergy = 100;
-        energy = maxEnergy;
+        energy = 2;
         ammo = 10;
         currentWeapon = new OBJ_Sword_Normal(gp);
         //currentWeapon = new OBJ_Axe(gp);
@@ -249,6 +247,7 @@ public class Player extends Entity{
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             contactDoor(iTileIndex);
             sleep(iTileIndex);
+            eat(iTileIndex);
 
             //CONTROLLO EVENTI
             gp.eHandler.checkEvent();
@@ -346,8 +345,17 @@ public class Player extends Entity{
 
     public void sleep(int i){
         if(i != 999){
-            if(gp.keyH.shotKeyPressed && gp.iTile[gp.currentMap][i].type == type_bed){
+            if(gp.keyH.interactKeyPressed && gp.iTile[gp.currentMap][i].type == type_bed){
                 gp.iTile[gp.currentMap][i].sleep();
+            }
+        }
+    }
+
+    public void eat(int i){
+
+        if(i != 999){
+            if(gp.iTile[gp.currentMap][i].type == type_eatable && gp.keyH.interactKeyPressed) {
+                gp.iTile[gp.currentMap][i].eat();
             }
         }
     }

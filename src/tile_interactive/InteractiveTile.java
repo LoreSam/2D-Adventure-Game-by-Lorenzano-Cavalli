@@ -6,6 +6,7 @@ import main.GamePanel;
 import java.awt.*;
 
 public class InteractiveTile extends Entity {
+
     GamePanel gp;
     public boolean destructible = false;
 
@@ -38,6 +39,10 @@ public class InteractiveTile extends Entity {
 
     public boolean sleep(){
         return false;
+    }
+
+    public void eat(){
+
     }
 
     public void update() {

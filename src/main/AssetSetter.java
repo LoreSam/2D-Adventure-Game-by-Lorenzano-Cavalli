@@ -231,21 +231,21 @@ public class AssetSetter {
 
         //PALESTRA
         //TAPIRULANT
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 20, 25);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 20, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 23, 25);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 23, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 26, 25);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 26, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 29, 25);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 29, 25);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 20, 27);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 20, 27);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 23, 27);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 23, 27);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 26, 27);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 26, 27);
         i++;
-        gp.iTile[mapNum][i] = new IT_Tapirulant(gp, 29, 27);
+        gp.iTile[mapNum][i] = new IT_Tapirulan(gp, 29, 27);
         i++;
 
         //PANCA
