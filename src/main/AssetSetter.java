@@ -280,11 +280,11 @@ public class AssetSetter {
         i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 42, 20);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 29, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 45, 22);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 30, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 43, 28);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 27, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 51, 34);
         i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 28, 17);
         i++;
