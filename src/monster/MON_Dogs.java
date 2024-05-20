@@ -68,7 +68,7 @@ public class MON_Dogs extends Entity {
 
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
 
-            /*int i = new Random().nextInt(200)+1;
+            int i = new Random().nextInt(200)+1;
             if(i > 197 && !projectile.alive && shotAvailableCounter == 30){
                 projectile.set(worldX, worldY, direction, true, this);
 
@@ -80,7 +80,7 @@ public class MON_Dogs extends Entity {
                 }
 
                 shotAvailableCounter = 0;
-            }*/
+            }
         }
         else{
 

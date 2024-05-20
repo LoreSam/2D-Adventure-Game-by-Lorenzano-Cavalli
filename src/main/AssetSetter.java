@@ -131,7 +131,7 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         gp.monster[mapNum][i] = new MON_Dogs(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 38;
+        gp.monster[mapNum][i].worldX = gp.tileSize * 39;
         gp.monster[mapNum][i].worldY = gp.tileSize * 30;
         i++;
         gp.monster[mapNum][i] = new MON_Dogs(gp);
