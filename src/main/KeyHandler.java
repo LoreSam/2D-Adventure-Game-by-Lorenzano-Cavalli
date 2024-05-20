@@ -21,42 +21,9 @@ public class KeyHandler implements KeyListener {
         //SCHERMATA DEL TITOLO
         if(gp.gameState == gp.titleState) {
 
-            if (gp.ui.titleScreenState == 0) {
+            if (gp.ui.titleScreenState == 0 || gp.ui.titleScreenState == 1) {
                 titleState(code);
-            }/*
-            else if(gp.ui.titleScreenState == 1){
-                if (code == KeyEvent.VK_UP) {
-                    gp.ui.commandNum--;
-                    if (gp.ui.commandNum < 0)
-                        gp.ui.commandNum = 3;
-                }
-                if (code == KeyEvent.VK_DOWN) {
-                    gp.ui.commandNum++;
-                    if (gp.ui.commandNum > 3)
-                        gp.ui.commandNum = 0;
-                }
-                if (code == KeyEvent.VK_ENTER) {
-                    if (gp.ui.commandNum == 0) {
-                        System.out.println("Perfettino Pelatino");
-                        gp.gameState = gp.playState;
-                        cambiaMusica(2);
-                    }
-                    if (gp.ui.commandNum == 1) {
-                        System.out.println("Cancro");
-                        gp.gameState = gp.playState;
-                        cambiaMusica(1);
-                    }
-                    if (gp.ui.commandNum == 2) {
-                        System.out.println("Labbro pazzo");
-                        gp.gameState = gp.playState;
-                        cambiaMusica(1);
-                    }
-                    if (gp.ui.commandNum == 3){
-                        System.out.println("Sei tornato indietro");
-                        gp.ui.titleScreenState = 0;
-                    }
-                }
-            }*/
+            }
         }
 
         //stato di gioco
@@ -106,14 +73,15 @@ public class KeyHandler implements KeyListener {
     }
 
     public void titleState(int code){
+
         if (code == KeyEvent.VK_UP) {
             gp.ui.commandNum--;
             if (gp.ui.commandNum < 0)
-                gp.ui.commandNum = 2;
+                gp.ui.commandNum = 3;
         }
         if (code == KeyEvent.VK_DOWN) {
             gp.ui.commandNum++;
-            if (gp.ui.commandNum > 2)
+            if (gp.ui.commandNum > 3)
                 gp.ui.commandNum = 0;
         }
         if (code == KeyEvent.VK_ENTER) {
@@ -127,7 +95,11 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.playState;
                 changeMusic(1);
             }
-            if (gp.ui.commandNum == 2) {
+            if(gp.ui.commandNum == 2){
+                gp.ui.titleScreenState = 1;
+                gp.ui.commandNum = 0;
+            }
+            if (gp.ui.commandNum == 3) {
                 System.exit(0);
             }
         }
@@ -297,15 +269,18 @@ public class KeyHandler implements KeyListener {
 
         if(code == KeyEvent.VK_ENTER){
             enterPressed = true;
-            gp.saveLoad.save();
+            gp.saveLoad.save(); //TODO sistemare che salva quando clicco si uscendo dal gioco
         }
 
         int maxCommandNum = 0;
         switch(gp.ui.subState){
             case 0:
-                maxCommandNum = 5;
+                maxCommandNum = 6;
                 break;
             case 3:
+                maxCommandNum = 2;
+                break;
+            case 4:
                 maxCommandNum = 1;
                 break;
         }

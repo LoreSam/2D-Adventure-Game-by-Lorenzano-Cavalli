@@ -149,7 +149,11 @@ public class UI {
 
             //TITOLO
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
-            String text = "L'escapista";
+            String text;
+            if(gp.language == 1)
+                text = "The Escapologist";
+            else
+                text = "L'escapologo";
             int x = centerText(text);
             int y = gp.tileSize*3;
 
@@ -168,70 +172,53 @@ public class UI {
 
             //MENU
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 50F));
-            text = "Nuova Partita";
+            if(gp.language == 1)
+                text = "New Game";
+            else
+                text = "Nuova Partita";
             x = centerText(text);
             y += gp.tileSize*3.5;
             g2.drawString(text, x, y);
             if(commandNum == 0)
                 g2.drawString(">", x - gp.tileSize, y);
 
-            text = "Carica Partita";
+            if(gp.language == 1)
+                text = "Load Game";
+            else
+                text = "Carica Partita";
             x = centerText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 1)
                 g2.drawString(">", x - gp.tileSize, y);
 
-            text = "Esci";
-            x = centerText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if(commandNum == 2)
-                g2.drawString(">", x - gp.tileSize, y);
-        }
-        else if(titleScreenState == 1){
-            g2.setColor(Color.BLACK);
-            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-
-            //SCHERMATA DI SELEZIONE
-            g2.setColor(Color.white);
-            g2.setFont(g2.getFont().deriveFont(40F));
-
-            String text = "Scegli il personaggio";
-            int x = centerText(text);
-            int y = gp.tileSize*3;
-            g2.drawString(text, x, y);
-
-            text = "Gatti";
-            x = centerText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if(commandNum == 0)
-                g2.drawString(">", x - gp.tileSize, y);
-
-            text = "Sardano";
-            x = centerText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if(commandNum == 1)
-                g2.drawString(">", x - gp.tileSize, y);
-
-            text = "Avanzini";
+            if(gp.language == 1)
+                text = "Settings";
+            else
+                text = "Impostazioni";
             x = centerText(text);
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 2)
                 g2.drawString(">", x - gp.tileSize, y);
 
-            text = "Indietro";
+            if(gp.language == 1)
+                text = "Quit Game";
+            else
+                text = "Esci";
             x = centerText(text);
-            y += gp.tileSize*2;
+            y += gp.tileSize;
             g2.drawString(text, x, y);
             if(commandNum == 3)
                 g2.drawString(">", x - gp.tileSize, y);
         }
+        else if(gp.ui.titleScreenState == 1){
+            drawOptionScreen();
+        }
     }
+
     public void drawMessage(){
+
         int messageX = gp.tileSize, messageY = gp.tileSize*4;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32f));
         for ( int i = 0; i < message.size(); i++){
@@ -367,6 +354,9 @@ public class UI {
     }
 
     public void drawCharacterScreen(){
+
+        String text;
+
         //CREIAMO UN FRAME
         final int frameX = gp.tileSize;
         final int frameY = gp.tileSize * 2;
@@ -382,18 +372,39 @@ public class UI {
         int textY = frameY + gp.tileSize;
         final int lineHeight = 35;
 
+        if(gp.language == 1){
+            text = "Life";
+            g2.drawString(text, textX, textY);
+            textY += lineHeight;
+            text = "Energy";
+            g2.drawString(text, textX, textY);
+            textY += lineHeight;
+            text = "Strength";
+            g2.drawString(text, textX, textY);
+            textY += lineHeight;
+            text = "Speed";
+            g2.drawString(text, textX, textY);
+            textY += lineHeight;
+            text = "Coins";
+            g2.drawString(text, textX, textY);
+            textY += lineHeight + 10;
+            text = "Gun";
+            g2.drawString(text, textX, textY);
+        }
         //NOMI
-        g2.drawString("Vita", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Energia", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Forza", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Velocità", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Monete", textX, textY);
-        textY += lineHeight + 10;
-        g2.drawString("Arma", textX, textY);
+        else {
+            g2.drawString("Vita", textX, textY);
+            textY += lineHeight;
+            g2.drawString("Energia", textX, textY);
+            textY += lineHeight;
+            g2.drawString("Forza", textX, textY);
+            textY += lineHeight;
+            g2.drawString("Velocità", textX, textY);
+            textY += lineHeight;
+            g2.drawString("Monete", textX, textY);
+            textY += lineHeight + 10;
+            g2.drawString("Arma", textX, textY);
+        }
 
         //VALORI
         int tailX = (frameX + frameWidth) - 30;
@@ -654,7 +665,10 @@ public class UI {
         String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
-        text = "Game Over";
+        if(gp.language == 1)
+            text = "Game Over";
+        else
+            text = "Sei Morto";
 
         //OMBRA TESTO
         g2.setColor(Color.black);
@@ -668,7 +682,10 @@ public class UI {
 
         //RIGIOCA
         g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Gioca ancora";
+        if(gp.language == 1)
+            text = "Play Again!";
+        else
+            text = "Gioca ancora!";
         x = centerText(text);
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);
@@ -677,7 +694,10 @@ public class UI {
         }
 
         //TORNA AL MENU
-        text = "Torna al menu principale";
+        if(gp.language == 1)
+            text = "Quit to Menu";
+        else
+            text = "Torna al Menu Principale";
         x = centerText(text);
         y += 55;
         g2.drawString(text, x, y);
@@ -709,6 +729,9 @@ public class UI {
                 optionsControl(frameX, frameY);
                 break;
             case 3:
+                optionsLanguage(frameX, frameY);
+                break;
+            case 4:
                 optionsEndGame(frameX, frameY);
                 break;
         }
@@ -720,10 +743,14 @@ public class UI {
 
         int textX;
         int textY;
+        String text;
 
         //TITOLO
         g2.setFont(g2.getFont().deriveFont(48F));
-        String text = "Impostazioni";
+        if(gp.language == 1)
+            text = "Settings";
+        else
+            text = "Impostazioni";
         textX = centerText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
@@ -733,7 +760,12 @@ public class UI {
         //FULLSCREEN ON - OFF
         textX = frameX + gp.tileSize;
         textY += gp.tileSize * 2;
-        g2.drawString("Schermo Intero", textX, textY);
+        if(gp.language == 1)
+            text = "Full Screen";
+        else
+            text = "Schermo Intero";
+        g2.drawString(text, textX, textY);
+
         if(commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed){
@@ -747,19 +779,31 @@ public class UI {
 
         //MUSICA
         textY += gp.tileSize;
-        g2.drawString("Musica", textX, textY);
+        if(gp.language == 1)
+            text = "Music";
+        else
+            text = "Musica";
+        g2.drawString(text, textX, textY);
         if(commandNum == 1)
             g2.drawString(">", textX - 25, textY);
 
         //EFFETTI
         textY += gp.tileSize;
-        g2.drawString("Effetti Sonori", textX, textY);
+        if(gp.language == 1)
+            text = "Sound Effects";
+        else
+            text = "Effetti Sonori";
+        g2.drawString(text, textX, textY);
         if(commandNum == 2)
             g2.drawString(">", textX - 25, textY);
 
         //COMANDI
         textY += gp.tileSize;
-        g2.drawString("Comandi", textX, textY);
+        if(gp.language == 1)
+            text = "Key Bindings";
+        else
+            text = "Comandi";
+        g2.drawString(text, textX, textY);
         if(commandNum == 3) {
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed) {
@@ -768,21 +812,43 @@ public class UI {
             }
         }
 
-        //FINE PARTITA
         textY += gp.tileSize;
-        g2.drawString("Esci", textX, textY);
-        if(commandNum == 4){
+        if(gp.language == 1)
+            text = "Language";
+        else
+            text = "Lingua";
+        g2.drawString(text, textX, textY);
+        if(commandNum == 4) {
             g2.drawString(">", textX - 25, textY);
-            if(gp.keyH.enterPressed){
+            if(gp.keyH.enterPressed) {
                 subState = 3;
                 commandNum = 0;
             }
         }
 
+        //FINE PARTITA
+        textY += gp.tileSize;
+        if(gp.language == 1)
+            text = "Quit";
+        else
+            text = "Esci";
+        g2.drawString(text, textX, textY);
+        if(commandNum == 5){
+            g2.drawString(">", textX - 25, textY);
+            if(gp.keyH.enterPressed){
+                subState = 4;
+                commandNum = 0;
+            }
+        }
+
         //INDIETRO
-        textY += gp.tileSize * 2;
-        g2.drawString("Indietro", textX, textY);
-        if(commandNum == 5) {
+        textY += gp.tileSize * 2 - 24;
+        if(gp.language == 1)
+            text = "Back";
+        else
+            text = "Indietro";
+        g2.drawString(text, textX, textY);
+        if(commandNum == 6) {
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed){
                 gp.gameState = gp.playState;
@@ -822,8 +888,12 @@ public class UI {
 
         int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize * 2;
+        String text;
 
-        currentDialog = "Riavvia il gioco \nper vedere le modifiche!";
+        if(gp.language == 1)
+            currentDialog = "Restart the game \nto see the changes!";
+        else
+            currentDialog = "Riavvia il gioco \nper vedere le modifiche!";
 
         for(String line: currentDialog.split("\n")){
             g2.drawString(line, textX, textY);
@@ -856,7 +926,11 @@ public class UI {
 
         //INDIETRO
         textY = gp.tileSize * 9;
-        g2.drawString("Indietro", textX, textY);
+        if(gp.language == 1)
+            text = "Back";
+        else
+            text = "Indietro";
+        g2.drawString(text, textX, textY);
         if(commandNum == 0){ //da inserire 2 per il riavvia ora
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed)
@@ -869,43 +943,93 @@ public class UI {
         int textX;
         int textY;
 
-        String text = "Comandi";
+        String text;
+        if(gp.language == 1)
+            text = "Key Bindings";
+        else
+            text = "Comandi";
         textX = centerText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 
-        textX = frameX + gp.tileSize;
-        textY += gp.tileSize;
-        g2.drawString("Movimento", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Attacca", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Conferma", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Inventario", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Pausa", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Opzioni", textX, textY);
+        if(gp.language == 1) {
+            text = "Movement";
+            textX = frameX + gp.tileSize;
+            textY += gp.tileSize;
+            g2.drawString(text, textX, textY);
+            textY += gp.tileSize;
+            text = "Attack";
+            g2.drawString(text, textX, textY);
+            textY += gp.tileSize;
+            text = "Confirm";
+            g2.drawString(text, textX, textY);
+            textY += gp.tileSize;
+            text = "Inventory";
+            g2.drawString(text, textX, textY);
+            textY += gp.tileSize;
+            text = "Pause";
+            g2.drawString(text, textX, textY);
+            textY += gp.tileSize;
+            text = "Settings";
+            g2.drawString(text, textX, textY);
 
-        textX = frameX + gp.tileSize * 6;
-        textY = frameY + gp.tileSize * 2;
-        g2.drawString("W A S D", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Spazio", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Invio", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("C", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("P", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("Esc", textX, textY);
+            textX = frameX + gp.tileSize * 6;
+            textY = frameY + gp.tileSize * 2;
+            g2.drawString("W A S D", textX, textY);
+            textY += gp.tileSize;
+            text = "Space";
+            g2.drawString(text, textX, textY);
+            textY += gp.tileSize;
+            text = "Enter";
+            g2.drawString(text, textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("C", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("P", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Esc", textX, textY);
+        }
+
+        else{
+
+            textX = frameX + gp.tileSize;
+            textY += gp.tileSize;
+            g2.drawString("Movimento", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Attacca", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Conferma", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Inventario", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Pausa", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Opzioni", textX, textY);
+
+            textX = frameX + gp.tileSize * 6;
+            textY = frameY + gp.tileSize * 2;
+            g2.drawString("W A S D", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Spazio", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Invio", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("C", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("P", textX, textY);
+            textY += gp.tileSize;
+            g2.drawString("Esc", textX, textY);
+        }
 
         //INDIETRO
         textX = frameX + gp.tileSize;
         textY = frameY + gp.tileSize * 9;
-        g2.drawString("Indietro", textX, textY);
+        if(gp.language == 1)
+            text = "Back";
+        else{
+            text = "Indietro";
+        }
+        g2.drawString(text, textX, textY);
         if(commandNum == 0){
             g2.drawString(">", textX - 25, textY);
             if(gp.keyH.enterPressed) {
@@ -915,12 +1039,83 @@ public class UI {
         }
     }
 
+    public void optionsLanguage(int frameX, int frameY){
+
+        int textX = frameX + gp.tileSize;
+        int textY = frameY + gp.tileSize * 3;
+        String text;
+        if(gp.language == 1)
+            text = "choose the language you want to play in";
+        else
+            text = "Scegli la lingua con cui vuoi giocare\nRiavvia il gioco per applicare!";
+
+        currentDialog = text;
+
+        for(String line: currentDialog.split("\n")){
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+
+        //TODO SE RIUSCIAMO, FAR PARTIRE IL COMMANDNUM SULLA LINGUA SELEZIONATA
+
+        //Italiano
+        text = "Italiano";
+        textX = centerText(text);
+        textY = gp.tileSize * 7;
+        g2.drawString(text, textX, textY);
+
+        if(commandNum == 0){
+            g2.drawString(">", textX - 25, textY);
+            if(gp.keyH.enterPressed){
+                gp.language = 0;
+                subState = 0;
+                commandNum = 0;
+            }
+        }
+
+        //Inglese
+        text = "English";
+        textX = centerText(text);
+        textY = gp.tileSize * 8;
+        g2.drawString(text, textX, textY);
+
+        if(commandNum == 1){
+            g2.drawString(">", textX - 25, textY);
+            if(gp.keyH.enterPressed){
+                gp.language = 1;
+                subState = 0;
+                commandNum = 0;
+            }
+        }
+
+        //INDIETRO
+        textX = frameX + gp.tileSize;
+        textY = frameY + gp.tileSize * 9;
+        if(gp.language == 1)
+            text = "Back";
+        else
+            text = "Indietro";
+        g2.drawString(text, textX, textY);
+        if(commandNum == 2){
+            g2.drawString(">", textX - 25, textY);
+            if(gp.keyH.enterPressed) {
+                subState = 0;
+                commandNum = 3;
+            }
+        }
+
+    }
+
     public void optionsEndGame(int frameX, int frameY){
 
         int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize * 3;
-
-        currentDialog = "Sei sicuro \ndi voler abbandonare la partita?";
+        String text;
+        if(gp.language == 1)
+            text = "Are you sure\nthat you want to abandon the game?";
+        else
+            text = "Sei sicuro \ndi voler abbandonare la partita?";
+        currentDialog = text;
 
         for(String line: currentDialog.split("\n")){
             g2.drawString(line, textX, textY);
@@ -928,7 +1123,10 @@ public class UI {
         }
 
         //SI
-        String text = "Si";
+        if (gp.language == 1)
+            text = "Yes";
+        else
+            text = "Si";
         textX = centerText(text);
         textY = gp.tileSize * 7;
         g2.drawString(text, textX, textY);
@@ -997,7 +1195,7 @@ public class UI {
     }
 
     public void trade_select(){
-
+        String text;
         drawDialogueScreen();
 
         //DISEGNA FINESTRA
@@ -1011,15 +1209,22 @@ public class UI {
         x += (int)(gp.tileSize/1.2);
         y += gp.tileSize;
 
-        g2.drawString("Compra", x, y);
+        if(gp.language == 1)
+            text = "Buy";
+        else
+            text = "Compra";
+        g2.drawString(text, x, y);
         if(commandNum == 0) {
             g2.drawString(">", x - 24, y);
             if(gp.keyH.enterPressed)
                 subState = 1;
         }
-
+        if(gp.language == 1)
+            text = "Sell";
+        else
+            text = "Vendi";
         y += gp.tileSize;
-        g2.drawString("Vendi", x, y);
+        g2.drawString(text, x, y);
         if(commandNum == 1) {
             g2.drawString(">", x - 24, y);
             if(gp.keyH.enterPressed)

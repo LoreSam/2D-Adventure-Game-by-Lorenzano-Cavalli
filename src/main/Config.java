@@ -31,6 +31,10 @@ public class Config {
         bw.write(String.valueOf(gp.se.volumeScale));
         bw.newLine();
 
+        //LINGUA
+        bw.write(String.valueOf(gp.language));
+        bw.newLine();
+
         bw.close();
     }
 
@@ -56,6 +60,10 @@ public class Config {
         //VOLUME SUONI
         s = br.readLine();
         gp.se.volumeScale = Integer.parseInt(s);
+
+        //LINGUA
+        s = br.readLine();
+        gp.language = Integer.parseInt(s);
 
         br.close();
     }

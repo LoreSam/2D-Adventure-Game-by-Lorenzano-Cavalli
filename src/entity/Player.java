@@ -103,6 +103,8 @@ public class Player extends Entity{
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Potion_Red(gp));
         inventory.add(new OBJ_Scissors(gp));
+        inventory.add(new OBJ_Stick(gp));
+        inventory.add(new OBJ_Rock(gp));
     }
 
     public int getCurrentWeaponSlot(){

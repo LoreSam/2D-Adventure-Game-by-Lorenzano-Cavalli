@@ -72,6 +72,8 @@ public class GamePanel extends JPanel implements Runnable{
     public ArrayList<Entity> particleList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
+    public int language = 0;
+
     //STATO DI GIOCO
     public int gameState;
     public final int titleState = 0;
@@ -195,7 +197,7 @@ public class GamePanel extends JPanel implements Runnable{
                 cont = 0;
             }
 
-            System.out.println(dcont);
+            //System.out.println(dcont);
 
             if(ui.twoHours) {
                 if (dcont >= 120) {
