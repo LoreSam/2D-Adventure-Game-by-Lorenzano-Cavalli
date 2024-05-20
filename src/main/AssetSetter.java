@@ -286,12 +286,15 @@ public class AssetSetter {
         i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 51, 34);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 28, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 70, 38);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 29, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 64, 36);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 30, 17);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 72, 41);
         i++;
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 61, 39);
+        i++;
+
 
         //GRATE DISTRUGGIBILI
         gp.iTile[mapNum][i] = new IT_Grate(gp, 9, 10);
