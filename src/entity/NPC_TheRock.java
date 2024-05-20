@@ -10,10 +10,12 @@ import java.util.Random;
 
 public class NPC_TheRock extends Entity{
     public static final String npcName = "The Rock";
+    GamePanel gp;
 
     public NPC_TheRock(GamePanel gp) {
         super(gp);
         name = npcName;
+        this.gp = gp;
         direction = "down";
         speed = 4;
 
@@ -35,8 +37,12 @@ public class NPC_TheRock extends Entity{
     }
 
     public void setDialog(){
-
-        dialogues[0][0]="è una palla gigante!";
+        String text;
+        if (gp.language == 1)
+            text = "It's a giant ball!";
+        else
+            text = "è una palla gigante!";
+        dialogues[0][0]=text;
     }
 
     public void setAction(){}

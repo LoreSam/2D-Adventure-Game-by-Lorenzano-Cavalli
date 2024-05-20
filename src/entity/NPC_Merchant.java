@@ -30,8 +30,10 @@ public class NPC_Merchant extends Entity{
     }
 
     public void setDialog(){
-
-        dialogues[0][0]="Ah ah, mi hai trovato.\nHo della roba buona\nNe vuoi un po'?";
+        if (gp.language == 1)
+            dialogues[0][0] = "Ha ha, you found me.\nI've got some good stuff.\nWant some?";
+        else
+            dialogues[0][0]="Ah ah, mi hai trovato.\nHo della roba buona\nNe vuoi un po'?";
     }
 
     public void setItems(){
