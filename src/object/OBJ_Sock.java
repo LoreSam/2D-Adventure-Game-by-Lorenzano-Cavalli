@@ -3,19 +3,19 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Sword_Normal extends Entity {
+public class OBJ_Sock extends Entity {
 
     public static final String objName = "Spada normale";
 
-    public OBJ_Sword_Normal(GamePanel gp) {
+    public OBJ_Sock(GamePanel gp) {
         super(gp);
         type = type_sword;
         name = objName;
-        down1 = setup("/objects/sword_normal", gp.tileSize, gp.tileSize);
+        down1 = setup("/objects/sock", gp.tileSize, gp.tileSize);
         attackValue = 1;
         attackArea.width = 36;
         attackArea.height = 36;
-        description = "[" + name + "]\n Una vecchia spada.";
-
+        description = "[" + name + "]\nUn vecchio calzino.";
+        price = 104;
     }
 }

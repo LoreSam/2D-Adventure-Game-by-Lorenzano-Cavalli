@@ -52,10 +52,10 @@ public class Player extends Entity{
         //dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)
         exp = 0;
         nextLevelExp = 5;
-        coin = 100;
+        coin = 500;
         maxEnergy = 100;
         energy = maxEnergy;
-        currentWeapon = new OBJ_Sword_Normal(gp);
+        currentWeapon = new OBJ_Sock(gp);
         //currentWeapon = new OBJ_Axe(gp);
         currentLight = new OBJ_Lantern(gp);
         //projectile = new OBJ_Rock(gp);
@@ -95,11 +95,7 @@ public class Player extends Entity{
         inventory.add(currentWeapon);
         //inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Potion_Red(gp));
-        inventory.add(new OBJ_Scissors(gp));
-        inventory.add(new OBJ_Stick(gp));
-        inventory.add(new OBJ_Rock(gp));
+        //inventory.add(new OBJ_Scissors(gp));
     }
 
     public int getCurrentWeaponSlot(){

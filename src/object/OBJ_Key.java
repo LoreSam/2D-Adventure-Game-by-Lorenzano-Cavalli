@@ -15,10 +15,11 @@ public class OBJ_Key extends Entity {
         super(gp);
 
         name = objName;
-        down1 = setup("/objects/key", gp.tileSize, gp.tileSize);
+        down1 = setup("/objects/chiave_g", gp.tileSize, gp.tileSize);
         if (gp.language == 1)
-            description = "[" + name + "]\n Open every door.";
+            description = "[" + name + "]\nOpen every door.";
         else
-            description = "[" + name + "]\n Apre una porta.";
+            description = "[" + name + "]\nApre una porta.";
+        price = 50;
     }
 }

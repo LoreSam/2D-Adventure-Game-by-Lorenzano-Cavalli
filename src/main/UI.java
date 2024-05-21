@@ -551,7 +551,7 @@ public class UI {
         }
 
         //OGGETTI EQUIPAGGIATI
-        frameX = gp.tileSize * 7 + 20;
+        /*frameX = gp.tileSize * 7 + 20;
         frameY = gp.tileSize * 7 - 16;
         frameWidth = gp.tileSize * 6 - 36;
         frameHeight = gp.tileSize;
@@ -567,7 +567,7 @@ public class UI {
             frameX = gp.tileSize * 3 + 18;
         }
 
-        g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);
+        g2.drawRoundRect(frameX, frameY, frameWidth, frameHeight, 10, 10);*/
     }
 
     public void drawHotbar(){

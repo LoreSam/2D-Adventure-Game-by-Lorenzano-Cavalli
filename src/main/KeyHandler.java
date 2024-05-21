@@ -233,7 +233,17 @@ public class KeyHandler implements KeyListener {
                     //gp.ui.drawMissingItemsText();
                     break;
                 case 2:
-                    gp.player.inventory.add(new OBJ_Pickaxe(gp));
+
+                    for(int i = 0; i < gp.player.inventory.size(); i++){
+
+                        if(gp.player.inventory.get(i) != null) {
+
+                            if (gp.player.inventory.get(i).name.equals("Scotch")) {
+                                gp.player.inventory.remove(i);
+                                gp.player.inventory.add(new OBJ_Pickaxe(gp));
+                            }
+                        }
+                    }
                     break;
                 case 4:
                     for(int i = 0; i < gp.player.inventory.size(); i++){

@@ -1,12 +1,11 @@
 package entity;
 
 import main.GamePanel;
-import object.OBJ_Door_Iron;
+import object.OBJ_Scotch;
 import tile_interactive.IT_Metal_Plate;
 import tile_interactive.InteractiveTile;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class NPC_TheRock extends Entity{
     public static final String npcName = "The Rock";
@@ -124,7 +123,7 @@ public class NPC_TheRock extends Entity{
         }
         if (counter == rockList.size()){
             for (int i = 0; i < gp.obj[1].length; i++){
-                if (gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals(OBJ_Door_Iron.objName)){
+                if (gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals(OBJ_Scotch.objName)){
                     gp.obj[gp.currentMap][i] = null;
                     gp.playSoundEffect(14);
                 }

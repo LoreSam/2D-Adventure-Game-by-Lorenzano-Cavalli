@@ -179,6 +179,10 @@ public class TileManager {
             tile[44].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles/original/acqua_mt.png")));
             tile[44].collision = true;
 
+            tile[45] = new Tile();
+            tile[45].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tiles_interactive/tavolo_cen.png")));
+            tile[45].collision = true;
+
         }catch (IOException e){
             e.printStackTrace();
         }

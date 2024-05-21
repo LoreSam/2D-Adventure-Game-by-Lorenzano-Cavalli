@@ -19,8 +19,8 @@ public class OBJ_Axe extends Entity {
         attackArea.width = 30;
         attackArea.height = 30;
         if (gp.language ==1 )
-            description = "[Axe] \nA little rusty \nlike Samu's brakes";
+            description = "[Woodcutter's Axe] \nA little bit rusty.";
         else
-            description = "[Ascia taglialegna] \n un po arrugginita \ncome i freni di Samu";
+            description = "[Ascia taglialegna] \nUn po' arrugginita.";
     }
 }
