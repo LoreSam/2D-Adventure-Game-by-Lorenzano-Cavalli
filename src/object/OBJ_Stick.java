@@ -19,7 +19,7 @@ public class OBJ_Stick extends Entity {
         if (gp.language == 1)
             description = "[" + name + "]\nRod";
         else
-            description = "[" + name + "]\n Bastone";
+            description = "[" + name + "]\nBastone";
         price = 100;
     }
 }

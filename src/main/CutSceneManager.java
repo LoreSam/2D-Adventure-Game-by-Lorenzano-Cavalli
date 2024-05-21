@@ -137,6 +137,8 @@ public class CutSceneManager {
 
             if(counterReached(1000)) {
                 gp.resetGame(true);
+                gp.dayCounter = 0;
+                gp.ui.start = false;
                 gp.gameState = gp.titleState;
             }
         }

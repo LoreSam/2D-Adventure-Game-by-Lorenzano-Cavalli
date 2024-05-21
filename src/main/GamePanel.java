@@ -215,7 +215,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    int dayCounter = 0;
+    public int dayCounter = 0;
 
     public void update(){
 

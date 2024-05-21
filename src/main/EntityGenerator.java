@@ -39,6 +39,8 @@ public class EntityGenerator {
                 break;
             case OBJ_Sock.objName: obj = new OBJ_Sock(gp);
                 break;
+            case OBJ_Stick.objName: obj = new OBJ_Stick(gp);
+                break;
         }
 
         return obj;
