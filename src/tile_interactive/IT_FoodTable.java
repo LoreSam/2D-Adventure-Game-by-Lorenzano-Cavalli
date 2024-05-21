@@ -14,7 +14,7 @@ public class IT_FoodTable extends InteractiveTile{
         this.worldX = gp.tileSize*col;
         this.worldY = gp.tileSize*row;
 
-        type = type_eatable;
+        type = type_getEnergy;
 
         name = "Tavolo";
 
@@ -27,7 +27,7 @@ public class IT_FoodTable extends InteractiveTile{
     }
 
     @Override
-    public void eat(){
+    public void getEnergy(){
 
         if(gp.player.energy < 100) {
             gp.player.energy++;

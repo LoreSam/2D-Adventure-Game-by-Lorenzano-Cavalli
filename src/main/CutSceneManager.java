@@ -26,11 +26,11 @@ public class CutSceneManager {
         this.gp = gp;
 
         endCredit = "Realizzato da\n"
-                + "Saverio Enzano & Gabriele Cavalli\n\n"
-                + "Grafica a cura di Saverio Enzano Gabriele Cavalli\n"
+                + "Samuele Lorenzano & Gabriele Cavalli\n\n"
+                + "Grafica a cura di Samuele Lorenzano & Gabriele Cavalli\n"
                 + "Musica di Samuele Lorenzano\n"
-                + "Supporto morale Tommasetti Samuele\n"
-                + "Insulti Giovanni Pantaleo\n"
+                + "Supporto di morale Samuele Tommasetti\n"
+                + "Insulti di Giovanni Pantaleo\n"
                 + "Un grazie speciale a Intellij IDEA 2024.1\n";
     }
 
@@ -43,29 +43,18 @@ public class CutSceneManager {
             case start:
                 break;
         }
-    }/*
-
-    public void sceneTutorial(){
-
-        if(!gp.ui.temp)
-            gp.eHandler.tutorial();
     }
-
-    public void start(){
-
-        gp.gameState = gp.playState;
-    }*/
 
     public void scene_ending(){
 
         if(scenePhase == 0){
             gp.stopMusic();
-            gp.ui.npc.dialogueIndex++;
+            //gp.ui.npc.dialogueIndex++;
             gp.ui.npc = new NPC_Guard(gp);
             scenePhase++;
         }
         if(scenePhase == 1){
-            gp.ui.drawDialogueScreen();
+            //gp.ui.drawDialogueScreen();
             scenePhase++;
         }
         if(scenePhase == 2){
@@ -119,23 +108,25 @@ public class CutSceneManager {
 
             drawBackground(1f);
 
+            g2.setColor(Color.WHITE);
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48f));
+
             if(gp.language == 1)
                 drawString(1f, 120, gp.screenHeight/2, "The Escapologist", 48);
             else
                 drawString(1f, 120, gp.screenHeight/2, "L'Escapologo", 48);
 
-            if(counterReached(480))
+            if(counterReached(500))
                 scenePhase++;
         }
         if(scenePhase == 7){
 
             drawBackground(1f);
 
-            y = gp.screenHeight/2;
-            drawString(1f, 38f, gp.screenHeight/2, endCredit, 40);
+            y = gp.screenHeight;
+            drawString(1f, 38f, gp.screenHeight, endCredit, 40);
 
-            if(counterReached(480))
-                scenePhase++;
+            scenePhase++;
         }
         if(scenePhase == 8){
 
@@ -143,6 +134,11 @@ public class CutSceneManager {
 
             y--;
             drawString(1f, 38f, y, endCredit, 40);
+
+            if(counterReached(1000)) {
+                gp.resetGame(true);
+                gp.gameState = gp.titleState;
+            }
         }
     }
 

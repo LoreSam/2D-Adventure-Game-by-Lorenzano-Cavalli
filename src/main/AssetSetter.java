@@ -30,19 +30,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
         i++;
-        /*gp.obj[mapNum][i] = new OBJ_Void(gp);
-        gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 11 * gp.tileSize;
+        gp.obj[mapNum][i] = new OBJ_Rock(gp);
+        gp.obj[mapNum][i].worldX = 25 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 80 * gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Void(gp);
-        gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 12 * gp.tileSize;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Void(gp);
-        gp.obj[mapNum][i].worldX = 46 * gp.tileSize;
-        gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
-        i++;*/
-
     }
 
     public void setNPC(){
@@ -120,7 +111,19 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-        gp.iTile[mapNum][i] = new IT_Door(gp, 18, 18);
+        gp.iTile[mapNum][i] = new IT_Door(gp, 24, 15);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Door(gp, 25, 15);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Door(gp, 24, 22);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Door(gp, 25, 22);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Door(gp, 24, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Door(gp, 25, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_Door(gp, 52, 15);
         i++;
 
         gp.iTile[mapNum][i] = new IT_DryTree(gp, 45, 81);

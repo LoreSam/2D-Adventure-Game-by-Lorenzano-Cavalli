@@ -41,7 +41,7 @@ public class Player extends Entity{
 
         worldX = gp.tileSize * 54;
         worldY = gp.tileSize * 13;
-        defaultSpeed = 3; //TODO SPEED A 3
+        defaultSpeed = 6; //TODO SPEED A 3
         speed = defaultSpeed;
         direction = "down";
 
@@ -95,6 +95,7 @@ public class Player extends Entity{
         inventory.add(currentWeapon);
         //inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Stick(gp));
         //inventory.add(new OBJ_Scissors(gp));
     }
 
@@ -279,16 +280,13 @@ public class Player extends Entity{
             //gp.csManager.sceneNum = gp.csManager.ending;
         }
 
-        /*if(gp.iTile[gp.currentMap][iTileIndex].collision && gp.iTile[gp.currentMap][iTileIndex].type == type_obstacle){ //TODO per apertura e chiusura porte (non funziona)
-            contactDoor(iTileIndex);
+        if(doorOpened(iTileIndex)){ //TODO per apertura e chiusura porte (non funziona)
             doorCounter++;
             if(doorCounter > 90) {
-                System.out.println("ciao");
                 doorClosed(iTileIndex);
-                //gp.aSetter.setInteractiveTile();
                 doorCounter = 0;
             }
-        }*/
+        }
 
         /*if(gp.gameState == gp.playState || gp.gameState == gp.dialogueState || gp.gameState == gp.craftingState || gp.gameState == gp.optionsState || gp.gameState == gp.characterState || gp.gameState == gp.tradeState || gp.gameState == gp.mapState){
             dayCounter++;
@@ -369,8 +367,8 @@ public class Player extends Entity{
     public void eat(int i){
 
         if(i != 999){
-            if(gp.iTile[gp.currentMap][i].type == type_eatable && gp.keyH.interactKeyPressed) {
-                gp.iTile[gp.currentMap][i].eat();
+            if(gp.iTile[gp.currentMap][i].type == type_getEnergy && gp.keyH.interactKeyPressed) {
+                gp.iTile[gp.currentMap][i].getEnergy();
             }
         }
     }
@@ -387,20 +385,18 @@ public class Player extends Entity{
     public boolean doorOpened(int i){
 
         if(i != 999){
-            if(gp.iTile[gp.currentMap][i].type == type_obstacle && gp.player.collisionOn) {
+            if(gp.iTile[gp.currentMap][i] != null && gp.iTile[gp.currentMap][i].type == type_obstacle && gp.player.collisionOn) {
                 gp.iTile[gp.currentMap][i].doorOpened();
                 return true;
             }
         }
-        else
-            return false;
         return false;
     }
 
     public boolean doorClosed(int i){
 
         if(i != 999){
-            if(gp.iTile[gp.currentMap][i].type != type_obstacle && !gp.player.collisionOn) {
+            if(gp.iTile[gp.currentMap][i] == null) {
                 gp.iTile[gp.currentMap][i].doorClosed();
                 return true;
             }
@@ -446,9 +442,7 @@ public class Player extends Entity{
         //OSTACOLI
         if(i != 999){
             if (gp.iTile[gp.currentMap][i].collision && gp.iTile[gp.currentMap][i].type == type_obstacle){
-
-                System.out.println("putt ana de armas");
-                gp.iTile[gp.currentMap][i].doorOpened();
+                gp.iTile[gp.currentMap][i] = null;
             }
         }
     }

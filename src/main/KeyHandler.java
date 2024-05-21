@@ -253,11 +253,11 @@ public class KeyHandler implements KeyListener {
 
                         if(gp.player.inventory.get(i) != null) {
 
-                            if (gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_pickaxe) {
+                            if (gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_axe) {
                                 a = true;
                                 temp_i = i;
                             }
-                            if(gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_axe){
+                            if(gp.player.inventory.get(i).type == gp.player.inventory.get(i).type_pickaxe){
                                 b = true;
                             }
                             if(a && b){

@@ -41,7 +41,7 @@ public class InteractiveTile extends Entity {
         return false;
     }
 
-    public void eat(){
+    public void getEnergy(){
 
     }
 

@@ -77,7 +77,7 @@ public class Entity {
     public final int type_stick = 12;
     public final int type_rock = 13;
     public final int type_scissors = 14;
-    public final int type_eatable = 15;
+    public final int type_getEnergy = 15;
     public final int type_training = 16;
 
     //stato del personaggio
