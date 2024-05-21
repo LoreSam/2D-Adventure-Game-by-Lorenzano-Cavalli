@@ -41,6 +41,12 @@ public class NPC_Guard extends Entity{
             dialogues[0][3] = "Press E to open the inventory \nand C to open the crafting menu.";
             dialogues[0][4] = "Press F to interact with various \nelements on the map.";
             dialogues[0][5] = "Press SPACE to hit the ot.. \nuhm other inmates and use tools.";
+
+            dialogues[1][0] = "Congratulations!\nYou made it out of here!)";
+            dialogues[1][1] = "Be careful, it's not over yet...";
+            dialogues[1][2] = "...commit any more crimes, and you're going straight back in!";
+            dialogues[1][3] = "You have been for this time...";
+            dialogues[1][4] = "Thanks for playing our game!";
         }
         else {
             dialogues[0][0] = "Benvenuto in prigione! \n(ENTER per passare al prossimo dialogo...)";
@@ -50,6 +56,12 @@ public class NPC_Guard extends Entity{
             dialogues[0][4] = "Con il tasto F interagisci con i vari elementi \nsulla mappa.";
             dialogues[0][5] = "Se premi SPAZIO puoi picchiare i neg.. \nehm gli altri detenuti e utilizzare gli utensili.";
             dialogues[0][6] = "Direi che possiamo cominciare! \nBuona fu.. ehm, detenzione...";
+
+            dialogues[1][0] = "Complimenti!\nSei riuscito a scappare!)";
+            dialogues[1][1] = "Ma vedi che non è finita qui...";
+            dialogues[1][2] = "...commetti altri reati, e torni subito dentro!";
+            dialogues[1][3] = "Per questa volta sei stato fortunato...";
+            dialogues[1][4] = "Grazie per aver giocato al nostro gioco!";
         }
     }
 

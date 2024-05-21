@@ -89,6 +89,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int mapState = 10;
     public final int craftingState = 11;
     public final int tutorialState = 12;
+    public final int cutsceneState = 13;
 
     public int currentArea;
     public int nextArea;
@@ -290,9 +291,9 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
 
-        /*if(gameState == playState) {
+        if(gameState == cutsceneState) {
             csManager.draw(g2);
-        }*/
+        }
     }
 
     public void drawToTempScreen(){
@@ -378,7 +379,8 @@ public class GamePanel extends JPanel implements Runnable{
             map.drawMiniMap(g2);
 
             //CUTSCENES
-            //csManager.draw(g2); //TODO ATTIVARE IN CASO DI UTILIZZO DI CUTSCENES
+            if(gameState == cutsceneState)
+                csManager.draw(g2);
 
             //UI
             ui.draw(g2);

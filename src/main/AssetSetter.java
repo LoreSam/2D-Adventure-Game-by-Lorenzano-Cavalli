@@ -300,7 +300,7 @@ public class AssetSetter {
 
 
         //GRATE DISTRUGGIBILI
-        gp.iTile[mapNum][i] = new IT_Grate(gp, 9, 10);
+        //gp.iTile[mapNum][i] = new IT_Grate(gp, 9, 10);
         i++;
         gp.iTile[mapNum][i] = new IT_Grate(gp, 9, 11);
         i++;

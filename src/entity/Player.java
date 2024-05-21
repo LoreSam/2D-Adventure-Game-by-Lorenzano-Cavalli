@@ -278,6 +278,11 @@ public class Player extends Entity{
             trainingCounter = 0;
         }
 
+        if(gp.player.worldX == gp.tileSize*9 || gp.player.worldY == gp.tileSize*6 || gp.player.worldX == gp.tileSize*81 || gp.player.worldY == gp.tileSize*94){
+            gp.gameState = gp.cutsceneState;
+            //gp.csManager.sceneNum = gp.csManager.ending;
+        }
+
         /*if(gp.iTile[gp.currentMap][iTileIndex].collision && gp.iTile[gp.currentMap][iTileIndex].type == type_obstacle){ //TODO per apertura e chiusura porte (non funziona)
             contactDoor(iTileIndex);
             doorCounter++;
