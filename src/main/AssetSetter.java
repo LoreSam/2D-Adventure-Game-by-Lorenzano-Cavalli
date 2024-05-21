@@ -55,23 +55,23 @@ public class AssetSetter {
         i++;
 
         gp.npc[mapNum][i] = new NPC_Guard(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 18;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        gp.npc[mapNum][i].worldX = gp.tileSize * 40;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 30;
         i++;
 
         gp.npc[mapNum][i] = new NPC_Guard(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 19;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        gp.npc[mapNum][i].worldX = gp.tileSize * 12;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 50;
         i++;
 
         gp.npc[mapNum][i] = new NPC_Guard(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 20;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        gp.npc[mapNum][i].worldX = gp.tileSize * 30;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 40;
         i++;
 
         gp.npc[mapNum][i] = new NPC_Guard(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 21;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 15;
+        gp.npc[mapNum][i].worldX = gp.tileSize * 25;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 25;
         i++;
 
         //SOTTOTERRA
@@ -121,17 +121,6 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         gp.iTile[mapNum][i] = new IT_Door(gp, 18, 18);
-        i++;
-
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 27, 18);
-        i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 28, 18);
-        i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 18);
-        i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 30, 18);
-        i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 18);
         i++;
 
         gp.iTile[mapNum][i] = new IT_DryTree(gp, 45, 81);
@@ -261,14 +250,15 @@ public class AssetSetter {
         i++;
         gp.iTile[mapNum][i] = new IT_Panca(gp, 29, 29);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 20, 29);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 20, 31);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 23, 29);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 23, 31);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 26, 29);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 26, 31);
         i++;
-        gp.iTile[mapNum][i] = new IT_Panca(gp, 29, 29);
+        gp.iTile[mapNum][i] = new IT_Panca(gp, 29, 31);
         i++;
+
 
         //MURI DISTRUGGIBILI
         gp.iTile[mapNum][i] = new IT_Wall(gp, 37, 10);
@@ -279,13 +269,13 @@ public class AssetSetter {
         i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 35, 13);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 38, 21);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 38, 24);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 42, 20);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 42, 22);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 45, 22);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 45, 26);
         i++;
-        gp.iTile[mapNum][i] = new IT_Wall(gp, 43, 28);
+        gp.iTile[mapNum][i] = new IT_Wall(gp, 40, 28);
         i++;
         gp.iTile[mapNum][i] = new IT_Wall(gp, 51, 34);
         i++;

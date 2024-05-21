@@ -214,6 +214,7 @@ public class UI {
                 g2.drawString(">", x - gp.tileSize, y);
         }
         else if(gp.ui.titleScreenState == 1){
+            subState = 0;
             drawOptionScreen();
         }
     }

@@ -21,9 +21,12 @@ public class KeyHandler implements KeyListener {
         //SCHERMATA DEL TITOLO
         if(gp.gameState == gp.titleState) {
 
-            if (gp.ui.titleScreenState == 0 || gp.ui.titleScreenState == 1) {
+            if (gp.ui.titleScreenState == 0) {
                 titleState(code);
+
             }
+            if(gp.ui.titleScreenState == 1)
+                optionState(code);
         }
 
         //stato di gioco
@@ -295,7 +298,7 @@ public class KeyHandler implements KeyListener {
                 maxCommandNum = 2;
                 break;
             case 4:
-                maxCommandNum = 1;
+                maxCommandNum = 2;
                 break;
         }
 
