@@ -105,6 +105,10 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldX = gp.tileSize * 50;
         gp.monster[mapNum][i].worldY = gp.tileSize * 29;
         i++;
+        gp.monster[mapNum][i] = new NPC_Guard(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 60;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 29;
+        i++;
     }
 
     public void setInteractiveTile(){

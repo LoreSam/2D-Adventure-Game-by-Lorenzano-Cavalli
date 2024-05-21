@@ -41,7 +41,7 @@ public class Player extends Entity{
 
         worldX = gp.tileSize * 54;
         worldY = gp.tileSize * 13;
-        defaultSpeed = 6; //TODO SPEED A 3
+        defaultSpeed = 3;
         speed = defaultSpeed;
         direction = "down";
 
@@ -52,7 +52,7 @@ public class Player extends Entity{
         //dexterity = 1; // + DESTREZZA HA = - DANNO RICEVUTO (CAMBIA NOME POI PORCOIDIO)
         exp = 0;
         nextLevelExp = 5;
-        coin = 500;
+        coin = 100;
         maxEnergy = 100;
         energy = maxEnergy;
         currentWeapon = new OBJ_Sock(gp);
@@ -443,6 +443,7 @@ public class Player extends Entity{
         if(i != 999){
             if (gp.iTile[gp.currentMap][i].collision && gp.iTile[gp.currentMap][i].type == type_obstacle){
                 gp.iTile[gp.currentMap][i] = null;
+                gp.playSoundEffect(5);
             }
         }
     }
@@ -457,6 +458,7 @@ public class Player extends Entity{
     }
 
     public void contactMonster(int index){
+
         if(index != 999){
             if(!invincible && !gp.monster[gp.currentMap][index].dying){
                 int damage = gp.monster[gp.currentMap][index].attack - defense;
@@ -677,7 +679,7 @@ public class Player extends Entity{
         }
 
         if(transparent)
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));;
 
         g2.drawImage(image, tempScreenX, tempScreenY, null); //TECNICAMENTE NEL DRAW ANDREBBERO GP.TILESIZE, PERO FUNZIONA ANCHE COSI
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));

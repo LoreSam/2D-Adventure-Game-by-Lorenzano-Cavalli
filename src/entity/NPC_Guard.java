@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class NPC_Guard extends Entity{
 
-    public static final String npcName = "Old Man";
+    public static final String npcName = "Guardia";
 
     public NPC_Guard(GamePanel gp) {
         super(gp);
@@ -39,8 +39,11 @@ public class NPC_Guard extends Entity{
             dialogues[0][1] = "Before we start, I think you need \nsome tips to escape...";
             dialogues[0][2] = "Use the WASD keys to move";
             dialogues[0][3] = "Press E to open the inventory \nand C to open the crafting menu.";
-            dialogues[0][4] = "Press F to interact with various \nelements on the map.";
-            dialogues[0][5] = "Press SPACE to hit the ot.. \nuhm other inmates and use tools.";
+            dialogues[0][4] = "Inside the inventories \nuse the directional arrows to move,\nand the key ENTER to select.";
+            dialogues[0][5] = "Crafting: \n  [Axe: Stick + Rock]\n  [Pickaxe: Scotch]\n  [Scissors: Axe + Pickaxe]";
+            dialogues[0][6] = "Press F to interact with various \nelements on the map.\n(Bed, Cafeteria, Gym, Shower)";
+            dialogues[0][7] = "Press SPACE to hit the nig.. \nuhm other prisoners, and use tools.";
+            dialogues[0][8] = "I think we may start! \nHave fun esc... ehm detention...";
 
             dialogues[1][0] = "Congratulations!\nYou made it out of here!)";
             dialogues[1][1] = "Be careful, it's not over yet...";
@@ -53,9 +56,11 @@ public class NPC_Guard extends Entity{
             dialogues[0][1] = "Prima di cominciare, credo che tu abbia bisogno \ndi qualche dritta per scappare...";
             dialogues[0][2] = "Per muoverti utilizza i tasti WASD";
             dialogues[0][3] = "Con il tasto E puoi aprire l'inventario \ne con il tasto C il menù di crafting.";
-            dialogues[0][4] = "Con il tasto F interagisci con i vari elementi \nsulla mappa.";
-            dialogues[0][5] = "Se premi SPAZIO puoi picchiare i neg.. \nehm gli altri detenuti e utilizzare gli utensili.";
-            dialogues[0][6] = "Direi che possiamo cominciare! \nBuona fu.. ehm, detenzione...";
+            dialogues[0][4] = "All'interno degli inventari \nusa le frecce direzionali per muoverti,\ne il tasto ENTER per selezionare.";
+            dialogues[0][5] = "Crafting: \n  [Ascia: Stick + Roccia]\n  [Piccone: Scotch]\n  [Forbici: Ascia + Piccone]";
+            dialogues[0][6] = "Con il tasto F interagisci con i vari elementi \nsulla mappa.\n(Letto, Mensa, Palestra, Doccia)";
+            dialogues[0][7] = "Se premi SPAZIO puoi picchiare i neg.. \nehm gli altri detenuti e utilizzare gli utensili.";
+            dialogues[0][8] = "Direi che possiamo cominciare! \nBuona fu.. ehm, detenzione...";
 
             dialogues[1][0] = "Complimenti!\nSei riuscito a scappare!)";
             dialogues[1][1] = "Ma vedi che non è finita qui...";

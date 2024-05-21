@@ -1481,13 +1481,13 @@ public class UI {
 
         String text = "";
 
-        if(hours >= 8 && hours < 9 || hours >= 13 && hours < 14 || hours >= 21 && hours < 22){
+        if(hours == 8 || hours == 13 || hours == 21){
             twoHours = false;
             threeHours = false;
             gp.keyH.changeMusic(2);
         }
 
-        if(hours >= 9 && hours < 10 || hours >= 12 && hours < 13 || hours >= 20 && hours < 21){
+        if(hours == 9 || hours == 12 || hours == 20){
             twoHours = false;
             threeHours = false;
             gp.keyH.changeMusic(3);
@@ -1511,13 +1511,13 @@ public class UI {
             gp.keyH.changeMusic(5);
         }
 
-        if(hours >= 16 && hours < 17){
+        if(hours == 16){
             twoHours = false;
             threeHours = false;
             gp.keyH.changeMusic(6);
         }
 
-        if(hours >= 22){
+        if(hours == 22){
             twoHours = false;
             threeHours = false;
             gp.keyH.changeMusic(7);

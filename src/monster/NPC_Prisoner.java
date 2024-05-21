@@ -69,12 +69,10 @@ public class NPC_Prisoner extends Entity {
                 shotAvailableCounter = 0;
             }*/
         }
-        else{
 
-            checkStartChasing(gp.player, 5, 100);
+        checkStartChasing(gp.player, 5, 100);
 
-            getRandomDirection();
-        }
+        getRandomDirection();
 
         if(!attacking){
             checkAttack(30, gp.tileSize*4, gp.tileSize);
